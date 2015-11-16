@@ -18,7 +18,21 @@
         <section class="main">
           <input class="toggle-all" type="checkbox">
           <label for="toggle-all">Mark all as complete</label>
-          <ul class="food-list"></ul>
+
+
+          <table class="food-list">
+            <thead>
+            <tr>
+              <th class="food-item">Food Item</th>
+              <th class="calories">Calories</th>
+              <th class="remove">remove</th>
+            </tr>
+            </thead>
+          </table>
+
+
+
+      <!--    <ul class="food-list"></ul> -->
         </section>
         <footer class="footer"></footer>
       </section>
@@ -26,15 +40,22 @@
         <p>Double-click to edit a food item</p>
       </section>
 
-      <!-- template for to do item -->
+      <!-- template for to do item  -->
+      <script type="text/template" id="item-template">
+          <td><label class="food-item view"><%= title %></label><input class="edit" value="<%= title %>"></td>
+          <td><%=  calories%></td>
+          <td><button class="destroy"></button></td>
+
+      </script>
+            <!-- template for to do item
       <script type="text/template" id="item-template">
         <div class="view">
           <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
-          <label><%= title %></label>
+          <label><%= title %></label><label><%=  calories%></label>
           <button class="destroy"></button>
         </div>
         <input class="edit" value="<%= title %>">
-      </script>
+      </script> -->
 
       <!-- template for stats section -->
       <script type="text/template" id="stats-template">

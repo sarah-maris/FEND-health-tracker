@@ -1,3 +1,11 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 html,
 body {
 	margin: 0;
@@ -28,7 +36,7 @@ body {
 	background: #f5f5f5;
 	color: #4d4d4d;
 	min-width: 230px;
-	max-width: 550px;
+	max-width: 800px;
 	margin: 0 auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
@@ -149,33 +157,40 @@ label[for='toggle-all'] {
 	list-style: none;
 }
 
-.food-list li {
+.food-list li,
+.food-list tr {
 	position: relative;
 	font-size: 24px;
 	border-bottom: 1px solid #ededed;
+	width: 100%;
 }
 
-.food-list li:last-child {
+.food-list li:last-child,
+.food-list tr:last-child {
 	border-bottom: none;
 }
 
-.food-list li.editing {
+.food-list li.editing,
+.food-list tr.editing {
 	border-bottom: none;
 	padding: 0;
 }
 
-.food-list li.editing .edit {
+.food-list li.editing .edit,
+.food-list tr.editing .edit {
 	display: block;
 	width: 506px;
 	padding: 13px 17px 12px 17px;
 	margin: 0 0 0 43px;
 }
 
-.food-list li.editing .view {
+.food-list li.editing .view,
+.food-list tr.editing .view {
 	display: none;
 }
 
-.food-list li .toggle {
+.food-list li .toggle,
+.food-list tr .toggle,{
 	text-align: center;
 	width: 40px;
 	/* auto, since non-WebKit browsers doesn't support input styling */
@@ -190,61 +205,61 @@ label[for='toggle-all'] {
 	appearance: none;
 }
 
-.food-list li .toggle:after {
+.food-list li .toggle:after,
+.food-list tr .toggle:after  {
 	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
 }
 
-.food-list li .toggle:checked:after {
+.food-list li .toggle:checked:after,
+.food-list tr .toggle:checked:after  {
 	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
 }
 
-.food-list li label {
-	white-space: pre;
-	word-break: break-word;
+.food-list li label,
+.food-list tr label,
+ .food-list tr {
 	padding: 15px 60px 15px 15px;
-	margin-left: 45px;
 	display: block;
 	line-height: 1.2;
 	transition: color 0.4s;
 }
 
-.food-list li.completed label {
+.food-list li.completed label,
+.food-list tr.completed label  {
 	color: #d9d9d9;
 	text-decoration: line-through;
 }
 
-.food-list li .destroy {
-	display: none;
-	position: absolute;
-	top: 0;
-	right: 10px;
-	bottom: 0;
-	width: 40px;
-	height: 40px;
+.food-list li .destroy,
+.food-list tr .destroy {
+	width: 80px;
 	margin: auto 0;
 	font-size: 30px;
 	color: #cc9a9a;
-	margin-bottom: 11px;
-	transition: color 0.2s ease-out;
 }
 
-.food-list li .destroy:hover {
-	color: #af5b5e;
+.food-list li .destroy:hover,
+.food-list tr .destroy:hover {
+		color: #af5b5e;
 }
 
-.food-list li .destroy:after {
+.food-list li .destroy:after,
+.food-list tr .destroy:after  {
 	content: '×';
 }
 
-.food-list li:hover .destroy {
+.food-list li:hover .destroy,
+.food-list tr:hover .destroy {
 	display: block;
 }
 
-.food-list li .edit {
+.food-list li .edit,
+.food-list tr .edit {
 	display: none;
 }
 
-.food-list li.editing:last-child {
+.food-list li.editing:last-child,
+.food-list tr.editing:last-child {
 	margin-bottom: -1px;
 }
 
@@ -357,7 +372,7 @@ html .clear-completed:active {
 		background: none;
 	}
 
-	.food-list li .toggle {
+	.food-list tr .toggle {
 		height: 40px;
 	}
 
@@ -379,4 +394,27 @@ html .clear-completed:active {
 	.filters {
 		bottom: 10px;
 	}
+}
+
+table {
+	border-collapse:  collapse;
+	width: 600px;
+}
+
+.food-item {
+	width: 400px;
+	text-align: left;
+    padding: 20px;
+}
+
+.calories {
+	width: 100px;
+}
+
+.remove {
+	width: 80px;
+}
+
+td {
+	border: 1px dotted red;
 }

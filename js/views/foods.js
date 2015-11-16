@@ -5,7 +5,7 @@
   app.FoodView = Backbone.View.extend({
 
     //... is a list tag.
-    tagName:  'li',
+    tagName:  'tr',
 
     // Cache the template function for a single item.
     template: _.template($('#item-template').html()),
@@ -13,7 +13,7 @@
     // The DOM events specific to an item.
     events: {
       'click .toggle': 'toggleCompleted',
-      'dblclick label': 'edit',
+      'dblclick .food-item.view': 'edit',
       'click .destroy': 'clear',
       'keypress .edit': 'updateOnEnter',
       'blur .edit': 'close'
@@ -60,6 +60,7 @@
 
     // Switch this view into `"editing"` mode, displaying the input field.
     edit: function () {
+console.log("EDITIING!")
       this.$el.addClass('editing');
       this.$input.focus();
     },
