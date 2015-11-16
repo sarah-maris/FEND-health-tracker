@@ -13,7 +13,7 @@
     // The DOM events specific to an item.
     events: {
       'click .toggle': 'toggleCompleted',
-      'dblclick .food-item.view': 'edit',
+      'dblclick label.view': 'edit',
       'click .destroy': 'clear',
       'keypress .edit': 'updateOnEnter',
       'blur .edit': 'close'

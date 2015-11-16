@@ -24,7 +24,6 @@
 
     // At initialization we bind to the relevant events on the FoodList collection, when items are added or changed.
     initialize: function () {
-      this.allCheckbox = this.$('.toggle-all')[0];
       this.$input = this.$('.new-food');
       this.$footer = this.$('.footer');
       this.$main = this.$('.main');
@@ -66,7 +65,7 @@
         this.$footer.hide();
       }
 
-      this.allCheckbox.checked = !remaining;
+    //  this.allCheckbox.checked = !remaining;
     },
 
     // Add a single food item to the list by creating a view for it, and

@@ -7,73 +7,42 @@
     <meta name="description" content="App to track calorie consumption and plan healthy meals">
     <meta name="keywords" content="nutrition,tracker,calories,healthy,foods">
     <meta name="author" content="Sarah Maris">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,400italic|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/style.css">
   </head>
     <body>
       <section class="trackerApp">
-        <header class="header">
-          <h1>Food Tracker</h1>
-          <input class="new-food" placeholder="What did you eat today?" autofocus>
-        </header>
-        <section class="main">
-          <input class="toggle-all" type="checkbox">
-          <label for="toggle-all">Mark all as complete</label>
-
-
+        <h1>Food Tracker</h1>
+        <h3>{DATE}</h3>
+        <input class="new-food" placeholder="What did you eat today?" autofocus>
+        <div class="main">
           <table class="food-list">
             <thead>
-            <tr>
-              <th class="food-item">Food Item</th>
-              <th class="calories">Calories</th>
-              <th class="remove">remove</th>
-            </tr>
+              <tr>
+                <th class="food-item">food item</th>
+                <th class="calories">calories</th>
+                <th class="remove">remove</th>
+              </tr>
             </thead>
           </table>
-
-
-
-      <!--    <ul class="food-list"></ul> -->
-        </section>
-        <footer class="footer"></footer>
+        </div>
+        <div class="footer"></div>
       </section>
       <section class="info">
         <p>Double-click to edit a food item</p>
       </section>
 
-      <!-- template for to do item  -->
+      <!-- Food item template  -->
       <script type="text/template" id="item-template">
-          <td><label class="food-item view"><%= title %></label><input class="edit" value="<%= title %>"></td>
-          <td><%=  calories%></td>
-          <td><button class="destroy"></button></td>
+          <td class="food-item"><label class="view"><%= title %></label><input class="edit" value="<%= title %>"></td>
+          <td class="calories"><%= calories%></td>
+          <td class="remove"><span class="destroy">x</span></td>
 
       </script>
-            <!-- template for to do item
-      <script type="text/template" id="item-template">
-        <div class="view">
-          <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
-          <label><%= title %></label><label><%=  calories%></label>
-          <button class="destroy"></button>
-        </div>
-        <input class="edit" value="<%= title %>">
-      </script> -->
 
-      <!-- template for stats section -->
+      <!-- Daily stats template -->
       <script type="text/template" id="stats-template">
         <span class="calorie-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'calorie' : 'calories' %> consumed today</span>
-        <ul class="filters">
-          <li>
-            <a class="selected" href="#/">All</a>
-          </li>
-          <li>
-            <a href="#/active">Active</a>
-          </li>
-          <li>
-            <a href="#/completed">Completed</a>
-          </li>
-        </ul>
-        <% if (completed) { %>
-        <button class="clear-completed">Clear completed (<%= completed %>)</button>
-        <% } %>
       </script>
 
       <!-- Foundational js Libraries -->
