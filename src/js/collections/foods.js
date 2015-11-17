@@ -22,7 +22,9 @@
     },
 
     dailyCalories: function(){
-      return this.reduce(function(memo, value) { return memo + value.get("calories") }, 0);
+      return this.reduce(function(memo, value) {
+        return memo + value.get("calories");
+       }, 0);
     }
 
   });

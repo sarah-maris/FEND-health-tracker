@@ -1,0 +1,39 @@
+{
+  "name": "health-tracker",
+  "version": "1.0.0",
+  "description": "*This project uses the Backbone.js framework, Firebase storage and the Nutirinix API to track calories consumed*",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarah-maris/FEND-health-tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sarah-maris/FEND-health-tracker/issues"
+  },
+  "homepage": "https://github.com/sarah-maris/FEND-health-tracker#readme",
+  "devDependencies": {
+    "bower": "^1.6.5",
+    "del": "^2.1.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-gh-pages": "^0.5.4",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-jshint": "^1.12.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rev": "^6.0.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-usemin": "^0.3.15",
+    "imagemin-pngquant": "^4.2.0",
+    "run-sequence": "^1.1.4"
+  }
+}
