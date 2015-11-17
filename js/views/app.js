@@ -2,24 +2,16 @@
 
  var app = app || {};
 
-  // The Application
-  // ---------------
-
-  // Our overall **AppView** is the top-level piece of UI.
   app.AppView = Backbone.View.extend({
 
-    // Instead of generating a new element, bind to the existing skeleton of
-    // the App already present in the HTML.
     el: '.trackerApp',
 
-    // Our template for the line of statistics at the bottom of the app.
+    // Template for the calorie count at the bottom of the table
     statsTemplate: _.template( $('#stats-template').html() ),
 
-    // Delegated events for creating new items, and clearing completed ones.
+    // Set event for creating new food
     events: {
       'keypress .new-food': 'createOnEnter',
-      'click .clear-completed': 'clearCompleted',
-      'click .toggle-all': 'toggleAllComplete'
     },
 
     // At initialization we bind to the relevant events on the FoodList collection, when items are added or changed.
@@ -32,7 +24,6 @@
       this.listenTo(app.foodList, 'add', this.addOne);
       this.listenTo(app.foodList, 'reset', this.addAll);
 
-      this.listenTo(app.foodList, 'change:completed', this.filterOne);
       this.listenTo(app.foodList, 'filter', this.filterAll);
       this.listenTo(app.foodList, 'all', this.render);
 
@@ -44,8 +35,6 @@
     // Re-rendering the App just means refreshing the statistics -- the rest
     // of the app doesn't change.
     render: function () {
-      var completed = app.foodList.completed().length;
-      var remaining = app.foodList.remaining().length;
       var dailyCalories = app.foodList.dailyCalories();
 
       if (app.foodList.length) {
@@ -53,8 +42,6 @@
         this.$footer.show();
 
         this.$footer.html(this.statsTemplate({
-          completed: completed,
-          remaining: remaining,
           dailyCalories: dailyCalories
 
 
@@ -69,7 +56,6 @@
         this.$footer.hide();
       }
 
-    //  this.allCheckbox.checked = !remaining;
     },
 
     // Add a single food item to the list by creating a view for it, and
@@ -99,7 +85,6 @@
       return {
         title: this.$input.val().trim(),
         order: app.foodList.nextOrder(),
-        completed: false
       };
     },
 
@@ -113,22 +98,7 @@
      app.foodList.create(this.newAttributes());
 
       this.$input.val('');
-    },
-
-    // Clear all completed food items, destroying their models.
-    clearCompleted: function () {
-      _.invoke(app.foodList.completed(), 'destroy');
-      return false;
-    },
-
-    toggleAllComplete: function () {
-      var completed = this.allCheckbox.checked;
-
-      app.foodList.each(function (food) {
-        food.save({
-          completed: completed
-        });
-      });
     }
+
 
   });

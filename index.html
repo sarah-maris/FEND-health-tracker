@@ -26,7 +26,7 @@
             </thead>
           </table>
         </div>
-        <div class="footer"></div>
+        <table class="footer"></table>
       </section>
       <section class="info">
         <p>Double-click to edit a food item</p>
@@ -42,8 +42,9 @@
 
       <!-- Calorie Count template -->
       <script type="text/template" id="stats-template">
-      <tr>
-        <td class="calorie-count"></strong> Calories consumed today <strong><%= dailyCalories %></td>
+        <tr>
+          <td class="calorie-count"></strong>total calories consumed today <strong></td>
+          <td class="total-calories"><%= dailyCalories %></td>
         </tr>
       </script>
 

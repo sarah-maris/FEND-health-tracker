@@ -8,18 +8,6 @@
     // Save all of the food items to Firebase.
     url: "https://food-tracker-sam.firebaseio.com",
 
-    // Filter down the list of all food items that are finished.
-    completed: function() {
-      return this.filter(function( food ) {
-        return food.get('completed');
-      });
-    },
-
-    // Filter down the list to only food items that are still not finished.
-    remaining: function() {
-      return this.without.apply( this, this.completed() );
-    },
-
     // We keep the food eaten in sequential order. This generates the next order number for new items.
     nextOrder: function() {
       if ( !this.length ) {
@@ -41,6 +29,3 @@
 
   // Create our global food list.
   app.foodList = new FoodList();
-
-  console.log(app.foodList.dailyCalories)
-    console.log(app.foodList.remaining)

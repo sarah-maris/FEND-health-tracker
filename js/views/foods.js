@@ -12,7 +12,6 @@
 
     // The DOM events specific to an item.
     events: {
-      'click .toggle': 'toggleCompleted',
       'dblclick label.view': 'edit',
       'click .destroy': 'clear',
       'keypress .edit': 'updateOnEnter',
@@ -33,29 +32,9 @@
 
       //get data from Firebase
       this.$el.html( this.template( this.model.attributes ) );
-      this.$el.toggleClass('completed', this.model.get('completed'));
-      this.toggleVisible();
 
       this.$input = this.$('.edit');
       return this;
-    },
-
-    //Toggles visibility of item
-    toggleVisible: function () {
-      this.$el.toggleClass('hidden', this.isHidden());
-    },
-
-    //Determines if item should be hidden
-    isHidden : function () {
-      var isCompleted = this.model.get('completed');
-      return ( // hidden cases only
-        (!isCompleted && app.FoodFilter === 'completed') || (isCompleted && app.FoodFilter === 'active')
-      );
-    },
-
-    //Toggle the `"completed"` state of the model.
-    toggleCompleted: function () {
-      this.model.toggle();
     },
 
     // Switch this view into `"editing"` mode, displaying the input field.
