@@ -31,8 +31,16 @@
     // Food items are sorted by their original insertion order.
     comparator: function( food ) {
       return food.get('order');
+    },
+
+    dailyCalories: function(){
+      return this.reduce(function(memo, value) { return memo + value.get("calories") }, 0);
     }
+
   });
 
   // Create our global food list.
   app.foodList = new FoodList();
+
+  console.log(app.foodList.dailyCalories)
+    console.log(app.foodList.remaining)

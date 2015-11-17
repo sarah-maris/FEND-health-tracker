@@ -40,9 +40,11 @@
 
       </script>
 
-      <!-- Daily stats template -->
+      <!-- Calorie Count template -->
       <script type="text/template" id="stats-template">
-        <span class="calorie-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'calorie' : 'calories' %> consumed today</span>
+      <tr>
+        <td class="calorie-count"></strong> Calories consumed today <strong><%= dailyCalories %></td>
+        </tr>
       </script>
 
       <!-- Foundational js Libraries -->

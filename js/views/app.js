@@ -46,6 +46,7 @@
     render: function () {
       var completed = app.foodList.completed().length;
       var remaining = app.foodList.remaining().length;
+      var dailyCalories = app.foodList.dailyCalories();
 
       if (app.foodList.length) {
         this.$main.show();
@@ -53,7 +54,10 @@
 
         this.$footer.html(this.statsTemplate({
           completed: completed,
-          remaining: remaining
+          remaining: remaining,
+          dailyCalories: dailyCalories
+
+
         }));
 
         this.$('.filters li a')
@@ -69,7 +73,6 @@
     },
 
     // Add a single food item to the list by creating a view for it, and
-    // appending its element to the `<ul>`.
     addOne: function (food) {
       var view = new app.FoodView({ model: food });
       this.$list.append(view.render().el);
@@ -101,7 +104,6 @@
     },
 
     // If you hit return in the main input field, create new Food model,
-    // persisting it to localStorage.
     createOnEnter: function(e) {
 
       if (e.which !== ENTER_KEY || !this.$input.val().trim()) {
@@ -128,7 +130,5 @@
         });
       });
     }
-
-
 
   });

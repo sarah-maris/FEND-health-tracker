@@ -9,3 +9,11 @@
     new app.AppView();
 
   });
+
+//TODO: fix edit function
+//TODO: append calories consumed to table
+//TODO: figure out how to make a separate collection for each day
+//TODO: get Nutrinix API search working
+//TODO: request development plan for recipe API
+//TODO: setup build process
+//TODO: refine colors

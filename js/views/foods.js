@@ -60,7 +60,7 @@
 
     // Switch this view into `"editing"` mode, displaying the input field.
     edit: function () {
-console.log("EDITIING!")
+
       this.$el.addClass('editing');
       this.$input.focus();
     },
