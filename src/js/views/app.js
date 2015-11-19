@@ -7,15 +7,18 @@
     el: '.trackerApp',
 
     // Template for the calorie count at the bottom of the table
+    dateTemplate: _.template( $('#date-template').html() ),
     statsTemplate: _.template( $('#stats-template').html() ),
 
     // Set event for creating new food
     events: {
       'keypress .new-food': 'createOnEnter',
+      'keypress .date': 'changeDate',
     },
 
     // At initialization we bind to the relevant events on the FoodList collection, when items are added or changed.
     initialize: function () {
+      this.$date = this.$('.date');
       this.$input = this.$('.new-food');
       this.$footer = this.$('.footer');
       this.$main = this.$('.main');
@@ -31,30 +34,24 @@
 
     },
 
-  // New
-    // Re-rendering the App just means refreshing the statistics -- the rest
-    // of the app doesn't change.
     render: function () {
       var dailyCalories = app.foodList.dailyCalories();
 
-      if (app.foodList.length) {
-        this.$main.show();
-        this.$footer.show();
+      this.$main.show();
+      this.$footer.show();
 
-        this.$footer.html(this.statsTemplate({
-          dailyCalories: dailyCalories
+      this.$date.html(this.dateTemplate({
+        date: this.$date
+      }));
 
+      this.$footer.html(this.statsTemplate({
+        dailyCalories: dailyCalories
+      }));
 
-        }));
-
-        this.$('.filters li a')
-          .removeClass('selected')
-          .filter('[href="#/' + (app.FoodFilter || '') + '"]')
-          .addClass('selected');
-      } else {
-        this.$main.hide();
-        this.$footer.hide();
-      }
+      this.$('.filters li a')
+        .removeClass('selected')
+        .filter('[href="#/' + (app.FoodFilter || '') + '"]')
+        .addClass('selected');
 
     },
 
@@ -85,6 +82,7 @@
       return {
         title: this.$input.val().trim(),
         order: app.foodList.nextOrder(),
+        dateEaten: this.$date.val()
       };
     },
 
@@ -95,10 +93,22 @@
         return;
       }
 
-     app.foodList.create(this.newAttributes());
+      app.foodList.create(this.newAttributes());
 
       this.$input.val('');
+    },
+
+     changeDate: function(e) {
+
+      if (e.which !== ENTER_KEY || !this.$date.val().trim()) {
+        return;
+      }
+
+console.log(this.$date.val().trim());
     }
+
+
+
 
 
   });
