@@ -8,14 +8,19 @@
     <meta name="keywords" content="nutrition,tracker,calories,healthy,foods">
     <meta name="author" content="Sarah Maris">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,400italic|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
     <!-- build:css css/style.min.css -->
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/jquery-ui.css">
+
     <!-- endbuild -->
   </head>
     <body>
       <section class="trackerApp">
         <h1>Food Tracker</h1>
-        <input class="date" placeholder="11/15/15" autofocus>
+        <div class="date-box">
+          <input type="text" name="date" id="datepicker">
+        </div>
         <input class="new-food" placeholder="Search for food item" autofocus>
         <div class="main">
           <table class="food-list">
@@ -62,6 +67,7 @@
       <script src="components/jquery/dist/jquery.min.js"></script>
       <script src="components/underscore/underscore-min.js"></script>
       <script src="components/backbone/backbone-min.js"></script>
+      <script src="components/jquery-ui.js"></script>
       <!-- endbuild -->
 
       <!-- Firebase Libraries-->
@@ -76,6 +82,7 @@
       <script src="js/views/app.js"></script>
       <script src="js/routers/router.js"></script>
       <script src="js/app.js"></script>
+
       <!-- endbuild -->
   </body>
 </html>

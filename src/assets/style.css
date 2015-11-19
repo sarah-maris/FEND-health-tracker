@@ -60,13 +60,20 @@ body {
 	margin: 0;
 }
 
-.trackerApp h3 {
-	font-size: 48px;
+.date-box {
+	text-align: center;
+}
+
+#datepicker  {
+	background: #e0e0d9;
+	border: 0;
+	font-size: 24px;
 	font-weight: 100;
-	line-height: 75px;
+	line-height: 36px;
 	text-align: center;
 	color: #824941;
 	margin: 0;
+	width: 150px;
 }
 
 .edit {
@@ -145,14 +152,14 @@ label[for='toggle-all'] {
 }
 
 .food-list tr .destroy {
-	color: #cc9a9a;
+	color: #b4918d;
 	display: block;
 	font:  800 30px 'Open Sans', sans-serif;
 	text-align: center;
 }
 
 .food-list tr .destroy:hover {
-	color: #af5b5e;
+	color: #824941;
 }
 
 .food-list tr .edit {
@@ -165,8 +172,6 @@ label[for='toggle-all'] {
 
 .footer {
 	background-color: #828266;
-	border-top: 1px solid #e6e6e6;
-	border-bottom: 1px solid #e6e6e6;
 	color: #f2f2ef;
 	height: 40px;
 	padding: 10px 15px;
@@ -214,10 +219,9 @@ label[for='toggle-all'] {
 }
 
 .info {
-	margin: 65px auto 0;
-	color: #bfbfbf;
-	font-size: 10px;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	margin: 35px auto 0;
+	color: #f2f2ef;
+	font-size: 14px;
 	text-align: center;
 }
 
@@ -274,7 +278,7 @@ td, th {
 	/*border: 1px dotted red;*/
 }
 
-th {
+.food-list th {
 	background-color: #828266;
 	border-top: 1px solid #e6e6e6;
 	border-bottom: 1px solid #e6e6e6;
@@ -300,4 +304,8 @@ td.calories {
 	padding: 0 0 0 20px;
 	width: 400px;
 	text-align: left;
+}
+
+.ui-datepicker-trigger {
+	padding: 10px 0 0 10px;
 }
