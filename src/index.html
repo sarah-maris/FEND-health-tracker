@@ -15,8 +15,8 @@
     <body>
       <section class="trackerApp">
         <h1>Food Tracker</h1>
-        <h3>{DATE}</h3>
-        <input class="new-food" placeholder="What did you eat today?" autofocus>
+        <input class="date" placeholder="11/15/15" autofocus>
+        <input class="new-food" placeholder="Search for food item" autofocus>
         <div class="main">
           <table class="food-list">
             <thead>
@@ -34,12 +34,19 @@
         <p>Double-click to edit a food item</p>
       </section>
 
+
+      <!-- Date template  -->
+      <script type="text/template" id="date-template">
+        <h3><%= date %></h3><input class="edit" value="<%= date %>">
+      </script>
+
+
+
       <!-- Food item template  -->
       <script type="text/template" id="item-template">
           <td class="food-item"><label class="view"><%= title %></label><input class="edit" value="<%= title %>"></td>
           <td class="calories"><%= calories%></td>
           <td class="remove"><span class="destroy">x</span></td>
-
       </script>
 
       <!-- Calorie Count template -->
