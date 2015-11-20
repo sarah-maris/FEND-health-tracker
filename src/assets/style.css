@@ -309,3 +309,10 @@ td.calories {
 .ui-datepicker-trigger {
 	padding: 10px 0 0 10px;
 }
+
+input::after {
+    content: " - Remember this";
+    background-color: yellow;
+    color: red;
+    font-weight: bold;
+}

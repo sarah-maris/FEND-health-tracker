@@ -7,18 +7,18 @@
     el: '.trackerApp',
 
     // Template for the calorie count at the bottom of the table
-    dateTemplate: _.template( $('#date-template').html() ),
     statsTemplate: _.template( $('#stats-template').html() ),
 
     // Set event for creating new food
     events: {
       'keypress .new-food': 'createOnEnter',
-      'keypress .date': 'changeDate',
     },
 
     // At initialization we bind to the relevant events on the FoodList collection, when items are added or changed.
     initialize: function () {
-      this.$date = this.$('.date');
+      this.$date = this.$('#datepicker');
+
+     console.log(this.$date);
       this.$input = this.$('.new-food');
       this.$footer = this.$('.footer');
       this.$main = this.$('.main');
@@ -39,10 +39,6 @@
 
       this.$main.show();
       this.$footer.show();
-
-      this.$date.html(this.dateTemplate({
-        date: this.$date
-      }));
 
       this.$footer.html(this.statsTemplate({
         dailyCalories: dailyCalories
@@ -76,13 +72,18 @@
       app.foodList.each(this.filterOne, this);
     },
 
+    getDate: function() {
+      var chosenDate = $("#datepicker").datepicker( 'getDate' );
+      return ("0" + (chosenDate.getMonth() + 1).toString()).substr(-2) + "/" + ("0" + chosenDate.getDate().toString()).substr(-2)  + "/" + (chosenDate.getFullYear().toString()).substr(2);
+    },
+
 
     // Generate the attributes for a new food item.
     newAttributes: function () {
       return {
         title: this.$input.val().trim(),
         order: app.foodList.nextOrder(),
-        dateEaten: this.$date.val()
+        dateEaten: this.getDate()
       };
     },
 
@@ -92,23 +93,10 @@
       if (e.which !== ENTER_KEY || !this.$input.val().trim()) {
         return;
       }
-
+console.log((this.newAttributes.dateEaten))
       app.foodList.create(this.newAttributes());
 
       this.$input.val('');
-    },
-
-     changeDate: function(e) {
-
-      if (e.which !== ENTER_KEY || !this.$date.val().trim()) {
-        return;
-      }
-
-console.log(this.$date.val().trim());
     }
-
-
-
-
 
   });
