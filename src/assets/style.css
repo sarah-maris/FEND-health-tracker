@@ -76,6 +76,13 @@ body {
 	width: 150px;
 }
 
+#datepicker:focus {
+	outline: none;
+	background: #f2f2ef;
+	box-shadow: inset 0 0 10px -5px rgba(0,0,0,0.75);
+	border-radius: 5px;
+}
+
 .edit {
 	position: relative;
 	margin: 0;
@@ -104,7 +111,7 @@ body {
 	border: 1px solid #f2f2ef;
 	padding: 16px 16px 16px 30px;
 	background: #f2f2ef;
-	box-shadow: inset 0px 0px 10px -5px rgba(0,0,0,0.75);
+	box-shadow: inset 0 0 10px -5px rgba(0,0,0,0.75);
 	border-radius: 15px;
 }
 
@@ -310,9 +317,3 @@ td.calories {
 	padding: 10px 0 0 10px;
 }
 
-input::after {
-    content: " - Remember this";
-    background-color: yellow;
-    color: red;
-    font-weight: bold;
-}

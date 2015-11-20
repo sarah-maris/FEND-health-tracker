@@ -50,8 +50,11 @@
 
       <!-- Food item template  -->
       <script type="text/template" id="item-template">
-          <td class="food-item"><label class="view"><%= title %></label><input class="edit" value="<%= title %>"></td>
-          <td class="calories"><%= dateEaten%><% dateEaten %></td>
+          <td class="food-item"><label class="view"><%= title %></label><input class="edit" value="<%= title %>">
+<spa style="float: right"><%= dateEaten %></span>
+
+          </td>
+          <td class="calories"><%= calories%></td>
           <td class="remove"><span class="destroy">x</span></td>
       </script>
 

@@ -93,7 +93,7 @@
       if (e.which !== ENTER_KEY || !this.$input.val().trim()) {
         return;
       }
-console.log((this.newAttributes.dateEaten))
+
       app.foodList.create(this.newAttributes());
 
       this.$input.val('');
