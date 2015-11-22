@@ -25,6 +25,10 @@
       return this.reduce(function(memo, value) {
         return memo + value.get("calories");
        }, 0);
+    },
+
+    byDate: function (date) {
+        return this.where({dateEaten: date});
     }
 
   });
