@@ -1,4 +1,4 @@
-##Front End Nanodegree Project-2: Health Tracker
+##Front End Nanodegree Project 5-2: Health Tracker
 ###Food Planner
 *This project uses the Backbone.js framework, Firebase storage and the Nutirinix API to track calories consumed*
 
