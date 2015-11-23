@@ -5,19 +5,11 @@
 
   $(function() {
 
-    // Kick things off by creating the **App**.
-    new app.AppView();
+    //Start the app by initiating the appview*.
+    appView = new app.AppView();
 
-
-  $( "#datepicker" ).datepicker({
-	showOn: "both",
-    buttonImage: "assets/images/calendar.png",
-    buttonImageOnly: true,
-    buttonText: "Select date"
-    });
-
-  $( "#datepicker" ).datepicker( "setDate", new Date() );
-
+window.Events = {};
+_.extend(window.Events, Backbone.Events);
   });
 
 //TODO: figure out how to make a separate collection for each day

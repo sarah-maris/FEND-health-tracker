@@ -27,10 +27,6 @@
        }, 0);
     },
 
-    byDate: function (date) {
-        return this.where({dateEaten: date});
-    }
-
   });
 
   // Create our global food list.
