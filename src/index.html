@@ -12,78 +12,78 @@
     <!-- build:css css/style.min.css -->
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="assets/jquery-ui.css">
-
     <!-- endbuild -->
+
   </head>
-    <body>
-      <section class="trackerApp">
-        <h1>Food Tracker</h1>
-        </div>
-        <div class="date-box"></div>
-        <input class="new-food" placeholder="Search for food item" autofocus>
-        <div class="main">
-          <table class="food-list">
-            <thead>
-              <tr>
-                <th class="food-item">food item</th>
-                <th class="calories">calories</th>
-                <th class="remove">remove</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-        <table class="table-end"></table>
-      </section>
-      <section class="info">
-        <p>Double-click to edit a food item</p>
-      </section>
+  <body>
+    <section class="trackerApp">
+      <h1>Food Tracker</h1>
+      </div>
+      <div class="date-box"></div>
+      <input class="new-food" placeholder="Search for food item" autofocus>
+      <div class="main">
+        <table class="food-list">
+          <thead>
+            <tr>
+              <th class="food-item">food item</th>
+              <th class="calories">calories</th>
+              <th class="remove">remove</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <table class="table-end"></table>
+    </section>
+    <section class="info">
+      <p>Double-click to edit a food item</p>
+    </section>
 
-      <!-- Date template -->
-      <script type="text/template" id="date-template">
-           <input type="text" name="date" id="datepicker">
-      </script>
+    <!-- Date template -->
+    <script type="text/template" id="date-template">
+         <input type="text" name="date" id="datepicker">
+    </script>
 
-      <!-- Food item template  REMOVE TEMPORARY CODE TO SHOW DATES BEFORE DEPLOYMENT -->
-      <script type="text/template" id="item-template">
-          <td class="food-item"><label class="view"><%= title %></label><input class="edit" value="<%= title %>">
+    <!-- Food item template  REMOVE TEMPORARY CODE TO SHOW DATES BEFORE DEPLOYMENT -->
+    <script type="text/template" id="item-template">
+      <td class="food-item"><label class="view"><%= title %></label><input class="edit" value="<%= title %>">
 
 <span style="float: right"><%= dateEaten %></span>
 
-          </td>
-          <td class="calories"><%= calories%></td>
-          <td class="remove"><span class="destroy">x</span></td>
-      </script>
+      </td>
+      <td class="calories"><%= calories%></td>
+      <td class="remove"><span class="destroy">x</span></td>
+    </script>
 
-      <!-- Calorie Count template -->
-      <script type="text/template" id="stats-template">
-        <tr>
-          <td class="calorie-count"></strong>total calories consumed today <strong></td>
-          <td class="total-calories"><%= dailyCalories %></td>
-        </tr>
-      </script>
+    <!-- Calorie Count template -->
+    <script type="text/template" id="stats-template">
+      <tr>
+        <td class="calorie-count"></strong>total calories consumed today <strong></td>
+        <td class="total-calories"><%= dailyCalories %></td>
+      </tr>
+    </script>
 
-      <!-- Foundational js Libraries -->
-      <!-- build:js js/lib.min.js -->
-      <script src="components/jquery/dist/jquery.min.js"></script>
-      <script src="components/underscore/underscore-min.js"></script>
-      <script src="components/backbone/backbone-min.js"></script>
-      <script src="components/jquery-ui.js"></script>
-      <!-- endbuild -->
+    <!-- Foundational js Libraries -->
+    <!-- build:js js/lib.min.js -->
+    <script src="components/jquery/dist/jquery.min.js"></script>
+    <script src="components/underscore/underscore-min.js"></script>
+    <script src="components/backbone/backbone-min.js"></script>
+    <script src="components/jquery-ui.js"></script>
+    <!-- endbuild -->
 
-      <!-- Firebase Libraries-->
-      <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
-      <script src="https://cdn.firebase.com/libs/backbonefire/0.5.1/backbonefire.min.js"></script>
+    <!-- Firebase Libraries-->
+    <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/backbonefire/0.5.1/backbonefire.min.js"></script>
 
-     <!-- App scripts -->
-     <!-- build:inlinejs -->
-      <script src="js/models/food.js"></script>
-      <script src="js/collections/foods.js"></script>
-      <script src="js/views/datepicker.js"></script>
-      <script src="js/views/foods.js"></script>
-      <script src="js/views/app.js"></script>
-      <script src="js/app.js"></script>
+   <!-- App scripts -->
+   <!-- build:inlinejs -->
+    <script src="js/models/food.js"></script>
+    <script src="js/collections/foods.js"></script>
+    <script src="js/views/datepicker.js"></script>
+    <script src="js/views/foods.js"></script>
+    <script src="js/views/app.js"></script>
+    <script src="js/app.js"></script>
+    <!-- endbuild -->
 
-      <!-- endbuild -->
   </body>
 </html>
 

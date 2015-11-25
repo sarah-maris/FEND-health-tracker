@@ -12,8 +12,7 @@
 
     // Set event for creating new food
     events: {
-      'keypress .new-food': 'createOnEnter',
-      'select #datepicker': 'test'
+      'keypress .new-food': 'createOnEnter'
     },
 
     // At initialization we bind to the relevant events on the FoodList collection, when items are added or changed.
@@ -29,14 +28,9 @@
       this.listenTo(app.foodList, 'filter', this.filterAll);
       this.listenTo(app.foodList, 'all', this.render);
 
-      //intialize datePicker
-       app.datePicker = new app.DatePicker();
+      //Get date from datePicker
+       this.appDate = datePicker.appDate;
 
-       this.date = app.datePicker.appDate;
-
-
-      this.listenTo(app.datePicker.newDate, 'change', this.test());
-//this.listenTo(app.datePicker, 'date:selected', this.test());
     },
 
     render: function () {
@@ -58,7 +52,6 @@
 
     // Generate the attributes for a new food item.
     newAttributes: function () {
-      console.log("appDate", this.appDate, app.datePicker.appDate)
       return {
         title: this.$input.val().trim(),
         order: app.foodList.nextOrder(),
@@ -76,10 +69,6 @@
       app.foodList.create(this.newAttributes());
 
       this.$input.val('');
-    },
-
-    test: function(){
-      console.log("here in test app.js", this.appDate, app.datePicker.appDate)
     }
 
   });

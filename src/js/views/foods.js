@@ -4,13 +4,13 @@
   // The DOM element for a food item...
   app.FoodView = Backbone.View.extend({
 
-    //... is a list tag.
+    //Element tag for food items
     tagName:  'tr',
 
-    // Cache the template function for a single item.
+    //Template function for each food item
     template: _.template($('#item-template').html()),
 
-    // The DOM events specific to an item.
+    //Bind functions to events needed for editing and removing food items
     events: {
       'dblclick label.view': 'edit',
       'click .destroy': 'clear',
@@ -18,52 +18,60 @@
       'blur .edit': 'close'
     },
 
-    // The FoodView listens for changes to its model, re-rendering. Since there's
-    // a one-to-one correspondence between a **Food** and a **FoodView** in this
-    // app, we set a direct reference on the model for convenience.
+    //Set up listeners for food items
     initialize: function () {
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'destroy', this.remove);
       this.listenTo(this.model, 'visible', this.toggleVisible);
     },
 
-    // Re-render the titles of the food item.
+    // Render the food tiem
     render: function () {
 
       //get data from Firebase
       this.$el.html( this.template( this.model.attributes ) );
+
+      //Add edit class to input element
       this.$input = this.$('.edit');
       return this;
+
     },
 
-    // Switch this view into `"editing"` mode, displaying the input field.
+    //Allow item to be edited
     edit: function () {
 
+      //Change row class to 'editing' mode
       this.$el.addClass('editing');
       this.$input.focus();
+
     },
 
-    // Close the `"editing"` mode, saving changes to the food item.
+    // Close the `editing` mode and save changes to Firebase
     close: function () {
       var value = this.$input.val().trim();
 
+      //If item title exists, save it to Firebase
       if ( value ) {
         this.model.save({ title: value });
+
+      //If item is empty, delete it from Firebase
       } else {
         this.clear();
       }
 
+      //Remove 'editing" class
       this.$el.removeClass('editing');
+
     },
 
-    // If you hit `enter`, we're through editing the item.
+    //Fire the 'close' function on when hit 'enter' key
     updateOnEnter: function( e ) {
       if (e.which === ENTER_KEY ) {
         this.close();
       }
     },
 
-    //Remove the item, destroy the model in Firebase and delete its view.
+    //Delete the item from Firebase and remove its view.
     clear: function () {
       this.model.destroy();
     }
