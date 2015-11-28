@@ -51,7 +51,7 @@
     //Update foodlist view when date is changed
     updateView: function(dateText, e) {
       appView.appDate =  dateText;
-      appView.render();
+      appView.filterByDate();
     }
 
   });

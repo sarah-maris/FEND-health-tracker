@@ -28,6 +28,12 @@
        }, 0);
     },
 
+    byDate: function(date) {
+        return _(this.filter(function(food) {
+            return food.get("dateEaten") === date;
+        }));
+    }
+
   });
 
   //Fire the collection to get the foodlist from Firebase

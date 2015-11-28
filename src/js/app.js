@@ -9,7 +9,7 @@
     datePicker = new app.DatePicker();
 
     //Start the app by initiating the appview*.
-     appView = new app.AppView();
+    appView = new app.AppView();
 
   });
 
