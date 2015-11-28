@@ -32,13 +32,10 @@
       this.listenTo(this.foodList, 'add', this.addFood);
 
       //Render filtered collection
-      this.listenTo(this.foodList, 'all', this.render);
+      this.listenTo(this.foodList, 'all', this.filterByDate);
 
       //Get date from datePicker
       this.appDate = datePicker.appDate;
-
-      //Filter for the current date
-      this.filterByDate();
 
     },
 
@@ -96,6 +93,8 @@ console.log("In filterByDate", this.appDate)
       foodList.each(function(food){
         self.addFood(food);
       });
+
+      self.render();
 
       return this;
 
