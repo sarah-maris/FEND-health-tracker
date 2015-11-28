@@ -15,6 +15,9 @@
       'keypress .new-food': 'createOnEnter'
     },
 
+
+    foodList: new FoodList(),
+
     // At initialization we bind to the relevant events on the FoodList collection, when items are added or changed.
     initialize: function () {
 
@@ -24,12 +27,14 @@
       this.$main = this.$('.main');
       this.$list = $('.food-list');
 
+      //Add new food to main collection
       this.listenTo(app.foodList, 'add', this.addFood);
-      this.listenTo(app.foodList, 'filter', this.filterAll);
-      this.listenTo(app.foodList, 'all', this.render);
+
+      //Render filtered collection
+      this.listenTo(this.foodList, 'all', this.render);
 
       //Get date from datePicker
-       this.appDate = datePicker.appDate;
+      this.appDate = datePicker.appDate;
 
     },
 
@@ -37,17 +42,21 @@
 
       //Get calories consumed and put in bottom of table
       this.$tableEnd.html(this.statsTemplate({
-        dailyCalories: app.foodList.dailyCalories()
+        dailyCalories: this.foodList.dailyCalories()
       }));
 
-
+      this.foodList.forEach(this.addFood, this);
 
     },
 
-    // Add a single food item to the list by creating a view for it, and
+    // Show food if matches date
     addFood: function (food) {
       var view = new app.FoodView({ model: food });
-      this.$list.append(view.render().el);
+      var foodDate = view.model.attributes.dateEaten;
+      if (foodDate == this.appDate) {
+              this.$list.append(view.render().el);
+     }
+
     },
 
     // Generate the attributes for a new food item.
