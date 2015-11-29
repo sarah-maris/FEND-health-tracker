@@ -25,7 +25,7 @@ var paths = {
     alljs: ['src/components/jquery/dist/jquery.min.js','src/components/underscore/underscore-min.js','src/components/backbone/backbone-min.js', 'src/js/*.js', 'src/js/*/*.js'  ],
     appjs: ['src/js/*.js', 'src/js/*/*.js' ],
     html: ['src/*.html'],
-    images: ['src/img/*'],
+    images: ['src/assets/images/*'],
     fonts: ['src/fonts/font/*']
 };
 
@@ -52,7 +52,7 @@ gulp.task('png-images', function() {
     svgoPlugins: [{removeViewBox: false}],
     use: [pngquant()]
     }))
-  .pipe(gulp.dest('build/img'));
+  .pipe(gulp.dest('build/assets/images'));
 });
 
 //Concatenate and minify css
