@@ -1,7 +1,6 @@
 
   var app = app || {};
 
-  // The DOM element for a food item...
   app.FoodView = Backbone.View.extend({
 
     //Element tag for food items
@@ -22,10 +21,9 @@
     initialize: function () {
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'destroy', this.remove);
-      this.listenTo(this.model, 'visible', this.toggleVisible);
     },
 
-    // Render the food tiem
+    // Render the food item
     render: function () {
 
       //get data from Firebase

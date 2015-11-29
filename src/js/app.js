@@ -13,7 +13,6 @@
 
   });
 
-//TODO: figure out how to link datepicker to collection (filter and add up calories)
 //TODO: get Nutrinix API search working
 //TODO: request development plan for recipe API
 //TODO: get health and nutrition articles from NY Times

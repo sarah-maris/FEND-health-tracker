@@ -21,13 +21,7 @@
       return food.get('order');
     },
 
-    //Calculate total calories
-    dailyCalories: function(){
-      return this.reduce(function(memo, value) {
-        return memo + value.get("calories");
-       }, 0);
-    },
-
+    //Filter foodList by date eaten
     byDate: function(date) {
         return _(this.filter(function(food) {
             return food.get("dateEaten") === date;
