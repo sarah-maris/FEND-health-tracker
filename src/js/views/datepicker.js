@@ -1,6 +1,4 @@
-
-
- var app = app || {};
+  var app = app || {};
 
   app.DatePicker = Backbone.View.extend({
 
