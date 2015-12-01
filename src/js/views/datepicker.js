@@ -2,7 +2,7 @@
 
   app.DatePicker = Backbone.View.extend({
 
-    el: '.date-box',
+    el: '.date-picker',
 
     // Template for the datepicker
     dateTemplate: _.template( $('#date-template').html() ),

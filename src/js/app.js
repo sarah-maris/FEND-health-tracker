@@ -11,9 +11,6 @@
     //Start the app by initiating the appview*.
     appView = new app.AppView();
 
-    //Test item to show search output
-    appView.foodSearch("red wine");
-
   });
 
 //TODO: get Nutrinix API search working
