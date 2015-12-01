@@ -11,7 +11,8 @@
     //Start the app by initiating the appview*.
     appView = new app.AppView();
 
-    app.getFoodOptions("red wine");
+    //Test item to show search output
+    appView.foodSearch("red wine");
 
   });
 
