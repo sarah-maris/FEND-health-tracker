@@ -336,15 +336,16 @@ td.calories {
 }
 
 #num-servings {
+	background: #f2f2ef;
+	border: 0;
+    border-radius: 5px;
+	color: #828266;
     display: block;
-    font: normal 100 14px/24px 'Open Sans', sans-serif;
+    font: normal 100 18px/36px 'Open Sans', sans-serif;
     margin: 0 auto;
     outline: none;
-    color: #828266;
-    border: 0;
     padding: 0 10px;
-    background: #f2f2ef;
-    border-radius: 5px;
+    text-align: center;
     width: 60px;
 }
 
@@ -354,29 +355,6 @@ td.calories {
 	vertical-align: bottom;
 }
 
-
-.ui-selectmenu-open .ui-widget-content {
-    background: #f2f2ef;
-}
-
-
-.ui-selectmenu-open .ui-state-focus,
-.ui-selectmenu-open .ui-widget-content .ui-state-focus {
-	color: #fff;
-}
-
-.serving-box .ui-state-default,
-.serving-box .ui-state-hover {
-    background: #f2f2ef;
-   	border-radius: 10px;
-}
-
-.serving-box .ui-corner-all {
-	border-radius: 10px;
-}
-
-.serving-box .ui-widget,
-.ui-selectmenu-open .ui-widget,
 .serving-calories,
 .food-calories {
 	font: normal 100 18px/20px 'Open Sans', sans-serif;

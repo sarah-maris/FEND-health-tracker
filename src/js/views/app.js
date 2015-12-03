@@ -12,14 +12,16 @@
     // Set event for creating new food
     events: {
       'keypress #food-search': 'searchFood',
-      'click #num-servings': 'updateCals'
+      'keyup #num-servings': 'updateCals'
     },
 
     //Get data from collection
     foodList: app.foodList,
 
-self: this,
-    //
+    //Set up 'that' to allow 'showOptions' function to access 'addFromSearch'
+    that: this,
+
+    //Set variables and listeners
     initialize: function () {
 
       //Set up variables for easy reference to DOM
@@ -36,14 +38,6 @@ self: this,
       //Get date from datePicker
       this.appDate = datePicker.appDate;
 
-      $("#num-servings").selectmenu();
-
-      $(".ui-selectmenu-button").position({
-          my: "center",
-          at: "center",
-          of: ".serving-box"
-        });
-
     },
 
     //Function to add food item and servings
@@ -57,9 +51,10 @@ self: this,
 
     //Function to update total calories for a food when number of servings changes
     updateCals: function(){
-      console.log( $('#num-servings').val())
+
       var totCals = $('.serving-calories').text() * $('#num-servings').val();
       $('.food-calories').html(totCals);
+
     },
 
     //Create a new food item when hit enter in input field
@@ -69,6 +64,7 @@ self: this,
         return;
       }
 
+      //Create a few food item wtih the given attributes
       this.foodList.create(this.newAttributes());
 
       this.$input.val('');
@@ -91,21 +87,28 @@ self: this,
 
     //Show food item in list
     showFood: function (food) {
+
+      //Create new FoodView from data
       var view = new app.FoodView({ model: food });
-        this.$list.append(view.render().el);
+
+      //Append the new food to the list on the page
+      this.$list.append(view.render().el);
+
     },
 
     //Calculate total calories for a collection of food items
     dailyCalories: function(foodList){
+
       return foodList.reduce(function(memo, value) {
         return memo + value.get("calories");
        }, 0);
+
     },
 
     render: function(foodList){
 
       //Set up self to give access to addFood
-      self = this;
+      var self = this;
 
       //Filter collection to pull out food items for current date
       filteredList = this.foodList.byDate(this.appDate);
@@ -191,7 +194,7 @@ self: this,
 
           //On click send data to add function
           $('#option' + i).click( function(){
-            self.addFromSearch(food);
+            that.addFromSearch(food);
           });
 
         }());
