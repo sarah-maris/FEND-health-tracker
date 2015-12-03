@@ -36,6 +36,14 @@ self: this,
       //Get date from datePicker
       this.appDate = datePicker.appDate;
 
+      $("#num-servings").selectmenu();
+
+      $(".ui-selectmenu-button").position({
+          my: "center",
+          at: "center",
+          of: ".serving-box"
+        });
+
     },
 
     //Function to add food item and servings

@@ -92,7 +92,6 @@ body {
 #datepicker:focus {
 	outline: none;
 	background: #f2f2ef;
-	box-shadow: inset 0 0 10px -5px rgba(0,0,0,0.75);
 	border-radius: 5px;
 }
 
@@ -107,7 +106,6 @@ body {
 	outline: none;
 	color: #828266;
 	border: 1px solid #B09B76;
-	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
 	border-radius: 5px;
 }
 
@@ -120,7 +118,6 @@ body {
 	border: 0;
 	padding: 0 10px;
 	background: #f2f2ef;
-	box-shadow: inset 0 0 10px -5px rgba(0,0,0,0.75);
 	border-radius: 10px;
 	width: 470px;
 }
@@ -342,12 +339,6 @@ td.calories {
     width: 100px;
 }
 
-.serving-calories,
-.food-calories {
-	margin: 0 0 0 20px;
-	text-align: center;
-}
-
 #num-servings {
     display: block;
     font: normal 100 14px/24px 'Open Sans', sans-serif;
@@ -357,7 +348,6 @@ td.calories {
     border: 0;
     padding: 0 10px;
     background: #f2f2ef;
-    box-shadow: inset 0 0 10px -5px rgba(0,0,0,0.75);
     border-radius: 5px;
     width: 60px;
 }
@@ -367,5 +357,37 @@ td.calories {
 }
 
 .food-table th {
+	color: #824941;
+	font: normal 100 18px/20px 'Open Sans', sans-serif;
 	vertical-align: bottom;
 }
+
+
+.ui-selectmenu-open .ui-widget-content {
+    background: #f2f2ef;
+}
+
+
+.ui-selectmenu-open .ui-state-focus,
+.ui-selectmenu-open .ui-widget-content .ui-state-focus {
+	color: #fff;
+}
+
+.serving-box .ui-state-default,
+.serving-box .ui-state-hover {
+    background: #f2f2ef;
+   	border-radius: 10px;
+}
+
+.serving-box .ui-corner-all {
+	border-radius: 10px;
+}
+
+.serving-box .ui-widget,
+.ui-selectmenu-open .ui-widget,
+.serving-calories,
+.food-calories {
+	font: normal 100 18px/20px 'Open Sans', sans-serif;
+	text-align: center;
+}
+
