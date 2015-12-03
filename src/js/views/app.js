@@ -12,16 +12,15 @@
     // Set event for creating new food
     events: {
       'keypress #food-search': 'searchFood',
-      'keyup #num-servings': 'updateCals'
+      'keyup #num-servings': 'updateCals',
+      'click #add-food': 'createFood'
     },
 
     //Get data from collection
     foodList: app.foodList,
 
-    //Set up 'that' to allow 'showOptions' function to access 'addFromSearch'
-    that: this,
-
-    //Set variables and listeners
+    self: this,
+    //
     initialize: function () {
 
       //Set up variables for easy reference to DOM
@@ -42,23 +41,28 @@
 
     //Function to add food item and servings
     addFromSearch: function(food) {
-
+      $('.food-table').removeClass('hidden');
       var totCals = food.cals * $('#num-servings').val();
       $('#food-search').val(food.name);
       $('.serving-calories').html(food.cals);
-      $('.food-calories').html(totCals);
+      $('.food-calories').html(totCals.toFixed());
     },
 
     //Function to update total calories for a food when number of servings changes
     updateCals: function(){
 
       var totCals = $('.serving-calories').text() * $('#num-servings').val();
-      $('.food-calories').html(totCals);
+      $('.food-calories').html(totCals.toFixed());
 
     },
 
     //Create a new food item when hit enter in input field
     createFood: function(e) {
+
+      //Close food results table and add back default value for search box
+      $('.food-table').addClass('hidden');
+      $('.results-list').addClass('hidden');
+      $('#food-search').attr('placeholder', 'What did you eat?').val("").focus().blur();
 
       if (e.which !== ENTER_KEY || !this.$input.val().trim()) {
         return;
@@ -108,7 +112,7 @@
     render: function(foodList){
 
       //Set up self to give access to addFood
-      var self = this;
+     // var self = this;
 
       //Filter collection to pull out food items for current date
       filteredList = this.foodList.byDate(this.appDate);
@@ -171,7 +175,7 @@
 
         //Get food item object
         var foodName = searchResults[i].fields.brand_name + ' ' + searchResults[i].fields.item_name;
-        var foodCals = searchResults[i].fields.nf_calories;
+        var foodCals = searchResults[i].fields.nf_calories.toFixed();
         var serveSize = searchResults[i].fields.nf_serving_size_qty;
         var serveUnit = searchResults[i].fields.nf_serving_size_unit;
 
@@ -188,13 +192,13 @@
           //Create object to pass to add function
           var food = {};
           food.name = foodName;
-          food.cals = foodCals;
+          food.cals = foodCals; //round calories to avoid decimals
           food.serveSize = serveSize;
           food.serveUnit = serveUnit;
 
           //On click send data to add function
           $('#option' + i).click( function(){
-            that.addFromSearch(food);
+            appView.addFromSearch(food);
           });
 
         }());
