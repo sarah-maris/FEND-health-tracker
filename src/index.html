@@ -20,27 +20,39 @@
       <h1 class="app-header">Food Tracker</h1>
       </div>
       <div class="date-box">
-        <h3>Tracker Date: </h3>
+        <h3>Tracker Date</h3>
         <div class="date-picker"></div>
       </div>
       <div class="add-food-box">
-        <h3>Search for Food using the Nutritionix database</h3>
         <div class="food-input">
-          <label for="food-search">What did you eat?</label>
-          <input id="food-search" type="text" autocomplete="off" class="ac_input">
+         <h3>Search</h3>
+          <input id="food-search" class="new-food" placeholder="What did you eat?" type="text">
         </div>
-        <div class="">
-          <label class="" for="">How many servings?</label>
-          <input id="a" name="" type="text" value="1">
-        </div>
-        <div class="">
-          <label class="" for="">Calories</label>
-          <input id="a" name="" type="text" value="1">
-        </div>
-        <div class="field action" >
-         <input class="add-button" type="submit" value="Add Food" id="add-food">
-        </div>
-      </div>
+        <table class="food-table">
+          <tr>
+            <th>Calories<br>per Serving</th>
+            <th>Servings</th>
+            <th>Total<br>Calories</th>
+          </tr>
+          <tr>
+            <td class="serving-calories"></td>
+            <td>
+                <select name="servings" id="num-servings">
+                  <option selected="selected">1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select></td>
+            <td class="food-calories"></td>
+            <td><input class="add-button" type="submit" value="Add Food" id="add-food"></td>
+          </tr>
+      </table>
       <div class="add-food-box hidden">
         <h3>Add manually</h3>
           <div class="food-input">
@@ -59,7 +71,6 @@
           <input class="manual-button" type="submit" value="Add food manually" id="add-manually">
         </div>
       </div>
-      <input class="new-food" placeholder="Search for food item" autofocus>
       <div class="search-results">
         <ul class="results-list"></ul>
       </div>

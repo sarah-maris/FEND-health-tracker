@@ -35,19 +35,19 @@ body {
 .tracker-app input::-webkit-input-placeholder {
 	font-style: italic;
 	font-weight: 300;
-	color: #4A342E;
+	color:#828266;
 }
 
 .tracker-app input::-moz-placeholder {
 	font-style: italic;
 	font-weight: 300;
-	color: #4A342E;
+	color: #828266;
 }
 
 .tracker-app input::input-placeholder {
 	font-style: italic;
 	font-weight: 300;
-	color: #4A342E;
+	color: #828266;
 }
 
 .tracker-app h1 {
@@ -59,32 +59,34 @@ body {
 	margin: 0;
 }
 
-.date-box h3{
+.date-box h3, .date-picker {
 	display: inline-block;
-	text-align: right;
-	width: 45%;
+	text-align: left;
 }
 
-.date-picker {
-	display: inline-block;
-	width: 45%;
-}
-.date-box h3, #datepicker  {
+.date-box h3 {
 	background: #e0e0d9;
-	border: 0;
-	font-size: 24px;
-	font-weight: 100;
-	line-height: 36px;
-
-	color: #824941;
-	margin: 0;
+		color: #824941;
+    font: normal 100 24px/36px 'Open Sans', sans-serif;
+	margin: 0 0 0 20px;
+	vertical-align: top;
 }
 
 #datepicker {
-	display: inline-block;
-	width: 150px;
-	text-align: center;
+	border: 0;
+    color: #828266;
+    font: normal 100 18px/36px 'Open Sans', sans-serif;
+	margin: 0 0 0 10px;
+	padding: 0 ;
+	vertical-align: top;
+	width: 100px;
+}
 
+
+.date-picker{
+	background: #f2f2ef;
+	border-radius: 10px;
+	margin: 0 0 0 10px;
 }
 
 #datepicker:focus {
@@ -110,20 +112,17 @@ body {
 }
 
 .new-food {
-	position: relative;
+	display: inline-block;
 	margin: 10px;
-	width: 580px;
-	font-size: 24px;
-	font-family: inherit;
-	font-weight: inherit;
-	line-height: 1.4em;
+	font: normal 100 18px/36px 'Open Sans', sans-serif;
 	outline: none;
 	color: #828266;
-	border: 1px solid #f2f2ef;
-	padding: 16px 16px 16px 30px;
+	border: 0;
+	padding: 0 10px;
 	background: #f2f2ef;
 	box-shadow: inset 0 0 10px -5px rgba(0,0,0,0.75);
-	border-radius: 15px;
+	border-radius: 10px;
+	width: 470px;
 }
 
 .main {
@@ -294,7 +293,7 @@ td.calories {
 }
 
 .ui-datepicker-trigger {
-	padding: 10px 0 0 10px;
+	padding: 5px 10px;
 }
 
 .add-food-box {
@@ -302,16 +301,71 @@ td.calories {
 	overflow: hidden;
 }
 
-.add-food-box div{
-	width: 22%;
-	display: inline-block;
-    padding: 5px;
-}
-
-#food-search, #food-enter {
-	width: 100%;
-}
-
 .hidden {
 	display: none;
+}
+
+.food-option {
+	list-style-type: none;
+}
+
+.food-option:hover {
+	font-weight: bold;
+}
+
+.food-input h3 {
+	color:#824941;
+	display: inline-block;
+    font: normal 100 24px/36px 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0 0 0 20px;
+    text-align: left;
+    width: 100px;
+}
+
+.date-box {
+	margin: 0 0 10px 0;
+}
+
+.food-output {
+	height: 75px;
+    margin: 0 0 0 20px;
+
+}
+
+.food-output h3{
+	color:#824941;
+    font: normal 100 14px/14px 'Open Sans', sans-serif;
+    margin: 0;
+    text-align: center;
+    vertical-align: top;
+    width: 100px;
+}
+
+.serving-calories,
+.food-calories {
+	margin: 0 0 0 20px;
+	text-align: center;
+}
+
+#num-servings {
+    display: block;
+    font: normal 100 14px/24px 'Open Sans', sans-serif;
+    margin: 0 auto;
+    outline: none;
+    color: #828266;
+    border: 0;
+    padding: 0 10px;
+    background: #f2f2ef;
+    box-shadow: inset 0 0 10px -5px rgba(0,0,0,0.75);
+    border-radius: 5px;
+    width: 60px;
+}
+
+.food-table {
+	margin: 0 0 0 20px;
+}
+
+.food-table th {
+	vertical-align: bottom;
 }

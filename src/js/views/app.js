@@ -11,8 +11,8 @@
 
     // Set event for creating new food
     events: {
-      'keypress .new-food': 'searchFood',
-  //    'click .food-option': 'addFood',
+      'keypress #food-search': 'searchFood',
+      'click #num-servings': 'updateCals'
     },
 
     //Get data from collection
@@ -40,10 +40,19 @@ self: this,
 
     //Function to add food item and servings
     addFromSearch: function(food) {
-      console.log("in addFood")
-      console.log(food)
+
+      var totCals = food.cals * $('#num-servings').val();
+      $('#food-search').val(food.name);
+      $('.serving-calories').html(food.cals);
+      $('.food-calories').html(totCals);
     },
 
+    //Function to update total calories for a food when number of servings changes
+    updateCals: function(){
+      console.log( $('#num-servings').val())
+      var totCals = $('.serving-calories').text() * $('#num-servings').val();
+      $('.food-calories').html(totCals);
+    },
 
     //Create a new food item when hit enter in input field
     createFood: function(e) {
@@ -114,6 +123,8 @@ self: this,
 
       var search =  this.$input.val();
 
+      var self= this;
+
       var params = {
         'results': '0:20', //Get up to 20 items
         'fields' : 'item_name,brand_name,nf_calories', //Get item, brand and calories
@@ -128,73 +139,58 @@ self: this,
         data: params,
       })
       .done(function( data ){
-        console.log("here is the data", data);
-        showOptions(data.hits);
+        self.showOptions(data.hits);
       })
       .fail(function(err){
       //Log Error
         console.log(err);
       });
+    },
 
-      showOptions = function( searchResults) {
+    showOptions: function( searchResults) {
 
-        //Set up dom varuabke
-        var $results = $('.results-list');
+      //Set up dom varuabke
+      var $results = $('.results-list');
 
-        //Empty searcg results list
-        $results.html("");
+      //Empty searcg results list
+      $results.html("");
 
-        //Go through each item in the food
-        for (var i=0; i<searchResults.length; i++){
+      //Go through each item in the food
+      for (var i=0; i<searchResults.length; i++){
 
-          //Get food item object
-          var foodName = searchResults[i].fields.brand_name + ' ' + searchResults[i].fields.item_name;
-          var foodCals = searchResults[i].fields.nf_calories;
-          var serveSize = searchResults[i].fields.nf_serving_size_qty;
-          var serveUnit = searchResults[i].fields.nf_serving_size_unit;
+        //Get food item object
+        var foodName = searchResults[i].fields.brand_name + ' ' + searchResults[i].fields.item_name;
+        var foodCals = searchResults[i].fields.nf_calories;
+        var serveSize = searchResults[i].fields.nf_serving_size_qty;
+        var serveUnit = searchResults[i].fields.nf_serving_size_unit;
 
-          //Get item attributees and display in '.search-results'
-          var foodOption = '<li class ="food-option" id="option' + i +'">'; //Open li
-          foodOption += foodName + ' ' ; //Add  name
-          foodOption += foodCals ; //Add item name
-          foodOption += '</li>'; //Close li
-          $results.append(foodOption); //Add to div
+        //Get item attributees and display in '.search-results'
+        var foodOption = '<li class ="food-option" id="option' + i +'">'; //Open li
+        foodOption += foodName + ' ' ; //Add  name
+        foodOption += foodCals ; //Add item name
+        foodOption += '</li>'; //Close li
+        $results.append(foodOption); //Add to div
 
-          //Use anonymous function to attach event listeners to search results
-          (function () {
+        //Use anonymous function to attach event listeners to search results
+        (function () {
 
-            //Create object to pass to add function
-            var food = {};
-            food.name = foodName;
-            food.cals = foodCals;
-            food.serveSize = serveSize;
-            food.serveUnit = serveUnit;
+          //Create object to pass to add function
+          var food = {};
+          food.name = foodName;
+          food.cals = foodCals;
+          food.serveSize = serveSize;
+          food.serveUnit = serveUnit;
 
-            //On click send data to add function
-            $('#option' + i).click( function(){
-              console.log("Clicked on ", food);
-              self.addFromSearch(food);
-            });
+          //On click send data to add function
+          $('#option' + i).click( function(){
+            self.addFromSearch(food);
+          });
 
-          }())
+        }());
 
+      }
 
-        }
+    }
 
-
- /*       for (var j=0; j<searchResults.length; j++){
-
-
-          (function () {
-var anume = "a" + j;
-           $('#option' + j).click( function(){
-              console.log("Clicked on ", anume);
-            });
-
-         }())
-}*/
-
-      };
-  }
 
   });
