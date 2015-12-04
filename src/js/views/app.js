@@ -41,11 +41,18 @@
 
     //Function to add food item and servings
     addFromSearch: function(food) {
+
+      //Open table with food informatoin
       $('.food-table').removeClass('hidden');
+
+      //Calculate total calories
       var totCals = food.cals * $('#num-servings').val();
+
+      //Show food information in form
       $('#food-search').val(food.name);
       $('.serving-calories').html(food.cals);
       $('.food-calories').html(totCals.toFixed());
+
     },
 
     //Function to update total calories for a food when number of servings changes
@@ -59,19 +66,34 @@
     //Create a new food item when hit enter in input field
     createFood: function(e) {
 
+      //Create a few food item wtih the given attributes
+      this.foodList.create(this.searchAttributes());
+
+      this.$input.val('');
+
       //Close food results table and add back default value for search box
       $('.food-table').addClass('hidden');
       $('.results-list').addClass('hidden');
-      $('#food-search').attr('placeholder', 'What did you eat?').val("").focus().blur();
+      $('#food-search').attr('placeholder', 'What did you eat?').val("");
+    },
 
-      if (e.which !== ENTER_KEY || !this.$input.val().trim()) {
-        return;
-      }
+    // Generate the attributes for a new food item.
+    searchAttributes: function () {
+      return {
 
-      //Create a few food item wtih the given attributes
-      this.foodList.create(this.newAttributes());
+        //Get title from chosen food item
+        title: $('#food-search').val(),
 
-      this.$input.val('');
+        //Get calories from the total calories calculation -- use parsInt to convert to number
+        calories: parseInt( $('.food-calories').text()),
+
+        //Calculate item order in collection
+        order: app.foodList.nextOrder(),
+
+        //Date is chosen date
+        dateEaten: this.appDate
+
+      };
     },
 
     // Generate the attributes for a new food item.
@@ -137,7 +159,7 @@
     searchFood: function() {
 
       var search =  this.$input.val();
-console.log(search)
+
       var self= this;
 
       var params = {
