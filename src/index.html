@@ -47,17 +47,16 @@
           <ul class="results-list"></ul>
         </div>
       </div>
-      <div class="main">
-        <table class="food-list">
-          <thead>
-            <tr>
-              <th class="food-item">food item</th>
-              <th class="calories">calories</th>
-              <th class="remove">remove</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
+      <table >
+        <thead class="tracker-head">
+          <tr>
+            <th class="food-item">food item</th>
+            <th class="calories">calories</th>
+            <th class="remove">remove</th>
+          </tr>
+        </thead>
+        <tbody class="food-list"></tbody>
+      </table>
       <table class="table-end"></table>
     </section>
     <section class="info">
@@ -71,7 +70,7 @@
 
     <!-- Food item template  REMOVE TEMPORARY CODE TO SHOW DATES BEFORE DEPLOYMENT -->
     <script type="text/template" id="item-template">
-      <td class="food-item"><label class="view"><%= title %></label><input class="edit" value="<%= title %>">
+      <td class="food-item"><%= title %>
 
 <span style="float: right"><%= dateEaten %></span>
 

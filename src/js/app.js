@@ -13,7 +13,5 @@
 
   });
 
-//TODO: get Nutrinix API search working
-//TODO: add autocomplete
-//TODO: request development plan for recipe API
 //TODO: get health and nutrition articles from NY Times
+//TODO: style list better

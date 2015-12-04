@@ -33,6 +33,7 @@
       this.$numServings = $('#num-servings');
       this.$serveCals = $('.serving-calories');
       this.$eatenCals = $('.calories-eaten');
+      this.$trackerHead = $('.tracker-head');
 
       //When food item is added to collection render on page
       this.listenTo(this.foodList, 'add', this.showFood);
@@ -80,7 +81,7 @@
     addFood: function(e) {
 
       //Create a few food item wtih the given attributes
-      this.foodList.create(this.searchAttributes());
+      this.foodList.create(this.foodAttributes());
 
 
       this.$input.val('');
@@ -96,7 +97,7 @@
     },
 
     // Generate the attributes for a new food item.
-    searchAttributes: function () {
+    foodAttributes: function () {
       return {
 
         //Get title from chosen food item
@@ -138,6 +139,13 @@
 
       //Filter collection to pull out food items for current date
       filteredList = this.foodList.byDate(this.appDate);
+
+      //If no food eaten hide table header
+      if (filteredList._wrapped.length < 1){
+        this.$trackerHead.addClass('hidden');
+      } else {
+        this.$trackerHead.removeClass('hidden');
+      }
 
       //Empty the food list
       this.$list.html('');
@@ -212,6 +220,7 @@
 
 //TODO:  CLEAN THIS UP!  Try making food object and passing to anon.
 //TODO  Create template for foodOption
+//TODO: Show serving size and unit for better guage of serving size
     showOptions: function( searchResults) {
 
       //Go through each item in the food
