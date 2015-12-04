@@ -176,6 +176,7 @@
         data: params,
       })
       .done(function( data ){
+
         self.showOptions(data.hits);
       })
       .fail(function(err){
@@ -189,8 +190,9 @@
       //Set up dom varuabke
       var $results = $('.results-list');
 
-      //Empty searcg results list
+      //Empty searcg results list and remove 'hidden class'
       $results.html("");
+      $results.removeClass('hidden');
 
       //Go through each item in the food
       for (var i=0; i<searchResults.length; i++){
