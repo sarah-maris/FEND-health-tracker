@@ -11,7 +11,7 @@
 
     // Set event for creating new food
     events: {
-      'keypress #food-search': 'searchFood',
+      'keyup #food-search': 'searchFood',
       'keyup #num-servings': 'updateCals',
       'click #add-food': 'createFood'
     },
@@ -137,7 +137,7 @@
     searchFood: function() {
 
       var search =  this.$input.val();
-
+console.log(search)
       var self= this;
 
       var params = {
