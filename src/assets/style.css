@@ -13,8 +13,7 @@ body {
 }
 
 body {
-	font: 14px 'Open Sans', sans-serif;
-	line-height: 1.4em;
+	font: 14px/18px 'Open Sans', sans-serif;
 	background: #B09B76;
 	color: #4A342E;
 	min-width: 230px;
@@ -59,7 +58,8 @@ body {
 	margin: 0;
 }
 
-.date-box h3, .date-picker {
+.date-box h3,
+.date-picker {
 	display: inline-block;
 	text-align: left;
 }
@@ -95,20 +95,6 @@ body {
 	border-radius: 5px;
 }
 
-.edit {
-	position: relative;
-	margin: 0;
-	width: 100%;
-	font-size: 24px;
-	font-family: inherit;
-	font-weight: inherit;
-	line-height: 1.4em;
-	outline: none;
-	color: #828266;
-	border: 1px solid #B09B76;
-	border-radius: 5px;
-}
-
 .new-food {
 	display: inline-block;
 	margin: 10px;
@@ -122,16 +108,6 @@ body {
 	width: 470px;
 }
 
-.main {
-	position: relative;
-	z-index: 2;
-	border-top: 1px solid #e6e6e6;
-}
-
-label[for='toggle-all'] {
-	display: none;
-}
-
 .food-list {
 	margin: 0;
 	padding: 0;
@@ -139,30 +115,12 @@ label[for='toggle-all'] {
 }
 
 .food-list tr {
-	position: relative;
-	font-size: 24px;
 	border-bottom: 1px solid #f2f2ef;
+	display: table-row;
 }
 
 .food-list tr:last-child {
 	border-bottom: none;
-}
-
-.food-list tr.editing {
-	border-bottom: none;
-	padding: 0;
-}
-
-.food-list tr.editing .edit {
-	display: block;
-}
-
-.food-list tr.editing .view {
-	display: none;
-}
-
-.food-list tr {
-	display: table-row;
 }
 
 .food-list tr .destroy {
@@ -174,14 +132,6 @@ label[for='toggle-all'] {
 
 .food-list tr .destroy:hover {
 	color: #824941;
-}
-
-.food-list tr .edit {
-	display: none;
-}
-
-.food-list tr.editing:last-child {
-	margin-bottom: -1px;
 }
 
 .table-end {
@@ -202,34 +152,7 @@ label[for='toggle-all'] {
 }
 
 .info {
-	margin: 35px auto 0;
-	color: #f2f2ef;
-	font-size: 14px;
 	text-align: center;
-}
-
-.info p {
-	line-height: 1;
-}
-
-.info a {
-	color: inherit;
-	text-decoration: none;
-	font-weight: 400;
-}
-
-.info a:hover {
-	text-decoration: underline;
-}
-
-@media (max-width: 430px) {
-	.table-end {
-		height: 50px;
-	}
-
-	.filters {
-		bottom: 10px;
-	}
 }
 
 table {
@@ -238,26 +161,7 @@ table {
 	width: 600px;
 }
 
-.food-item {
-	width: 400px;
-	text-align: left;
-}
-
-th.food-item,
-.view,
-.edit {
-    padding: 0 0 0 20px;
-}
-
-.calories {
-	width: 100px;
-}
-
-.remove {
-	width: 100px;
-}
-
-.food-list th {
+.tracker-head {
 	background-color: #828266;
 	border-top: 1px solid #e6e6e6;
 	border-bottom: 1px solid #e6e6e6;
@@ -265,9 +169,20 @@ th.food-item,
 	font: normal small-caps 800 16px 'Open Sans', sans-serif;
 }
 
-td.calories {
-	text-align: right;
+.food-item {
+    padding: 0 0 0 20px;
+   	text-align: left;
+   	width: 400px;
+}
+
+.calories {
 	padding: 0 30px 0 0;
+	text-align: right;
+	width: 100px;
+}
+
+.remove {
+	width: 100px;
 }
 
 .total-calories {
