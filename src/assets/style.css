@@ -294,10 +294,6 @@ td.calories {
 	overflow: hidden;
 }
 
-.hidden {
-	display: none;
-}
-
 .food-option {
 	list-style-type: none;
 }
@@ -335,7 +331,7 @@ td.calories {
     width: 100px;
 }
 
-#num-servings {
+.food-info {
 	background: #f2f2ef;
 	border: 0;
     border-radius: 5px;

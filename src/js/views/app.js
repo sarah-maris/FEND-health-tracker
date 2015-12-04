@@ -177,7 +177,15 @@
       })
       .done(function( data ){
 
-        self.showOptions(data.hits);
+        //If have results, show the options
+        if (data.hits.length > 0) {
+          self.showOptions(data.hits);
+
+        //If no results enter food manually
+        } else {
+          self.enterManually();
+        }
+
       })
       .fail(function(err){
       //Log Error
@@ -185,9 +193,14 @@
       });
     },
 
+    enterManually: function() {
+          console.log("got nuthin'")
+    },
+
+
     showOptions: function( searchResults) {
 
-      //Set up dom varuabke
+      //Set up dom variable
       var $results = $('.results-list');
 
       //Empty searcg results list and remove 'hidden class'
