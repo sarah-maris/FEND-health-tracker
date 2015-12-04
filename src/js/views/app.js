@@ -13,7 +13,8 @@
     events: {
       'keyup #food-search': 'searchFood',
       'keyup #num-servings': 'updateCals',
-      'click #add-food': 'createFood'
+      'keyup #serving-cals': 'updateCals',
+      'click #add-food': 'addFood'
     },
 
     //Get data from collection
@@ -24,9 +25,10 @@
     initialize: function () {
 
       //Set up variables for easy reference to DOM
-      this.$input = this.$('.new-food');
+      this.$input = this.$('#food-search');
       this.$tableEnd = this.$('.table-end');
       this.$list = $('.food-list');
+      this.$results = $('.results-list');
 
       //When food item is added to collection render on page
       this.listenTo(this.foodList, 'add', this.showFood);
@@ -40,9 +42,9 @@
     },
 
     //Function to add food item and servings
-    addFromSearch: function(food) {
+    showDetails: function(food) {
 
-      //Open table with food informatoin
+      //Open table with food information
       $('.food-table').removeClass('hidden');
 
       //Calculate total calories
@@ -55,26 +57,37 @@
 
     },
 
-    //Function to update total calories for a food when number of servings changes
+    //Function to update total calories
     updateCals: function(){
 
-      var totCals = $('.serving-calories').text() * $('#num-servings').val();
+      //Calories per serving from database or manual input
+      var servingCals = $('.serving-calories').text() || $('#serving-cals').val();
+
+      //Number of servings from input box
+      var numServings = $('#num-servings').val();
+
+      //Calculate total calories and show in DOM
+      var totCals = servingCals * numServings;
       $('.food-calories').html(totCals.toFixed());
 
     },
 
     //Create a new food item when hit enter in input field
-    createFood: function(e) {
+    addFood: function(e) {
 
       //Create a few food item wtih the given attributes
       this.foodList.create(this.searchAttributes());
+
 
       this.$input.val('');
 
       //Close food results table and add back default value for search box
       $('.food-table').addClass('hidden');
       $('.results-list').addClass('hidden');
+
+      //Reset default values for search box and number of servings
       $('#food-search').attr('placeholder', 'What did you eat?').val("");
+      $('#num-servings').val(1);
     },
 
     // Generate the attributes for a new food item.
@@ -133,9 +146,6 @@
 
     render: function(foodList){
 
-      //Set up self to give access to addFood
-     // var self = this;
-
       //Filter collection to pull out food items for current date
       filteredList = this.foodList.byDate(this.appDate);
 
@@ -177,6 +187,10 @@
       })
       .done(function( data ){
 
+        //Empty searcg results list and remove 'hidden class'
+        self.$results.html("");
+        self.$results.removeClass('hidden');
+
         //If have results, show the options
         if (data.hits.length > 0) {
           self.showOptions(data.hits);
@@ -194,18 +208,17 @@
     },
 
     enterManually: function() {
-          console.log("got nuthin'")
+
+      //Open table with food informatoin
+      $('.food-table').removeClass('hidden');
+
+      //Add input box for calories per serving
+      $('.serving-calories').html('<input name="serving-calories" id="serving-cals" class="food-info" type="text" value="">');
+
     },
 
 
     showOptions: function( searchResults) {
-
-      //Set up dom variable
-      var $results = $('.results-list');
-
-      //Empty searcg results list and remove 'hidden class'
-      $results.html("");
-      $results.removeClass('hidden');
 
       //Go through each item in the food
       for (var i=0; i<searchResults.length; i++){
@@ -221,7 +234,7 @@
         foodOption += foodName + ' ' ; //Add  name
         foodOption += foodCals ; //Add item name
         foodOption += '</li>'; //Close li
-        $results.append(foodOption); //Add to div
+        this.$results.append(foodOption); //Add to div
 
         //Use anonymous function to attach event listeners to search results
         (function () {
@@ -235,7 +248,7 @@
 
           //On click send data to add function
           $('#option' + i).click( function(){
-            appView.addFromSearch(food);
+            appView.showDetails(food);
           });
 
         }());
