@@ -122,7 +122,7 @@
 
       //Repopulate the food list
       filteredList.each(function(food){
-        self.showFood(food);
+        appView.showFood(food);
       });
 
       //Show daily calories at bottom of table
