@@ -25,10 +25,14 @@
     initialize: function () {
 
       //Set up variables for easy reference to DOM
-      this.$input = this.$('#food-search');
-      this.$tableEnd = this.$('.table-end');
+      this.$input = $('#food-search');
+      this.$tableEnd = $('.table-end');
       this.$list = $('.food-list');
       this.$results = $('.results-list');
+      this.$foodTable = $('.food-table');
+      this.$numServings = $('#num-servings');
+      this.$serveCals = $('.serving-calories');
+      this.$eatenCals = $('.calories-eaten');
 
       //When food item is added to collection render on page
       this.listenTo(this.foodList, 'add', this.showFood);
@@ -45,15 +49,15 @@
     showDetails: function(food) {
 
       //Open table with food information
-      $('.food-table').removeClass('hidden');
+      this.$foodTable.removeClass('hidden');
 
       //Calculate total calories
-      var totCals = food.cals * $('#num-servings').val();
+      var totCals = food.cals * this.$numServings.val();
 
       //Show food information in form
-      $('#food-search').val(food.name);
-      $('.serving-calories').html(food.cals);
-      $('.food-calories').html(totCals.toFixed());
+      this.$input.val(food.name);
+      this.$serveCals.html(food.cals);
+      this.$eatenCals.html(totCals.toFixed());
 
     },
 
@@ -61,14 +65,14 @@
     updateCals: function(){
 
       //Calories per serving from database or manual input
-      var servingCals = $('.serving-calories').text() || $('#serving-cals').val();
+      var servingCals = this.$serveCals.text() || this.$inputCals.val();
 
       //Number of servings from input box
-      var numServings = $('#num-servings').val();
+      var numServings = this.$numServings.val();
 
       //Calculate total calories and show in DOM
       var totCals = servingCals * numServings;
-      $('.food-calories').html(totCals.toFixed());
+      this.$eatenCals.html(totCals.toFixed());
 
     },
 
@@ -82,12 +86,13 @@
       this.$input.val('');
 
       //Close food results table and add back default value for search box
-      $('.food-table').addClass('hidden');
-      $('.results-list').addClass('hidden');
+      this.$foodTable.addClass('hidden');
+      this.$results.addClass('hidden');
 
       //Reset default values for search box and number of servings
-      $('#food-search').attr('placeholder', 'What did you eat?').val("");
-      $('#num-servings').val(1);
+      this.$input.attr('placeholder', 'What did you eat?').val('');
+      this.$numServings.val(1);
+      this.$eatenCals.html('');
     },
 
     // Generate the attributes for a new food item.
@@ -95,10 +100,10 @@
       return {
 
         //Get title from chosen food item
-        title: $('#food-search').val(),
+        title: this.$input.val(),
 
         //Get calories from the total calories calculation -- use parsInt to convert to number
-        calories: parseInt( $('.food-calories').text()),
+        calories: parseInt( this.$eatenCals.text()),
 
         //Calculate item order in collection
         order: app.foodList.nextOrder(),
@@ -106,21 +111,6 @@
         //Date is chosen date
         dateEaten: this.appDate
 
-      };
-    },
-
-    // Generate the attributes for a new food item.
-    newAttributes: function () {
-      return {
-
-        //Get title from input field
-        title: this.$input.val().trim(),
-
-        //Calculate item order in collection
-        order: app.foodList.nextOrder(),
-
-        //Date is chosen date
-        dateEaten: this.appDate
       };
     },
 
@@ -210,14 +200,18 @@
     enterManually: function() {
 
       //Open table with food informatoin
-      $('.food-table').removeClass('hidden');
+      this.$foodTable.removeClass('hidden');
 
       //Add input box for calories per serving
-      $('.serving-calories').html('<input name="serving-calories" id="serving-cals" class="food-info" type="text" value="">');
+      this.$serveCals.html('<input name="serving-calories" id="serving-cals" class="food-info" type="text" value="">');
+
+      //Set variable for calories input
+      this.$inputCals = $('#serving-cals');
 
     },
 
-
+//TODO:  CLEAN THIS UP!  Try making food object and passing to anon.
+//TODO  Create template for foodOption
     showOptions: function( searchResults) {
 
       //Go through each item in the food
