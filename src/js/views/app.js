@@ -6,8 +6,9 @@
 
     el: '.tracker-app',
 
-    // Template for the calorie count at the bottom of the table
+    // Templates for the calorie count at the bottom of the table and search results
     dailyCalsTemplate: _.template( $('#daily-cals-template').html() ),
+    resultsTemplate: _.template( $('#results-template').html() ),
 
     // Set event for creating new food
     events: {
@@ -171,7 +172,8 @@
       var self= this;
 
       var params = {
-        'results': '0:20', //Get up to 20 items
+//TODO: Increase results to 20 when done with dev
+        'results': '0:10', //Get up to 20 items
         'fields' : 'item_name,brand_name,nf_calories', //Get item, brand and calories
         'appId': '72e7d3f2',
         'appKey': 'be0b61430f161b795ac29ebebfada85a'
@@ -200,11 +202,14 @@
 
       })
       .fail(function(err){
-      //Log Error
+//TODO: Write message instructing user to add manually
+//TODO: Trigger 'enterManually()'
+        //Log error to console.
         console.log(err);
       });
     },
 
+//TODO: Write message instructing user to add manually
     enterManually: function() {
 
       //Open table with food informatoin
@@ -219,12 +224,17 @@
     },
 
 //TODO:  CLEAN THIS UP!  Try making food object and passing to anon.
-//TODO  Create template for foodOption
+//TODO:  Create template for foodOption
 //TODO: Show serving size and unit for better guage of serving size
     showOptions: function( searchResults) {
 
       //Go through each item in the food
       for (var i=0; i<searchResults.length; i++){
+
+        var searchFields = searchResults[i].fields;
+        var id = i;
+        console.log(searchFields);
+        console.log("name", searchFields.brand_name, "id", i);
 
         //Get food item object
         var foodName = searchResults[i].fields.brand_name + ' ' + searchResults[i].fields.item_name;
@@ -232,12 +242,21 @@
         var serveSize = searchResults[i].fields.nf_serving_size_qty;
         var serveUnit = searchResults[i].fields.nf_serving_size_unit;
 
-        //Get item attributees and display in '.search-results'
+/*        //Get item attributees and display in '.search-results'
         var foodOption = '<li class ="food-option" id="option' + i +'">'; //Open li
         foodOption += foodName + ' ' ; //Add  name
         foodOption += foodCals ; //Add item name
         foodOption += '</li>'; //Close li
         this.$results.append(foodOption); //Add to div
+
+*/
+      //Show results
+      this.$results.append(this.resultsTemplate({
+        name: searchFields.brand_name + ' ' + searchFields.item_name,
+        calories: searchFields.nf_calories.toFixed(),
+        id: id
+      }));
+
 
         //Use anonymous function to attach event listeners to search results
         (function () {
@@ -259,6 +278,5 @@
       }
 
     }
-
 
   });
