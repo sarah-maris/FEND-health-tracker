@@ -27,6 +27,9 @@
 
       //Set up variables for easy reference to DOM
       this.$input = $('#food-search');
+      this.$foodInput = $('.food-input');
+      this.$chosen = $('.chosen');
+      this.$chosenFood = $('#chosen-food');
       this.$tableEnd = $('.table-end');
       this.$list = $('.food-list');
       this.$results = $('.results-list');
@@ -53,11 +56,18 @@
       //Open table with food information
       this.$foodTable.removeClass('hidden');
 
+      //Hide input field and show chosen food
+      this.$foodInput.addClass('hidden');
+      this.$chosen.removeClass('hidden');
+
       //Calculate total calories
       var totCals = food.cals * this.$numServings.val();
 
+//TODO:  Create and implement template for showDetails
+      var serveDetails =  '<p>' + food.name + '</p><p>' + food.serveSize + ' ' + food.serveUnit + '</p>';
+
       //Show food information in form
-      this.$input.val(food.name);
+      this.$chosenFood.html(serveDetails);
       this.$serveCals.html(food.cals);
       this.$eatenCals.html(totCals.toFixed());
 
@@ -95,6 +105,10 @@
       this.$input.attr('placeholder', 'What did you eat?').val('');
       this.$numServings.val(1);
       this.$eatenCals.html('');
+
+      //Show input field and hide chosen food
+      this.$foodInput.removeClass('hidden');
+      this.$chosen.addClass('hidden');
     },
 
     // Generate the attributes for a new food item.
@@ -234,8 +248,6 @@
 
         var searchFields = searchResults[i].fields;
         var id = i;
-        console.log(searchFields);
-        console.log("name", searchFields.brand_name, "id", i);
 
         //Get food item object
         var foodName = searchResults[i].fields.brand_name + ' ' + searchResults[i].fields.item_name;

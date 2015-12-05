@@ -240,8 +240,8 @@ table {
 	font: italic 14px/14px 'Open Sans', sans-serif;
 }
 
-
-.food-input h3 {
+.food-input h3,
+.chosen h3 {
 	color:#824941;
 	display: inline-block;
     font: normal 100 24px/36px 'Open Sans', sans-serif;
@@ -250,6 +250,12 @@ table {
     text-align: left;
     width: 100px;
 }
+
+.chosen h3 {
+    width: 200px;
+}
+
+
 
 .date-box {
 	margin: 0 0 10px 0;

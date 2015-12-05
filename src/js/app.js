@@ -14,4 +14,3 @@
   });
 
 //TODO: get health and nutrition articles from NY Times
-//TODO: style list better
