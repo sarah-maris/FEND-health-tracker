@@ -209,13 +209,37 @@ table {
 	overflow: hidden;
 }
 
-.food-option {
+.results-list {
 	list-style-type: none;
+	padding: 0;
 }
 
-.food-option:hover {
+.results {
+	background-color: #c0c0b2;
+}
+
+.results-name {
+	font: 14px/18px 'Open Sans', sans-serif;
+	margin: 0;
+	padding: 10px 0 0 40px;
+}
+
+.results-name:hover {
 	font-weight: bold;
 }
+
+.results-details {
+	border-bottom: 1px solid #f2f2ef;
+	font: italic 12px/14px 'Open Sans', sans-serif;
+	margin: 0;
+	padding: 0 40px 10px 40px;
+}
+
+.results-cals {
+	float: right;
+	font: italic 14px/14px 'Open Sans', sans-serif;
+}
+
 
 .food-input h3 {
 	color:#824941;

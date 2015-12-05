@@ -81,7 +81,11 @@
 
     <!-- Results List item template -->
     <script type="text/template" id="results-template">
-      <li class="food-option" id="option<%= id %>"><%= name %> <%= calories %></li>
+      <li class="results" id="option<%= id %>">
+        <p class="results-name"><%= name %></p>
+        <p class="results-details">Serving size: <%= serveSize %> <%= serveUnit %>
+        <span class="results-cals"><%= calories %> calories</span></p>
+      </li>
     </script>
 
     <!-- Daily Calorie Count template -->

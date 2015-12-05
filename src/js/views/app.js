@@ -174,7 +174,7 @@
       var params = {
 //TODO: Increase results to 20 when done with dev
         'results': '0:10', //Get up to 20 items
-        'fields' : 'item_name,brand_name,nf_calories', //Get item, brand and calories
+        'fields' : 'item_name,brand_name,nf_calories,nf_serving_size_qty,nf_serving_size_unit', //Get item, brand and calories
         'appId': '72e7d3f2',
         'appKey': 'be0b61430f161b795ac29ebebfada85a'
       };
@@ -224,9 +224,10 @@
     },
 
 //TODO:  CLEAN THIS UP!  Try making food object and passing to anon.
-//TODO:  Create template for foodOption
 //TODO: Show serving size and unit for better guage of serving size
     showOptions: function( searchResults) {
+
+      console.log( searchResults);
 
       //Go through each item in the food
       for (var i=0; i<searchResults.length; i++){
@@ -242,19 +243,13 @@
         var serveSize = searchResults[i].fields.nf_serving_size_qty;
         var serveUnit = searchResults[i].fields.nf_serving_size_unit;
 
-/*        //Get item attributees and display in '.search-results'
-        var foodOption = '<li class ="food-option" id="option' + i +'">'; //Open li
-        foodOption += foodName + ' ' ; //Add  name
-        foodOption += foodCals ; //Add item name
-        foodOption += '</li>'; //Close li
-        this.$results.append(foodOption); //Add to div
-
-*/
       //Show results
       this.$results.append(this.resultsTemplate({
         name: searchFields.brand_name + ' ' + searchFields.item_name,
         calories: searchFields.nf_calories.toFixed(),
-        id: id
+        id: id,
+        serveUnit: searchFields.nf_serving_size_unit,
+        serveSize: searchFields.nf_serving_size_qty
       }));
 
 
