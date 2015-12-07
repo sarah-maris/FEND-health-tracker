@@ -204,18 +204,20 @@
 
       })
       .fail(function(err){
-//TODO: Write message instructing user to add manually
-//TODO: Trigger 'enterManually()'
-        //Log error to console.
+
+        //On fail enter food manually and log error
+        self.enterManually();
         console.log(err);
       });
     },
 
-//TODO: Write message instructing user to add manually
     enterManually: function() {
 
       //Open table with food informatoin
       this.$foodTable.removeClass('hidden');
+
+      //Show "no results found" message
+      this.$results.prepend('<h4 class="no-results">NO RESULTS FOUND.<br>PLEASE ENTER FOOD ITEM MANUALLY</h4>');
 
       //Add input box for servine size and calories per serving
       this.$serveSize.html('<input name="serving-size" id="serving-size" class="food-input size-input" type="text" value="">');

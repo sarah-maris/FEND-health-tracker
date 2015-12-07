@@ -58,11 +58,9 @@ table {
 }
 
 .app-header {
-	font-size: 72px;
-	font-weight: 100;
-	line-height: 125px;
-	text-align: center;
 	color: #824941;
+	font: 100 72px/125px 'Open Sans', sans-serif;
+	text-align: center;
 	margin: 0;
 }
 
@@ -187,6 +185,7 @@ table {
 /* Search results */
 .results-list {
 	list-style-type: none;
+	margin: 10px 0 0 0;
 	padding: 0;
 }
 
@@ -216,13 +215,21 @@ table {
 	font: italic 14px/14px 'Open Sans', sans-serif;
 }
 
+.no-results {
+	background-color: #c0c0b2;
+	color: #824941;
+	font: 800 16px/18px 'Open Sans', sans-serif;
+	padding: 10px 0;
+	margin: 0;
+	text-align: center;
+}
+
 /* List of food eaten */
 .list-head {
 	background-color: #828266;
-	border-top: 1px solid #e6e6e6;
 	border-bottom: 1px solid #e6e6e6;
 	color: #f2f2ef;
-	font: normal small-caps 800 16px 'Open Sans', sans-serif;
+	font: 800 14px/24px 'Open Sans', sans-serif;
 }
 
 .food-item {
@@ -231,10 +238,9 @@ table {
    	width: 400px;
 }
 
-.calories {
-	padding: 0 30px 0 0;
-	text-align: right;
-	width: 100px;
+.calories,
+.remove {
+	text-align: center;
 }
 
 .food-list {
@@ -267,7 +273,7 @@ table {
 .table-end {
 	background-color: #828266;
 	color: #f2f2ef;
-		font: normal small-caps 800 24px 'Open Sans', sans-serif;
+	font: 800 20px/24px 'Open Sans', sans-serif;
 	height: 40px;
 	padding: 10px 15px;
 	text-align: center;
