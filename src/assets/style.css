@@ -150,12 +150,17 @@ table {
     width: 110px;
 }
 
-#num-servings {
+.food-input {
 	border: 0;
     border-radius: 5px;
     outline: none;
     padding: 5px 10px;
+    text-align: center;
     width: 60px;
+}
+
+.size-input {
+	width: 110px;
 }
 
 /* Button to add new food */

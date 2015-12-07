@@ -217,8 +217,9 @@
       //Open table with food informatoin
       this.$foodTable.removeClass('hidden');
 
-      //Add input box for calories per serving
-      this.$serveCals.html('<input name="serving-calories" id="serving-cals" class="food-info" type="text" value="">');
+      //Add input box for servine size and calories per serving
+      this.$serveSize.html('<input name="serving-size" id="serving-size" class="food-input size-input" type="text" value="">');
+      this.$serveCals.html('<input name="serving-calories" id="serving-cals" class="food-input" type="text" value="">');
 
       //Set variable for calories input
       this.$inputCals = $('#serving-cals');
