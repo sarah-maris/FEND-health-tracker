@@ -35,7 +35,7 @@
       this.$serveSize = $('#serving-size');
       this.$serveCals = $('#serving-calories');
       this.$eatenCals = $('#calories-eaten');
-      this.$trackerHead = $('.tracker-head');
+      this.$trackerHead = $('.list-head');
 
       //When food item is added to collection render on page
       this.listenTo(this.foodList, 'add', this.showFood);
@@ -225,8 +225,7 @@
 
     },
 
-   //Display search results
-
+    //Display search results
     showOptions: function( searchResults) {
 
       //Go through each item in the food

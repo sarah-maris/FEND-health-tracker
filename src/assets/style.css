@@ -1,3 +1,4 @@
+/* Basic settings for site */
 html {
   box-sizing: border-box;
 }
@@ -21,10 +22,17 @@ body {
 	margin: 0 auto;
 }
 
+table {
+	border-collapse:  collapse;
+	border: none;
+	width: 100%;
+}
+
 .hidden {
 	display: none;
 }
 
+/* Food Tracker box */
 .tracker-app {
 	background: #E0E0D9;
 	border-radius: 25px;
@@ -49,7 +57,7 @@ body {
 	color: #828266;
 }
 
-.tracker-app h1 {
+.app-header {
 	font-size: 72px;
 	font-weight: 100;
 	line-height: 125px;
@@ -58,18 +66,25 @@ body {
 	margin: 0;
 }
 
-.date-box h3,
-.date-picker {
-	display: inline-block;
-	text-align: left;
+/* Box for date picker */
+.date-box {
+	margin: 0 0 10px 0;
 }
 
-.date-box h3 {
-	background: #e0e0d9;
-		color: #824941;
+.date-header {
+	color: #824941;
+	display: inline-block;
     font: normal 100 24px/36px 'Open Sans', sans-serif;
 	margin: 0 0 0 20px;
 	vertical-align: top;
+}
+
+.date-picker{
+	background: #f2f2ef;
+	border-radius: 10px;
+	display: inline-block;
+	margin: 0 0 0 10px;
+	text-align: left;
 }
 
 #datepicker {
@@ -82,133 +97,89 @@ body {
 	width: 100px;
 }
 
-
-.date-picker{
-	background: #f2f2ef;
-	border-radius: 10px;
-	margin: 0 0 0 10px;
-}
-
 #datepicker:focus {
 	outline: none;
-	background: #f2f2ef;
-	border-radius: 5px;
-}
-
-.new-food {
-	display: inline-block;
-	margin: 10px;
-	font: normal 100 18px/36px 'Open Sans', sans-serif;
-	outline: none;
-	color: #828266;
-	border: 0;
-	padding: 0 10px;
-	background: #f2f2ef;
-	border-radius: 10px;
-	width: 470px;
-}
-
-.food-list {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-.food-list tr {
-	border-bottom: 1px solid #f2f2ef;
-	display: table-row;
-}
-
-.food-list tr:last-child {
-	border-bottom: none;
-}
-
-.food-list tr .destroy {
-	color: #b4918d;
-	display: block;
-	font:  800 30px 'Open Sans', sans-serif;
-	text-align: center;
-}
-
-.food-list tr .destroy:hover {
-	color: #824941;
-}
-
-.table-end {
-	background-color: #828266;
-	color: #f2f2ef;
-	height: 40px;
-	padding: 10px 15px;
-	text-align: center;
-}
-
-.calorie-count {
-	float: left;
-	text-align: left;
-}
-
-.calorie-count strong {
-	font-weight: 300;
-}
-
-.info {
-	text-align: center;
-}
-
-table {
-	border-collapse:  collapse;
-	border: none;
-	width: 600px;
-}
-
-.tracker-head {
-	background-color: #828266;
-	border-top: 1px solid #e6e6e6;
-	border-bottom: 1px solid #e6e6e6;
-	color: #f2f2ef;
-	font: normal small-caps 800 16px 'Open Sans', sans-serif;
-}
-
-.food-item {
-    padding: 0 0 0 20px;
-   	text-align: left;
-   	width: 400px;
-}
-
-.calories {
-	padding: 0 30px 0 0;
-	text-align: right;
-	width: 100px;
-}
-
-.remove {
-	width: 100px;
-}
-
-.total-calories {
-	font: 800 24px 'Open Sans', sans-serif;
-	text-align: right;
-	padding: 0 130px 0 0;
-	width: 100px;
-}
-
-.calorie-count {
-	display: table-cell;
-	font: normal small-caps 800 24px 'Open Sans', sans-serif;
-	padding: 0 0 0 20px;
-	width: 400px;
-	text-align: left;
 }
 
 .ui-datepicker-trigger {
 	padding: 5px 10px;
 }
 
+/* Search box */
 .add-food-box {
 	width: 100%;
 	overflow: hidden;
 }
 
+.search-header {
+	color:#824941;
+	display: inline-block;
+    font: normal 100 24px/36px 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0 0 0 20px;
+    text-align: left;
+    width: 100px;
+}
+
+.food-box {
+	margin: 10px;
+	font: normal 100 18px/36px 'Open Sans', sans-serif;
+	outline: none;
+	border: 0;
+	padding: 0 10px;
+	border-radius: 10px;
+	width: 470px;
+}
+
+/* Data for chosen item */
+.food-table {
+	margin: 20px;
+	width: 560px;
+}
+
+.data-header {
+	color: #824941;
+	font: normal 100 18px/20px 'Open Sans', sans-serif;
+	vertical-align: bottom;
+}
+
+.food-info {
+    font: normal 100 14px/18px 'Open Sans', sans-serif;
+    padding: 0 5px;
+    text-align: center;
+    width: 110px;
+}
+
+#num-servings {
+	border: 0;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px 10px;
+    width: 60px;
+}
+
+/* Button to add new food */
+.add-button {
+  background: #824941;
+  border: 0;
+  -webkit-border-radius: 15;
+  -moz-border-radius: 15;
+  border-radius: 15px;
+  color: #f2f2ef;
+  display: block;
+  font: normal 100 18px/18px 'Open Sans', sans-serif;
+  margin: auto;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.add-button:hover {
+  background: #828266;
+  text-decoration: none;
+}
+
+/* Search results */
 .results-list {
 	list-style-type: none;
 	padding: 0;
@@ -240,88 +211,76 @@ table {
 	font: italic 14px/14px 'Open Sans', sans-serif;
 }
 
-.food-input h3,
-.chosen h3 {
-	color:#824941;
-	display: inline-block;
-    font: normal 100 24px/36px 'Open Sans', sans-serif;
-    margin: 0;
+/* List of food eaten */
+.list-head {
+	background-color: #828266;
+	border-top: 1px solid #e6e6e6;
+	border-bottom: 1px solid #e6e6e6;
+	color: #f2f2ef;
+	font: normal small-caps 800 16px 'Open Sans', sans-serif;
+}
+
+.food-item {
     padding: 0 0 0 20px;
-    text-align: left;
-    width: 100px;
+   	text-align: left;
+   	width: 400px;
 }
 
-.chosen h3 {
-    width: 200px;
+.calories {
+	padding: 0 30px 0 0;
+	text-align: right;
+	width: 100px;
 }
 
-
-
-.date-box {
-	margin: 0 0 10px 0;
+.food-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
-.food-output {
-	height: 75px;
-    margin: 0 0 0 20px;
-
+.food-list tr {
+	border-bottom: 1px solid #f2f2ef;
+	display: table-row;
 }
 
-.food-output h3{
-	color:#824941;
-    font: normal 100 14px/14px 'Open Sans', sans-serif;
-    margin: 0;
-    text-align: center;
-    vertical-align: top;
-    width: 100px;
+.food-list tr:last-child {
+	border-bottom: none;
 }
 
-.food-info {
-    font: normal 100 14px/18px 'Open Sans', sans-serif;
-    padding: 0 5px;
-    text-align: center;
-    width: 110px;
+.destroy {
+	color: #b4918d;
+	display: block;
+	font:  800 30px 'Open Sans', sans-serif;
+	text-align: center;
 }
 
-#num-servings {
-	background: #f2f2ef;
-	border: 0;
-    border-radius: 5px;
-	color: #828266;
-    display: block;
-    height: 24px;
-    margin: 0 auto;
-    outline: none;
-    padding: 0 10px;
-    width: 60px;
-}
-.food-table {
-	margin: 20px;
-	width: 560px;
-}
-
-.food-table th {
+.destroy:hover {
 	color: #824941;
-	font: normal 100 18px/20px 'Open Sans', sans-serif;
-	vertical-align: bottom;
 }
 
-.add-button {
-  background: #824941;
-  border: 0;
-  -webkit-border-radius: 15;
-  -moz-border-radius: 15;
-  border-radius: 15px;
-  color: #f2f2ef;
-  display: block;
-  font: normal 100 18px/18px 'Open Sans', sans-serif;
-  margin: auto;
-  padding: 15px;
-  text-align: center;
-  text-decoration: none;
+/* Food eaten table footer */
+.table-end {
+	background-color: #828266;
+	color: #f2f2ef;
+		font: normal small-caps 800 24px 'Open Sans', sans-serif;
+	height: 40px;
+	padding: 10px 15px;
+	text-align: center;
 }
 
-.add-button:hover {
-  background: #828266;
-  text-decoration: none;
+.total-calories {
+	text-align: right;
+	padding: 0 130px 0 0;
+	width: 100px;
+}
+
+.calorie-count {
+	padding: 0 0 0 20px;
+	width: 400px;
+	text-align: left;
+}
+
+/* App footer */
+footer {
+	text-align: center;
 }

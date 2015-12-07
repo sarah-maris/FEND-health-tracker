@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -8,36 +9,33 @@
     <meta name="keywords" content="nutrition,tracker,calories,healthy,foods">
     <meta name="author" content="Sarah Maris">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,400italic|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-
     <!-- build:css css/style.min.css -->
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="assets/jquery-ui.css">
     <!-- endbuild -->
-
   </head>
   <body>
+    <!-- Food Tracker app -->
     <section class="tracker-app">
       <h1 class="app-header">Food Tracker</h1>
-      </div>
+      <!-- Datepicker box -->
       <div class="date-box">
-        <h3>Tracker Date</h3>
+        <h3 class="date-header">Tracker Date</h3>
         <div class="date-picker"></div>
       </div>
+      <!-- Food search and add -->
       <div class="add-food-box">
-        <div class="food-input">
-         <h3 >Search</h3>
-          <input id="food-search" class="new-food" placeholder="What did you eat?" type="text">
+        <div>
+         <h3 class="search-header">Search</h3>
+          <input id="food-search" class="food-box" placeholder="What did you eat?" type="text">
         </div>
-        <div class="chosen hidden">
-          <h3>Food Eaten</h3>
-          <div class="new-food" id="chosen-food"></div>
-        </div>
+        <!-- Details about food item to be added -->
         <table class="food-table hidden">
           <tr>
-            <th>Serving<br>Size</th>
-            <th>Calories<br>per Serving</th>
-            <th>Servings</th>
-            <th>Total<br>Calories</th>
+            <th class="data-header">Serving<br>Size</th>
+            <th class="data-header">Calories<br>per Serving</th>
+            <th class="data-header">Servings</th>
+            <th class="data-header">Total<br>Calories</th>
           </tr>
           <tr>
             <td id="serving-size" class="food-info"></td>
@@ -49,12 +47,14 @@
             <td><input class="add-button" type="submit" value="Add Food" id="add-food"></td>
           </tr>
         </table>
+        <!-- Search results -->
         <div class="search-results">
           <ul class="results-list"></ul>
         </div>
       </div>
-      <table >
-        <thead class="tracker-head">
+      <!-- List of food eaten -->
+      <table>
+        <thead class="list-head">
           <tr>
             <th class="food-item">food item</th>
             <th class="calories">calories</th>
@@ -65,9 +65,9 @@
       </table>
       <table class="table-end"></table>
     </section>
-    <section class="info">
+    <footer>
       <a href="http://www.nutritionix.com/api"><img src="assets/images/nutritionix-logo.png"></a>
-    </section>
+    </footer>
 
     <!-- Date template -->
     <script type="text/template" id="date-template">
@@ -97,7 +97,7 @@
     <!-- Daily Calorie Count template -->
     <script type="text/template" id="daily-cals-template">
       <tr>
-        <td class="calorie-count"></strong>total calories consumed today <strong></td>
+        <td class="calorie-count">total calories consumed today</td>
         <td class="total-calories"><%= dailyCalories %></td>
       </tr>
     </script>
