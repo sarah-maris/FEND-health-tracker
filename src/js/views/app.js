@@ -27,9 +27,6 @@
 
       //Set up variables for easy reference to DOM
       this.$input = $('#food-search');
-      this.$foodInput = $('.food-input');
-      this.$chosen = $('.chosen');
-      this.$chosenFood = $('#chosen-food');
       this.$tableEnd = $('.table-end');
       this.$list = $('.food-list');
       this.$results = $('.results-list');
@@ -56,18 +53,11 @@
       //Open table with food information
       this.$foodTable.removeClass('hidden');
 
-      //Hide input field and show chosen food
-      this.$foodInput.addClass('hidden');
-      this.$chosen.removeClass('hidden');
-
       //Calculate total calories
       var totCals = food.cals * this.$numServings.val();
 
-//TODO:  Create and implement template for showDetails
-      var serveDetails =  '<p>' + food.name + '</p><p>' + food.serveSize + ' ' + food.serveUnit + '</p>';
-
       //Show food information in form
-      this.$chosenFood.html(serveDetails);
+      this.$input.val(food.name);
       this.$serveCals.html(food.cals);
       this.$eatenCals.html(totCals.toFixed());
 
@@ -105,10 +95,6 @@
       this.$input.attr('placeholder', 'What did you eat?').val('');
       this.$numServings.val(1);
       this.$eatenCals.html('');
-
-      //Show input field and hide chosen food
-      this.$foodInput.removeClass('hidden');
-      this.$chosen.addClass('hidden');
     },
 
     // Generate the attributes for a new food item.
@@ -237,47 +223,42 @@
 
     },
 
-//TODO:  CLEAN THIS UP!  Try making food object and passing to anon.
-//TODO: Show serving size and unit for better guage of serving size
-    showOptions: function( searchResults) {
+   //Display search results
 
-      console.log( searchResults);
+    showOptions: function( searchResults) {
 
       //Go through each item in the food
       for (var i=0; i<searchResults.length; i++){
 
+        //Set up variables
         var searchFields = searchResults[i].fields;
         var id = i;
 
-        //Get food item object
-        var foodName = searchResults[i].fields.brand_name + ' ' + searchResults[i].fields.item_name;
-        var foodCals = searchResults[i].fields.nf_calories.toFixed();
-        var serveSize = searchResults[i].fields.nf_serving_size_qty;
-        var serveUnit = searchResults[i].fields.nf_serving_size_unit;
+        //Create object to pass to add function
+        var food = {};
+        food.name = searchResults[i].fields.brand_name + ' ' + searchResults[i].fields.item_name;
+        food.cals = searchResults[i].fields.nf_calories.toFixed(); //round calories to avoid decimals
+        food.serveSize = searchResults[i].fields.nf_serving_size_qty;
+        food.serveUnit = searchResults[i].fields.nf_serving_size_unit;
 
-      //Show results
-      this.$results.append(this.resultsTemplate({
-        name: searchFields.brand_name + ' ' + searchFields.item_name,
-        calories: searchFields.nf_calories.toFixed(),
-        id: id,
-        serveUnit: searchFields.nf_serving_size_unit,
-        serveSize: searchFields.nf_serving_size_qty
-      }));
-
+        //Show results using template
+        this.$results.append(this.resultsTemplate({
+          name: food.name,
+          calories: food.cals,
+          id: id,
+          serveUnit: food.serveUnit,
+          serveSize: food.serveSize
+        }));
 
         //Use anonymous function to attach event listeners to search results
         (function () {
 
-          //Create object to pass to add function
-          var food = {};
-          food.name = foodName;
-          food.cals = foodCals; //round calories to avoid decimals
-          food.serveSize = serveSize;
-          food.serveUnit = serveUnit;
+          //Use variable to capture food object for this item
+          var searchFood = food;
 
           //On click send data to add function
           $('#option' + i).click( function(){
-            appView.showDetails(food);
+            appView.showDetails(searchFood);
           });
 
         }());
