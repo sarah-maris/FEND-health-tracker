@@ -277,29 +277,33 @@ table {
 }
 
 .food-info {
+    font: normal 100 14px/18px 'Open Sans', sans-serif;
+    padding: 0 5px;
+    text-align: center;
+    width: 110px;
+}
+
+#num-servings {
 	background: #f2f2ef;
 	border: 0;
     border-radius: 5px;
 	color: #828266;
     display: block;
-    font: normal 100 18px/36px 'Open Sans', sans-serif;
+    height: 24px;
     margin: 0 auto;
     outline: none;
     padding: 0 10px;
-    text-align: center;
     width: 60px;
+}
+.food-table {
+	margin: 20px;
+	width: 560px;
 }
 
 .food-table th {
 	color: #824941;
 	font: normal 100 18px/20px 'Open Sans', sans-serif;
 	vertical-align: bottom;
-}
-
-.serving-calories,
-.calories-eaten {
-	font: normal 100 18px/20px 'Open Sans', sans-serif;
-	text-align: center;
 }
 
 .add-button {

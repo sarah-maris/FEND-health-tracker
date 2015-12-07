@@ -32,8 +32,9 @@
       this.$results = $('.results-list');
       this.$foodTable = $('.food-table');
       this.$numServings = $('#num-servings');
-      this.$serveCals = $('.serving-calories');
-      this.$eatenCals = $('.calories-eaten');
+      this.$serveSize = $('#serving-size');
+      this.$serveCals = $('#serving-calories');
+      this.$eatenCals = $('#calories-eaten');
       this.$trackerHead = $('.tracker-head');
 
       //When food item is added to collection render on page
@@ -58,6 +59,7 @@
 
       //Show food information in form
       this.$input.val(food.name);
+      this.$serveSize.html(food.serveSize + ' ' + food.serveUnit);
       this.$serveCals.html(food.cals);
       this.$eatenCals.html(totCals.toFixed());
 

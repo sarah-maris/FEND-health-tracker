@@ -34,16 +34,18 @@
         </div>
         <table class="food-table hidden">
           <tr>
+            <th>Serving<br>Size</th>
             <th>Calories<br>per Serving</th>
             <th>Servings</th>
             <th>Total<br>Calories</th>
           </tr>
           <tr>
-            <td class="serving-calories"></td>
-            <td class="serving-box">
+            <td id="serving-size" class="food-info"></td>
+            <td id="serving-calories" class="food-info"></td>
+            <td id="serving-box" class="food-info">
               <input name="servings" id="num-servings" class="food-info" type="text" value="1">
             </td>
-            <td class="calories-eaten"></td>
+            <td id="calories-eaten" class="food-info"></td>
             <td><input class="add-button" type="submit" value="Add Food" id="add-food"></td>
           </tr>
         </table>
