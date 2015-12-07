@@ -7,7 +7,7 @@
     tagName:  'tr',
 
     //Template function for each food item
-    template: _.template($('#item-template').html()),
+    itemTemplate: _.template($('#item-template').html()),
 
     //Bind clear function to clicks on 'destroy' class items
     events: {
@@ -24,7 +24,7 @@
     render: function () {
 
       //get data from Firebase and render using template
-      this.$el.html( this.template( this.model.attributes ) );
+      this.$el.html( this.itemTemplate( this.model.attributes ) );
       return this;
 
     },

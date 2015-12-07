@@ -5,9 +5,10 @@
 
     // Set default attributes
     defaults: {
-      title: '',
+      name: '',
       calories: 100,
       dateEaten: '',
+      serveSize: '',
       order: 0
     },
 

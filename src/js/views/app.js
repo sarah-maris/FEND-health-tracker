@@ -103,17 +103,20 @@
     foodAttributes: function () {
       return {
 
-        //Get title from chosen food item
-        title: this.$input.val(),
+        //Get name of chosen food item
+        name: this.$input.val(),
 
         //Get calories from the total calories calculation -- use parsInt to convert to number
-        calories: parseInt( this.$eatenCals.text()),
-
-        //Calculate item order in collection
-        order: app.foodList.nextOrder(),
+        calories: parseInt(this.$eatenCals.text()),
 
         //Date is chosen date
-        dateEaten: this.appDate
+        dateEaten: this.appDate,
+
+        //Get serving size from DOM
+        serveSize: this.$serveSize.text(),
+
+        //Calculate item order in collection
+        order: app.foodList.nextOrder()
 
       };
     },
@@ -272,3 +275,4 @@
     }
 
   });
+

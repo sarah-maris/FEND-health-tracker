@@ -56,7 +56,7 @@
       <table>
         <thead class="list-head">
           <tr>
-            <th class="food-item">FOOD ITEM</th>
+            <th class="food-name">FOOD ITEM</th>
             <th class="calories">CALORIES</th>
             <th class="remove">REMOVE</th>
           </tr>
@@ -76,7 +76,9 @@
 
     <!-- Food item template  REMOVE TEMPORARY CODE TO SHOW DATES BEFORE DEPLOYMENT -->
     <script type="text/template" id="item-template">
-      <td class="food-item"><%= title %>
+      <td>
+        <p class="food-name"><%= name %></p>
+        <p class="food-details">Serving size: <%= serveSize %>
 
 <span style="float: right"><%= dateEaten %></span>
 
@@ -89,7 +91,7 @@
     <script type="text/template" id="results-template">
       <li class="results" id="option<%= id %>">
         <p class="results-name"><%= name %></p>
-        <p class="results-details">Serving size: <%= serveSize %> <%= serveUnit %>
+        <p class="results-details">Serving size: <%= serveSize %>
         <span class="results-cals"><%= calories %> calories</span></p>
       </li>
     </script>
