@@ -39,16 +39,18 @@
       this.$trackerHead = $('.list-head');
 
       //Get today's date to initialize datepicker
-      this.today = new Date();
+     // this.today = new Date();
 
-      //Set current date as default for app
+      //Set current date as default for app and create url for collection
       this.appDate = this.prettyDate(new Date());
+      this.urlDate = this.appDate.replace(/\//g, '');
+      console.log(this.urlDate);
 
       //Initialize date picker
       this.renderDate();
 
       //Set intial date to today
-      this.$("#datepicker").datepicker( "setDate", this.today );
+      this.$("#datepicker").datepicker( "setDate", this.appDate );
 
       //Fire the collection to get the foodlist from Firebase
       this.foodList = new FoodList();
