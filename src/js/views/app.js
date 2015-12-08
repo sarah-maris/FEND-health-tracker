@@ -63,8 +63,6 @@
       return ("0" + (date.getMonth() + 1).toString()).substr(-2) + "/" + ("0" + date.getDate().toString()).substr(-2)  + "/" + (date.getFullYear().toString());
     },
 
-
-
     //Function to add food item and servings
     showDetails: function(food) {
 
@@ -161,6 +159,8 @@
 
     renderDate: function(foodList){
 
+      var self = this;
+
       //Render date picker using template in index.html
       this.$datePicker.html(this.dateTemplate());
 
@@ -170,13 +170,18 @@
         buttonImage: "assets/images/calendar.png",
         buttonImageOnly: true,
         buttonText: "Select date",
-        onSelect:  this.updateView
+
+        //When a new date is selected, update view
+        onSelect: function(dateText, e) {
+          self.updateView(dateText);
+        }
 
       });
     },
 
     render: function(){
 
+      var self = this;
 
       //Filter collection to pull out food items for current date
       filteredList = this.foodList.byDate(this.appDate);
@@ -193,7 +198,7 @@
 
       //Repopulate the food list
       filteredList.each(function(food){
-        appView.showFood(food);
+        self.showFood(food);
       });
 
       //Show daily calories at bottom of table
@@ -269,6 +274,8 @@
     //Display search results
     showOptions: function( searchResults) {
 
+    var self = this;
+
       //Go through each item in the food
       for (var i=0; i<searchResults.length; i++){
 
@@ -300,7 +307,7 @@
 
           //On click send data to add function
           $('#option' + i).click( function(){
-            appView.showDetails(searchFood);
+            self.showDetails(searchFood);
           });
 
         }());
@@ -309,10 +316,10 @@
 
     },
 
-   //Re-render foodlist view when date is changed
+   //Change appDate and re-render foodlist view when date is changed
     updateView: function(dateText) {
-      appView.appDate =  dateText;
-      appView.render();
+      this.appDate =  dateText;
+      this.render();
     }
 
   });

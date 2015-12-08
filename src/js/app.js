@@ -6,7 +6,7 @@
   $(function() {
 
     //Start the app by initiating the appview*.
-    appView = new app.AppView();
+    new app.AppView();
 
   });
 
