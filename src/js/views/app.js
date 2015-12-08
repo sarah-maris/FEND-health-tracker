@@ -20,7 +20,7 @@
     },
 
     //Get data from collection
-    foodList: app.foodList,
+   // foodList: app.foodList,
 
     //
     initialize: function () {
@@ -49,6 +49,9 @@
 
       //Set intial date to today
       this.$("#datepicker").datepicker( "setDate", this.today );
+
+      //Fire the collection to get the foodlist from Firebase
+      this.foodList = new FoodList();
 
       //When food item is added to collection render on page
       this.listenTo(this.foodList, 'add', this.showFood);
@@ -132,7 +135,7 @@
         servings: this.$numServings.val(),
 
         //Calculate item order in collection
-        order: app.foodList.nextOrder()
+        order: this.foodList.nextOrder()
 
       };
     },

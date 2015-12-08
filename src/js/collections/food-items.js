@@ -29,6 +29,3 @@
     }
 
   });
-
-  //Fire the collection to get the foodlist from Firebase
-  app.foodList = new FoodList();
