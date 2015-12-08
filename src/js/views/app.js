@@ -38,13 +38,11 @@
       this.$eatenCals = $('#calories-eaten');
       this.$trackerHead = $('.list-head');
 
-      //Get today's date to initialize datepicker
-     // this.today = new Date();
-
-      //Set current date as default for app and create url for collection
+      //Set current date as default for app
       this.appDate = this.prettyDate(new Date());
-      this.urlDate = this.appDate.replace(/\//g, '');
-      console.log(this.urlDate);
+
+      //Add date to firebase url to create a new collection for each date
+      this.dateUrl = 'https://food-tracker-sam.firebaseio.com/' + this.appDate.replace(/\//g, '');
 
       //Initialize date picker
       this.renderDate();
@@ -53,7 +51,9 @@
       this.$("#datepicker").datepicker( "setDate", this.appDate );
 
       //Fire the collection to get the foodlist from Firebase
-      this.foodList = new FoodList();
+      this.foodList = new FoodList({
+        url: this.dateUrl
+      });
 
       //When food item is added to collection render on page
       this.listenTo(this.foodList, 'add', this.showFood);
@@ -187,7 +187,7 @@
     render: function(){
 
       var self = this;
-
+//TODO remove filters when date url is working
       //Filter collection to pull out food items for current date
       filteredList = this.foodList.byDate(this.appDate);
 

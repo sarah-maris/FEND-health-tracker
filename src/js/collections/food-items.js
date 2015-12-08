@@ -5,8 +5,10 @@
     // Get the model
     model: app.Food,
 
-    //Use Firebase for food item storage
-     url: 'https://food-tracker-sam.firebaseio.com/12062015',
+    //Set url based on aooDate (passed from AppView)
+    initialize: function(params) {
+        this.url = params.url;
+    },
 
     // Add order attribute to keep track of order that items are added
     nextOrder: function() {
