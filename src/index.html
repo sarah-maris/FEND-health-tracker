@@ -57,13 +57,13 @@
         <thead class="list-head">
           <tr>
             <th class="food-name">FOOD ITEM</th>
+            <th class="calories">SERVINGS</th>
             <th class="calories">CALORIES</th>
             <th class="remove">REMOVE</th>
           </tr>
         </thead>
         <tbody class="food-list"></tbody>
       </table>
-      <table class="table-end"></table>
     </section>
     <footer>
       <a href="http://www.nutritionix.com/api"><img src="assets/images/nutritionix-logo.png"></a>
@@ -83,6 +83,7 @@
 <span style="float: right"><%= dateEaten %></span>
 
       </td>
+      <td class="servings"><%= servings%></td>
       <td class="calories"><%= calories%></td>
       <td class="remove"><span class="destroy">x</span></td>
     </script>
@@ -98,9 +99,10 @@
 
     <!-- Daily Calorie Count template -->
     <script type="text/template" id="daily-cals-template">
-      <tr>
-        <td class="calorie-count">TOTAL CALORIES CONSUMED TODAY</td>
+      <tr class="table-end">
+        <td colspan="2" class="calorie-count">TOTAL CALORIES CONSUMED TODAY</td>
         <td class="total-calories"><%= dailyCalories %></td>
+        <td class="remove"></td>
       </tr>
     </script>
 
@@ -119,9 +121,9 @@
    <!-- App scripts -->
    <!-- build:inlinejs -->
     <script src="js/models/food.js"></script>
-    <script src="js/collections/foods.js"></script>
+    <script src="js/collections/food-items.js"></script>
     <script src="js/views/datepicker.js"></script>
-    <script src="js/views/foods.js"></script>
+    <script src="js/views/food-item.js"></script>
     <script src="js/views/app.js"></script>
     <script src="js/app.js"></script>
     <!-- endbuild -->

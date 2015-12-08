@@ -112,8 +112,9 @@
         //Date is chosen date
         dateEaten: this.appDate,
 
-        //Get serving size from DOM
+        //Get serving size and number of servings from DOM
         serveSize: this.$serveSize.text(),
+        servings: this.$numServings.val(),
 
         //Calculate item order in collection
         order: app.foodList.nextOrder()
@@ -128,7 +129,7 @@
       var view = new app.FoodView({ model: food });
 
       //Append the new food to the list on the page
-      this.$list.append(view.render().el);
+      this.$list.prepend(view.render().el);
 
     },
 
@@ -162,7 +163,7 @@
       });
 
       //Show daily calories at bottom of table
-      this.$tableEnd.html(this.dailyCalsTemplate({
+      this.$list.append(this.dailyCalsTemplate({
         dailyCalories: this.dailyCalories(filteredList)
       }));
 

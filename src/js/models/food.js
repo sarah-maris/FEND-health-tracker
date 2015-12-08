@@ -8,6 +8,7 @@
       name: '',
       calories: 100,
       dateEaten: '',
+      servings: 0,
       serveSize: '',
       order: 0
     },

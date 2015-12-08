@@ -236,20 +236,22 @@ table {
 	margin: 0;
 	padding: 5px 0 0 20px;
 	text-align: left;
-	width: 400px;
+	width: 350px;
 }
 
 .food-details {
 	margin: 0;
 	font: italic 12px/14px 'Open Sans', sans-serif;
-    padding: 0 0 5px 20px;
-   	text-align: left;
-   	width: 400px;
+	padding: 0 0 5px 20px;
+	text-align: left;
+	width: 350px;
 }
 
 .calories,
+.servings,
 .remove {
 	text-align: center;
+	width: 80px;
 }
 
 .food-list {
@@ -289,14 +291,11 @@ table {
 }
 
 .total-calories {
-	text-align: right;
-	padding: 0 130px 0 0;
-	width: 100px;
+	text-align: center;
 }
 
 .calorie-count {
 	padding: 0 0 0 20px;
-	width: 400px;
 	text-align: left;
 }
 
