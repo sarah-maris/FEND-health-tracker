@@ -9,6 +9,7 @@
     // Templates for the calorie count at the bottom of the table and search results
     dailyCalsTemplate: _.template( $('#daily-cals-template').html() ),
     resultsTemplate: _.template( $('#results-template').html() ),
+    dateTemplate: _.template( $('#date-template').html() ),
 
     // Set event for creating new food
     events: {
@@ -21,11 +22,11 @@
     //Get data from collection
     foodList: app.foodList,
 
-    self: this,
     //
     initialize: function () {
 
       //Set up variables for easy reference to DOM
+      this.$datePicker = $('.date-picker');
       this.$input = $('#food-search');
       this.$tableEnd = $('.table-end');
       this.$list = $('.food-list');
@@ -37,16 +38,32 @@
       this.$eatenCals = $('#calories-eaten');
       this.$trackerHead = $('.list-head');
 
+      //Get today's date to initialize datepicker
+      this.today = new Date();
+
+      //Set current date as default for app
+      this.appDate = this.prettyDate(new Date());
+
+      //Initialize date picker
+      this.renderDate();
+
+      //Set intial date to today
+      this.$("#datepicker").datepicker( "setDate", this.today );
+
       //When food item is added to collection render on page
       this.listenTo(this.foodList, 'add', this.showFood);
 
       //At intitilization and when anything in the foodList changes run the filter and render the food list
       this.listenTo(this.foodList, 'all', this.render);
 
-      //Get date from datePicker
-      this.appDate = datePicker.appDate;
-
     },
+
+    //Format intial date to match mm/dd/yyyy format
+    prettyDate: function(date) {
+      return ("0" + (date.getMonth() + 1).toString()).substr(-2) + "/" + ("0" + date.getDate().toString()).substr(-2)  + "/" + (date.getFullYear().toString());
+    },
+
+
 
     //Function to add food item and servings
     showDetails: function(food) {
@@ -142,7 +159,24 @@
 
     },
 
-    render: function(foodList){
+    renderDate: function(foodList){
+
+      //Render date picker using template in index.html
+      this.$datePicker.html(this.dateTemplate());
+
+      //Set attributes for datepicker
+      this.$("#datepicker").datepicker({
+        showOn: "both",
+        buttonImage: "assets/images/calendar.png",
+        buttonImageOnly: true,
+        buttonText: "Select date",
+        onSelect:  this.updateView
+
+      });
+    },
+
+    render: function(){
+
 
       //Filter collection to pull out food items for current date
       filteredList = this.foodList.byDate(this.appDate);
@@ -179,7 +213,7 @@
 
       var params = {
 //TODO: Increase results to 20 when done with dev
-        'results': '0:10', //Get up to 20 items
+        'results': '0:5', //Get up to 20 items
         'fields' : 'item_name,brand_name,nf_calories,nf_serving_size_qty,nf_serving_size_unit', //Get item, brand and calories
         'appId': '72e7d3f2',
         'appKey': 'be0b61430f161b795ac29ebebfada85a'
@@ -273,6 +307,12 @@
 
       }
 
+    },
+
+   //Re-render foodlist view when date is changed
+    updateView: function(dateText) {
+      appView.appDate =  dateText;
+      appView.render();
     }
 
   });

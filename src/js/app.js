@@ -5,9 +5,6 @@
 
   $(function() {
 
-    //intialize datePicker
-    datePicker = new app.DatePicker();
-
     //Start the app by initiating the appview*.
     appView = new app.AppView();
 
