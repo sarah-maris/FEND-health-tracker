@@ -1,17 +1,17 @@
-  var app = app || {};
+var app = app || {};
 
-  //Basic model for FoodTracker
-  app.Food = Backbone.Model.extend({
+//Basic model for FoodTracker
+app.Food = Backbone.Model.extend({
 
-    // Set default attributes
-    defaults: {
-      name: '',
-      calories: 100,
-      dateEaten: '',
-      servings: 0,
-      serveSize: '',
-      order: 0
-    },
+  // Set default attributes
+  defaults: {
+    name: '',
+    calories: 100,
+    dateEaten: '',
+    servings: 0,
+    serveSize: '',
+    order: 0
+  },
 
-  });
+});
 
