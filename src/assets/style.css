@@ -78,7 +78,7 @@ table {
 }
 
 .date-picker{
-	background: #f2f2ef;
+	background: #fff;
 	border-radius: 10px;
 	display: inline-block;
 	margin: 0 0 0 10px;
@@ -87,7 +87,7 @@ table {
 
 #datepicker {
 	border: 0;
-    color: #828266;
+    color: #4A342E;
     font: normal 100 18px/36px 'Open Sans', sans-serif;
 	margin: 0 0 0 10px;
 	padding: 0 ;
@@ -120,12 +120,13 @@ table {
 }
 
 .food-box {
-	margin: 10px;
-	font: normal 100 18px/36px 'Open Sans', sans-serif;
-	outline: none;
 	border: 0;
-	padding: 0 10px;
 	border-radius: 10px;
+	color: #4A342E;
+	font: normal 100 18px/36px 'Open Sans', sans-serif;
+	margin: 10px;
+	outline: none;
+	padding: 0 10px;
 	width: 470px;
 }
 
@@ -151,6 +152,7 @@ table {
 .food-input {
 	border: 0;
     border-radius: 5px;
+    color: #4A342E;
     outline: none;
     padding: 5px 10px;
     text-align: center;
