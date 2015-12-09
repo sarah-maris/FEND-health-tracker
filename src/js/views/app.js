@@ -2,6 +2,7 @@ var app = app || {};
 
 app.AppView = Backbone.View.extend({
 
+  /**  BASC BACKBONE.JS FUNCTIONS  **/
   el: '.tracker-app',
 
   // Templates for the calorie count at the bottom of the table and search results
@@ -53,127 +54,6 @@ app.AppView = Backbone.View.extend({
 
   },
 
-  //Format intial date to match mm/dd/yyyy format
-  prettyDate: function(date) {
-    return ("0" + (date.getMonth() + 1).toString()).substr(-2) + "/" + ("0" + date.getDate().toString()).substr(-2)  + "/" + (date.getFullYear().toString());
-  },
-
-  //Function to add food item and servings
-  showDetails: function(food) {
-
-    //Open table with food information
-    this.$foodTable.removeClass('hidden');
-
-    //Calculate total calories
-    var totCals = food.cals * this.$numServings.val();
-
-    //Show food information in form
-    this.$input.val(food.name);
-    this.$serveSize.html(food.serveSize + ' ' + food.serveUnit);
-    this.$serveCals.html(food.cals);
-    this.$eatenCals.html(totCals.toFixed());
-
-  },
-
-  //Function to update total calories
-  updateCals: function(){
-
-    //Calories per serving from database or manual input
-    var servingCals = this.$serveCals.text() || this.$inputCals.val();
-
-    //Number of servings from input box
-    var numServings = this.$numServings.val();
-
-    //Calculate total calories and show in DOM
-    var totCals = servingCals * numServings;
-    this.$eatenCals.html(totCals.toFixed());
-
-  },
-
-  //Create a new food item when hit enter in input field
-  addFood: function(e) {
-
-    //Create a few food item wtih the given attributes
-    this.foodList.create(this.foodAttributes());
-
-
-    this.$input.val('');
-
-    //Close food results table and add back default value for search box
-    this.$foodTable.addClass('hidden');
-    this.$results.addClass('hidden');
-
-    //Reset default values for search box and number of servings
-    this.$input.attr('placeholder', 'What did you eat?').val('');
-    this.$numServings.val(1);
-    this.$eatenCals.html('');
-  },
-
-  // Generate the attributes for a new food item.
-  foodAttributes: function () {
-    return {
-
-      //Get name of chosen food item
-      name: this.$input.val(),
-
-      //Get calories from the total calories calculation -- use parsInt to convert to number
-      calories: parseInt(this.$eatenCals.text()),
-
-      //Date is chosen date
-      dateEaten: this.appDate,
-
-      //Get serving size and number of servings from DOM
-      serveSize: this.$serveSize.text(),
-      servings: this.$numServings.val(),
-
-      //Calculate item order in collection
-      order: this.foodList.nextOrder()
-
-    };
-  },
-
-  //Show food item in list
-  showFood: function (food) {
-
-    //Create new FoodView from data
-    var view = new app.FoodView({ model: food });
-
-    //Append the new food to the list on the page
-    this.$list.prepend(view.render().el);
-
-  },
-
-  //Calculate total calories for a collection of food items
-  dailyCalories: function(foodList){
-
-    return foodList.reduce(function(memo, value) {
-      return memo + value.get("calories");
-     }, 0);
-
-  },
-
-  renderDate: function(foodList){
-
-    var self = this;
-
-    //Render date picker using template in index.html
-    this.$datePicker.html(this.dateTemplate());
-
-    //Set attributes for datepicker
-    this.$("#datepicker").datepicker({
-      showOn: "both",
-      buttonImage: "assets/images/calendar.png",
-      buttonImageOnly: true,
-      buttonText: "Select date",
-
-      //When a new date is selected, update view
-      onSelect: function(dateText, e) {
-        self.updateView(dateText);
-      }
-
-    });
-  },
-
   render: function(){
 
     var self = this;
@@ -212,6 +92,44 @@ app.AppView = Backbone.View.extend({
     return this;
 
   },
+
+  /**  DATE FUNCTIONS  **/
+
+  //Format intial date to match mm/dd/yyyy format
+  prettyDate: function(date) {
+    return ("0" + (date.getMonth() + 1).toString()).substr(-2) + "/" + ("0" + date.getDate().toString()).substr(-2)  + "/" + (date.getFullYear().toString());
+  },
+
+  renderDate: function(foodList){
+
+    var self = this;
+
+    //Render date picker using template in index.html
+    this.$datePicker.html(this.dateTemplate());
+
+    //Set attributes for datepicker
+    this.$("#datepicker").datepicker({
+      showOn: "both",
+      buttonImage: "assets/images/calendar.png",
+      buttonImageOnly: true,
+      buttonText: "Select date",
+
+      //When a new date is selected, update view
+      onSelect: function(dateText, e) {
+        self.updateView(dateText);
+      }
+
+    });
+  },
+
+ //Change appDate and re-render foodlist view when date is changed
+  updateView: function(dateText) {
+    this.appDate =  dateText;
+    this.render();
+  },
+
+  /**  SEARCH FUNCTIONS  **/
+
   //Search Nutritionix database using AJAX query
   searchFood: function() {
 
@@ -241,7 +159,7 @@ app.AppView = Backbone.View.extend({
 
       //If have results, show the options
       if (data.hits.length > 0) {
-        self.showOptions(data.hits);
+        self.showResults(data.hits);
 
       //If no results enter food manually
       } else {
@@ -257,26 +175,8 @@ app.AppView = Backbone.View.extend({
     });
   },
 
-  //Function to enter a food item manually if Nutritionix is down or returns no results
-  enterManually: function() {
-
-    //Open table with food informatoin
-    this.$foodTable.removeClass('hidden');
-
-    //Show "no results found" message
-    this.$results.prepend('<h4 class="no-results">NO RESULTS FOUND.<br>PLEASE ENTER FOOD ITEM MANUALLY</h4>');
-
-    //Add input box for servine size and calories per serving
-    this.$serveSize.html('<input name="serving-size" id="serving-size" class="food-input size-input" type="text" value="">');
-    this.$serveCals.html('<input name="serving-calories" id="serving-cals" class="food-input" type="text" value="">');
-
-    //Set variable for calories input
-    this.$inputCals = $('#serving-cals');
-
-  },
-
   //Display search results
-  showOptions: function( searchResults) {
+  showResults: function( searchResults) {
 
   var self = this;
 
@@ -318,12 +218,125 @@ app.AppView = Backbone.View.extend({
 
     }
 
+ },
+
+  //Enter a food item manually if Nutritionix is down or returns no results
+  enterManually: function() {
+//TODO: Add link to enter food manually if don't like the results, e.g,
+// "Not what you were looking for? Click here to enter manually"
+
+    //Open table with food informatoin
+    this.$foodTable.removeClass('hidden');
+
+    //Show "no results found" message
+    this.$results.prepend('<h4 class="no-results">NO RESULTS FOUND.<br>PLEASE ENTER FOOD ITEM MANUALLY</h4>');
+
+    //Add input box for servine size and calories per serving
+    this.$serveSize.html('<input name="serving-size" id="serving-size" class="food-input size-input" type="text" value="">');
+    this.$serveCals.html('<input name="serving-calories" id="serving-cals" class="food-input" type="text" value="">');
+
+    //Set variable for calories input
+    this.$inputCals = $('#serving-cals');
+
   },
 
- //Change appDate and re-render foodlist view when date is changed
-  updateView: function(dateText) {
-    this.appDate =  dateText;
-    this.render();
+
+  /**  NEW FOOD ITEM ENTRY FUNCTIONS  **/
+
+  //Show details about a food item
+  showDetails: function(food) {
+
+    //Open table with food information
+    this.$foodTable.removeClass('hidden');
+
+    //Calculate total calories
+    var totCals = food.cals * this.$numServings.val();
+
+    //Show food information in appm
+    this.$input.val(food.name);
+    this.$serveSize.html(food.serveSize + ' ' + food.serveUnit);
+    this.$serveCals.html(food.cals);
+    this.$eatenCals.html(totCals.toFixed());
+
+  },
+
+  //Update total calories for a food item based on servings and calories per serving
+  updateCals: function(){
+
+    //Calories per serving from database or manual input
+    var servingCals = this.$serveCals.text() || this.$inputCals.val();
+
+    //Number of servings from input box
+    var numServings = this.$numServings.val();
+
+    //Calculate total calories and show in app
+    var totCals = servingCals * numServings;
+    this.$eatenCals.html(totCals.toFixed());
+
+  },
+
+  // Generate the attributes for a new food item.
+  foodAttributes: function () {
+    return {
+
+      //Get name of chosen food item
+      name: this.$input.val(),
+
+      //Get calories from the total calories calculation -- use parsInt to convert to number
+      calories: parseInt(this.$eatenCals.text()),
+
+      //Date is chosen date
+      dateEaten: this.appDate,
+
+      //Get serving size and number of servings from DOM
+      serveSize: this.$serveSize.text(),
+      servings: this.$numServings.val(),
+
+      //Calculate item order in collection
+      order: this.foodList.nextOrder()
+
+    };
+  },
+
+  //Add a new food item to the databaseeld
+  addFood: function(e) {
+
+    //Create a few food item wtih the given attributes
+    this.foodList.create(this.foodAttributes());
+
+
+    this.$input.val('');
+
+    //Close food results table and add back default value for search box
+    this.$foodTable.addClass('hidden');
+    this.$results.addClass('hidden');
+
+    //Reset default values for search box and number of servings
+    this.$input.attr('placeholder', 'What did you eat?').val('');
+    this.$numServings.val(1);
+    this.$eatenCals.html('');
+  },
+
+  /**  FOOD LOG DISPLAY FUNCTIONS  **/
+
+  //Show food item in list
+  showFood: function (food) {
+
+    //Create new FoodView from data
+    var view = new app.FoodView({ model: food });
+
+    //Append the new food to the list on the page
+    this.$list.prepend(view.render().el);
+
+  },
+
+  //Calculate total calories for a collection of food items
+  dailyCalories: function(foodList){
+
+    return foodList.reduce(function(memo, value) {
+      return memo + value.get("calories");
+     }, 0);
+
   }
 
 });
