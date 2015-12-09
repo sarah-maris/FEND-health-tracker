@@ -62,7 +62,7 @@ gulp.task('min-styles', function(){
     .pipe(concat('style.css'))
     .pipe(minifyCSS())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('build/css'))
+    .pipe(gulp.dest('build/assets'))
     .pipe( notify('CSS task complete!'));
 });
 
