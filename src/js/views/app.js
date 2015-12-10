@@ -81,7 +81,7 @@ app.AppView = Backbone.View.extend({
     $.when( this.updateFoodList() ).done(function() {
 
       //Show data in console  ***** REMOVE BEFORE DEPLOYMENT  *****
-      console.log("Got new food list!", this.dateUrl, self.foodList  );
+      console.log("Got new food list!", self.dateUrl, self.foodList  );
     });
 
     //If no food eaten hide table header
