@@ -54,9 +54,10 @@ app.AppView = Backbone.View.extend({
 
   },
 
-  render: function(){
+  updateFoodList: function(){
 
-    var self = this;
+    //Show function firing in  console  ***** REMOVE BEFORE DEPLOYMENT  *****
+    console.log("in update foodList");
 
     //Add date to firebase url to create a new collection for each date
     this.dateUrl = 'https://food-tracker-sam.firebaseio.com/' + this.appDate.replace(/\//g, '');
@@ -66,8 +67,22 @@ app.AppView = Backbone.View.extend({
       url: this.dateUrl
     });
 
-    //Show data in console  ***** REMOVE BEFORE DEPLOYMENT  *****
-    console.log(this.dateUrl, this.foodList);
+  },
+
+  render: function(){
+
+    //Show function firing in  console  ***** REMOVE BEFORE DEPLOYMENT  *****
+    console.log("in render function")
+
+    var self = this;
+
+    this.updateFoodList();
+
+    $.when( this.updateFoodList() ).done(function() {
+
+      //Show data in console  ***** REMOVE BEFORE DEPLOYMENT  *****
+      console.log("Got new food list!", this.dateUrl, self.foodList  );
+    });
 
     //If no food eaten hide table header
     if (this.foodList.length < 1){
