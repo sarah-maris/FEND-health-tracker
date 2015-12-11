@@ -46,12 +46,33 @@ app.AppView = Backbone.View.extend({
     //Render view
     this.render();
 
+this.instantiateFoodLists();
+
     //When food item is added to collection render on page
     this.listenTo(this.foodList, 'add', this.showFood);
 
     //At intitilization and when anything in the foodList changes run the filter and render the food list
     this.listenTo(this.foodList, 'all', this.render);
 
+  },
+
+  instantiateFoodLists: function(){
+
+    for (var i = 5; i < 11; i ++) {
+      var daynum = "";
+      var urlDate ="";
+      if ( i < 10) {
+        urlDate = 'https://food-tracker-sam.firebaseio.com/' +'12' +  '0' + i + 2015;
+      } else {
+        urlDate = 'https://food-tracker-sam.firebaseio.com/' +'12' +  i + 2015;
+      }
+
+      console.log("urlDate is", urlDate)
+      //Fire a FoodList collection to get data from Firebase
+      var foodList = new FoodList([], {
+        url: urlDate
+      });
+    }
   },
 
   updateFoodList: function(){
