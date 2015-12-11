@@ -43,42 +43,21 @@ app.AppView = Backbone.View.extend({
     //Set intial date to today
     this.$("#datepicker").datepicker( "setDate", this.appDate );
 
+    //Initialize foodList -- prepares firebase for date changes
+    foodDatabase = new FoodList([], {
+            url: 'https://food-tracker-sam.firebaseio.com/'
+    });
+
     //Render view
     this.render();
 
-this.instantiateFoodLists();
-
-    //When food item is added to collection render on page
-    this.listenTo(this.foodList, 'add', this.showFood);
 
     //At intitilization and when anything in the foodList changes run the filter and render the food list
     this.listenTo(this.foodList, 'all', this.render);
 
   },
 
-  instantiateFoodLists: function(){
-
-    for (var i = 5; i < 11; i ++) {
-      var daynum = "";
-      var urlDate ="";
-      if ( i < 10) {
-        urlDate = 'https://food-tracker-sam.firebaseio.com/' +'12' +  '0' + i + 2015;
-      } else {
-        urlDate = 'https://food-tracker-sam.firebaseio.com/' +'12' +  i + 2015;
-      }
-
-      console.log("urlDate is", urlDate)
-      //Fire a FoodList collection to get data from Firebase
-      var foodList = new FoodList([], {
-        url: urlDate
-      });
-    }
-  },
-
   updateFoodList: function(){
-
-    //Show function firing in  console  ***** REMOVE BEFORE DEPLOYMENT  *****
-    console.log("in update foodList");
 
     //Add date to firebase url to create a new collection for each date
     this.dateUrl = 'https://food-tracker-sam.firebaseio.com/' + this.appDate.replace(/\//g, '');
@@ -92,18 +71,9 @@ this.instantiateFoodLists();
 
   render: function(){
 
-    //Show function firing in  console  ***** REMOVE BEFORE DEPLOYMENT  *****
-    console.log("in render function")
-
     var self = this;
 
     this.updateFoodList();
-
-    $.when( this.updateFoodList() ).done(function() {
-
-      //Show data in console  ***** REMOVE BEFORE DEPLOYMENT  *****
-      console.log("Got new food list!", self.dateUrl, self.foodList  );
-    });
 
     //If no food eaten hide table header
     if (this.foodList.length < 1){
@@ -340,7 +310,6 @@ this.instantiateFoodLists();
     //Create a few food item wtih the given attributes
     this.foodList.create(this.foodAttributes());
 
-
     this.$input.val('');
 
     //Close food results table and add back default value for search box
@@ -351,6 +320,8 @@ this.instantiateFoodLists();
     this.$input.attr('placeholder', 'What did you eat?').val('');
     this.$numServings.val(1);
     this.$eatenCals.html('');
+
+    this.render();
   },
 
   /**  FOOD LOG DISPLAY FUNCTIONS  **/
