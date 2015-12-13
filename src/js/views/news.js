@@ -36,3 +36,6 @@ $.getJSON( nytAPIquery)
    $nytHeaderElem.text("New York Times Articles could not be loaded");
    console.log("Bad AJAX request");
 });
+
+//TODO: move this into appView
+//TDDO: Fix responsive

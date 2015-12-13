@@ -10,8 +10,13 @@ To log a food item the user first searches for it the item in the Nutritionix da
 
 After choosing from a list of results or entering a food description and calorie count manually, the user can enter the number of servings eaten or and the total calories consumed is calculated.  The app keeps a running total of all calories consumed for each date.
 
+The app also provides Health News from The New York Times.
+
 Resources used:
 * Backbone.js
 * Underscore.js
 * Firebase
 * jQueryUI datepicker
+* Moment.js (date formatting)
+* Nutritionix API
+* The New York Times API
