@@ -35,7 +35,7 @@ app.AppView = Backbone.View.extend({
     this.$trackerApp = $('.tracker-app')
 
     //Set current date as default for app
-    this.appDate = this.prettyDate(new Date());
+    this.appDate = moment(new Date()).format('MM/DD/YYYY');
 
     //Initialize date picker
     this.renderDate();
@@ -100,11 +100,6 @@ app.AppView = Backbone.View.extend({
   },
 
   /**  DATE FUNCTIONS  **/
-
-  //Format intial date to match mm/dd/yyyy format
-  prettyDate: function(date) {
-    return ("0" + (date.getMonth() + 1).toString()).substr(-2) + "/" + ("0" + date.getDate().toString()).substr(-2)  + "/" + (date.getFullYear().toString());
-  },
 
   renderDate: function(foodList){
 
@@ -258,7 +253,7 @@ app.AppView = Backbone.View.extend({
     //Calculate total calories
     var totCals = food.cals * this.$numServings.val();
 
-    //Show food information in appm
+    //Show food information in app
     this.$input.val(food.name);
     this.$serveSize.html(food.serveSize + ' ' + food.serveUnit);
     this.$serveCals.html(food.cals);

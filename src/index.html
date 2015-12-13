@@ -63,14 +63,19 @@
           </tr>
         </thead>
         <tbody class="food-list"></tbody>
-      </table>
+       </table>
+      <div class="list-footer">
+        <a href="http://www.nutritionix.com/api"><img src="assets/images/nutritionix-logo.png"></a>
+      </div>
     </section>
-    <section>
-      <h3 class="news-header">Health News from NY Times"</h3>
+    <section class="health-news">
+      <h3 class="news-header">Health News from<br>The New York Times</h3>
+      <ul class="news-items"></ul>
+      <div class="list-footer">
+        <a href="http://developer.nytimes.com/"><img src="assets/images/nytimes-logo.png"></a>
+      </div>
     </section>
-    <footer>
-      <a href="http://www.nutritionix.com/api"><img src="assets/images/nutritionix-logo.png"></a>
-    </footer>
+
 
     <!-- Date template -->
     <script type="text/template" id="date-template">
@@ -109,12 +114,24 @@
       </tr>
     </script>
 
+    <!-- News item template -->
+    <script type="text/template" id="news-template">
+      <li class="news-item">
+        <a href="<%= newsURL %>' "target="_blank" class="news-headline">
+          <%= headline %>
+        </a>
+        <p class="news-date"><%= pubDate %></p>
+        <p class="snippet"><%= paragraph %></p>
+      </li>
+    </script>
+
     <!-- Foundational js Libraries -->
     <!-- build:js js/lib.min.js -->
     <script src="components/jquery/dist/jquery.min.js"></script>
     <script src="components/underscore/underscore-min.js"></script>
     <script src="components/backbone/backbone-min.js"></script>
     <script src="components/jquery-ui.js"></script>
+    <script src="components/moment/moment.js"></script>
     <!-- endbuild -->
 
     <!-- Firebase Libraries-->

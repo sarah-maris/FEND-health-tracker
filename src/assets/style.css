@@ -18,12 +18,12 @@ body {
 	background: #B09B76;
 	color: #4A342E;
 	min-width: 230px;
-	max-width: 600px;
+	max-width: 1000px;
 	margin: 0 auto;
 }
 
 table {
-	border-collapse:  collapse;
+	border-collapse:  collapse;s
 	border: none;
 	width: 100%;
 }
@@ -36,7 +36,9 @@ table {
 .tracker-app {
 	background: #E0E0D9;
 	border-radius: 25px;
+	float: left;
 	margin: 50px 0 40px 0;
+	width: 600px;
 }
 
 .tracker-app input::-webkit-input-placeholder {
@@ -282,7 +284,7 @@ table {
 	color: #824941;
 }
 
-/* Food eaten table footer */
+/* Calorie count row */
 .table-end {
 	background-color: #828266;
 	color: #f2f2ef;
@@ -301,7 +303,57 @@ table {
 	text-align: left;
 }
 
-/* App footer */
-footer {
-	text-align: center;
+/* Food list footer */
+.list-footer {
+	padding: 10px;
+    text-align: center;
+}
+
+/* Health News */
+.health-news {
+	background-color: #c0c0b2;
+	border-radius: 25px;
+	float: right;
+	margin: 50px 0 40px 30px;
+	width: 370px;
+}
+
+.news-header {
+	background-color: #828266;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+    color: #f2f2ef;
+    font: 800 20px/24px 'Open Sans', sans-serif;
+	margin: 0;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+.news-items {
+	margin: 20px 0 0 0;
+	padding: 0 20px;
+}
+.news-item {
+	list-style-type: none;
+	padding: 0 0 20px 0;
+}
+
+.news-headline {
+	color: #824941;
+    font: 18px/24px 'Open Sans', sans-serif;
+    text-decoration: none;
+}
+
+.news-headline:hover {
+	color: #E0E0D9;
+}
+
+.news-date {
+	color: #824941;
+    font: italic 14px/18px 'Open Sans', sans-serif;
+	margin: 0 0 10px 0 ;
+}
+
+.snippet{
+	margin: 0;
 }

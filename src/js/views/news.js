@@ -1,32 +1,38 @@
-  var $newsHeader = $('.news-header');
+// Get and display health news from the New York Times
 
+//Set up variables
+var $newsItems = $('.news-items');
+var newsTemplate =  _.template( $('#news-template').html() );
 
+//NY Times API query  -- created at http://developer.nytimes.com/io-docs
+var nytAPIquery ='http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk%3A%28%22Health%22%29+AND+source%3A%28%22The+New+York+Times%22%29&fl=web_url%2Csnippet%2Clead_paragraph%2Cheadline%2Cpub_date%2Cnews_desk&api-key=deff2d25c9042f8202e28185f1249edc:17:59910050';
 
+$.getJSON( nytAPIquery)
+  .done (function( data ) {
 
-  //get news stories from NY Times
+   //Iterate through articles and attach to #nytimes-articles
+    var articles = data.response.docs;
+    var headline, newsURL, paragraph, pubDate;
 
- // fq=news_desk%3A%28%22Health+%26+Fitness%22%29&sort=newest&fl=web_url%2Csnippet%2Cheadline%2Cpub_date%2Cnews_desk
-  var nytAPIquery = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk%3A%28%22Health+%26+Fitness%22%29&sort=newest&fl=web_url%2Csnippet%2Cheadline%2Cpub_date%2Cnews_desk&api-key=deff2d25c9042f8202e28185f1249edc:17:59910050'; //eliminate classifieds
-  $.getJSON( nytAPIquery)
-    .done (function( data ) {
-     //change news feed header
-     $newsHeader.text("New York Times Articles about " );
+    //Show only 6 articles
+    for (var i = 0; i < 6; i ++) {
 
-     //Iterate through articles and attach to #nytimes-articles
-      var articles = data.response.docs;
-      var headline, webURL, paragraph, articleLi;
-      for (var i = 0; i < articles.length; i ++) {
-        headline =  articles[i].headline.main;
-        paragraph =  articles[i].lead_paragraph || articles[i].snippet; //use snippet if lead_paragraph is empty
-        webURL = articles[i].web_url;
-        //set up list item
-        articleLi = '<li class="article"><a href="' + webURL + '"target="_blank"> '+ headline + '</a> <p>' + paragraph + '</p></li>';
-        //append to #nytimes-articles
-        $(articleLi).appendTo( $newsHeader );
-      }
-    })
-  .fail(function(){
-     //change news feed header to show error
-     $nytHeaderElem.text("New York Times Articles could not be loaded");
-     console.log("Bad AJAX request");
-  });
+      //Show results using template
+      $newsItems.append(newsTemplate({
+        headline:  articles[i].headline.main,
+
+         //use snippet if lead_paragraph is empty
+        paragraph: articles[i].lead_paragraph || articles[i].snippet,
+        newsURL: articles[i].web_url,
+
+        //use moment.js function to format date
+        pubDate: moment(articles[i].pub_date).format("MMMM DD, YYYY")
+      }));
+
+    }
+  })
+.fail(function(){
+   //change news feed header to show error
+   $nytHeaderElem.text("New York Times Articles could not be loaded");
+   console.log("Bad AJAX request");
+});
