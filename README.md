@@ -1,6 +1,6 @@
 ##Front End Nanodegree Project 5-2: Health Tracker
 ###Food Planner
-*This project uses the Backbone.js framework, Firebase storage and the Nutritionix API to track calories consumed*
+*This project uses the Backbone.js framework, Firebase storage, the Nutritionix API to track calories consumed and The New York Times API to provide Health News*
 
 See live here: http://sarah-maris.github.io/FEND-health-tracker/
 
@@ -13,10 +13,10 @@ After choosing from a list of results or entering a food description and calorie
 The app also provides Health News from The New York Times.
 
 Resources used:
-* Backbone.js
-* Underscore.js
-* Firebase
-* jQueryUI datepicker
-* Moment.js (date formatting)
-* Nutritionix API
-* The New York Times API
+* [Backbone.js](http://backbonejs.org/)
+* [Underscore.js](http://underscorejs.org/)
+* [Firebase](https://www.firebase.com/)
+* [jQueryUI datepicker](http://api.jqueryui.com/datepicker/)
+* [Moment.js (date formatting)](http://momentjs.com/)
+* [Nutritionix API (calorie count for tracked foods)](http://www.nutritionix.com/api)
+* [The New York Times API (snippets and links to health news)](http://developer.nytimes.com/)
