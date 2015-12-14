@@ -31,6 +31,8 @@ app.FoodView = Backbone.View.extend({
 
   //Delete the item from Firebase and remove its view.
   clear: function () {
+    console.log("here in clear")
     this.model.destroy();
+        console.log("after destroy")
   }
 });

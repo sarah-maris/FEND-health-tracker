@@ -9,5 +9,3 @@ $(function() {
 new app.AppView();
 
 });
-
-//TODO: get health and nutrition articles from NY Times

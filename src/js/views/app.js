@@ -16,7 +16,8 @@ app.AppView = Backbone.View.extend({
     'keyup #food-search': 'searchFood',
     'keyup #num-servings': 'updateCals',
     'keyup #serving-cals': 'updateCals',
-    'click #add-food': 'addFood'
+    'click #add-food': 'addFood',
+    'click #enter-manual': 'enterManually'
   },
 
   initialize: function () {
@@ -24,6 +25,7 @@ app.AppView = Backbone.View.extend({
     //Set up variables for easy reference to DOM
     this.$datePicker = $('.date-picker');
     this.$input = $('#food-search');
+    this.$manualOption = $('.manual-option');
     this.$tableEnd = $('.table-end');
     this.$list = $('.food-list');
     this.$results = $('.results-list');
@@ -62,7 +64,7 @@ app.AppView = Backbone.View.extend({
   },
 
   updateFoodList: function(){
-
+console.log("in updateFoodList")
     //Add date to firebase url to create a new collection for each date
     this.dateUrl = 'https://food-tracker-sam.firebaseio.com/' + this.appDate.replace(/\//g, '');
 
@@ -74,7 +76,7 @@ app.AppView = Backbone.View.extend({
   },
 
   render: function(){
-
+console.log("in render")
     var self = this;
 
     this.updateFoodList();
@@ -129,6 +131,7 @@ app.AppView = Backbone.View.extend({
 
  //Change appDate and re-render foodlist view when date is changed
   updateView: function(dateText) {
+  console.log("in updateView")
     this.appDate =  dateText;
     this.render();
   },
@@ -137,7 +140,7 @@ app.AppView = Backbone.View.extend({
 
   //Search Nutritionix database using AJAX query
   searchFood: function() {
-
+  console.log("in searchFood")
     var search =  this.$input.val();
 
     var self= this;
@@ -168,6 +171,8 @@ app.AppView = Backbone.View.extend({
 
       //If no results enter food manually
       } else {
+        //Show "no results found" message and show manual entry form
+        self.$results.prepend('<h4 class="no-results">NO RESULTS FOUND.<br>PLEASE ENTER FOOD ITEM MANUALLY</h4>');
         self.enterManually();
       }
 
@@ -184,6 +189,9 @@ app.AppView = Backbone.View.extend({
   showResults: function( searchResults) {
 
   var self = this;
+
+    //Show button to add item manually
+    this.$manualOption.removeClass('hidden');
 
     //Go through each item in the food
     for (var i=0; i<searchResults.length; i++){
@@ -214,9 +222,10 @@ app.AppView = Backbone.View.extend({
         //Use variable to capture food object for this item
         var searchFood = food;
 
-        //On click send data to add function
+        //On click send data to add function and hide manual option button
         $('#option' + i).click( function(){
           self.showDetails(searchFood);
+          self.$manualOption.addClass('hidden');
         });
 
       }());
@@ -227,14 +236,10 @@ app.AppView = Backbone.View.extend({
 
   //Enter a food item manually if Nutritionix is down or returns no results
   enterManually: function() {
-//TODO: Add link to enter food manually if don't like the results, e.g,
-// "Not what you were looking for? Click here to enter manually"
 
-    //Open table with food informatoin
+    //Open table with food information and hide the "Enter manually" button
     this.$foodTable.removeClass('hidden');
-
-    //Show "no results found" message
-    this.$results.prepend('<h4 class="no-results">NO RESULTS FOUND.<br>PLEASE ENTER FOOD ITEM MANUALLY</h4>');
+    this.$manualOption.addClass('hidden');
 
     //Add input box for servine size and calories per serving
     this.$serveSize.html('<input name="serving-size" id="serving-size" class="food-input size-input" type="text" value="">');
@@ -267,7 +272,7 @@ app.AppView = Backbone.View.extend({
 
   //Update total calories for a food item based on servings and calories per serving
   updateCals: function(){
-
+console.log("in updateCals")
     //Calories per serving from database or manual input
     var servingCals = this.$serveCals.text() || this.$inputCals.val();
 
@@ -282,6 +287,8 @@ app.AppView = Backbone.View.extend({
 
   // Generate the attributes for a new food item.
   foodAttributes: function () {
+
+ console.log("infoodAttribute")
     return {
 
       //Get name of chosen food item
@@ -305,6 +312,7 @@ app.AppView = Backbone.View.extend({
 
   //Add a new food item to the databaseeld
   addFood: function(e) {
+ console.log("In addFood")
 
     //Create a few food item wtih the given attributes
     this.foodList.create(this.foodAttributes());
@@ -327,6 +335,7 @@ app.AppView = Backbone.View.extend({
 
   //Show food item in list
   showFood: function (food) {
+console.log("in showFood")
 
     //Create new FoodView from data
     var view = new app.FoodView({ model: food });
@@ -383,7 +392,8 @@ app.AppView = Backbone.View.extend({
            console.log("Bad AJAX request", e);
         });
 
-
   }
 
 });
+
+//TDDO: Fix responsive

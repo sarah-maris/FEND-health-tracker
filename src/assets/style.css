@@ -187,13 +187,28 @@ table {
 }
 
 /* Search results */
+.choose-manual {
+	color: #824941;
+	display: inline-block;
+	font: italic 18px/24px 'Open Sans', sans-serif;
+	margin: 0;
+	padding: 10px 0 10px 60px;
+	vertical-align: middle;
+	width: 350px;
+}
+
+#enter-manual{
+	display: inline-block;
+	width: 170px;
+}
+
 .results-list {
 	list-style-type: none;
 	margin: 10px 0 0 0;
 	padding: 0;
 }
 
-.results {
+.results-list {
 	background-color: #c0c0b2;
 }
 
