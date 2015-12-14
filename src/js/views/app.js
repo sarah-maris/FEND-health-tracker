@@ -97,9 +97,7 @@ console.log("in render")
     });
 
     //Show daily calories at bottom of table
-    this.$list.append(this.dailyCalsTemplate({
-      dailyCalories: this.dailyCalories(this.foodList)
-    }));
+    this.showDailyCalories();
 
     return this;
 
@@ -343,6 +341,15 @@ console.log("in showFood")
     //Append the new food to the list on the page
     this.$list.prepend(view.render().el);
 
+  },
+
+  showDailyCalories: function(){
+
+    var self = this;
+
+    this.$list.append(this.dailyCalsTemplate({
+      dailyCalories: this.dailyCalories(self.foodList)
+    }));
   },
 
   //Calculate total calories for a collection of food items
