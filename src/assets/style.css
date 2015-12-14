@@ -14,12 +14,20 @@ body {
 }
 
 body {
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
     align-items: flex-start;
     background: #B09B76;
     color: #4A342E;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     font: 14px/18px 'Open Sans', sans-serif;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
     justify-content: center;
     min-width: 230px;
     max-width: 1000px;
@@ -27,7 +35,7 @@ body {
 }
 
 table {
-    border-collapse:  collapse;s
+    border-collapse:  collapse;
     border: none;
     width:100%;
 }
@@ -172,8 +180,6 @@ table {
 .add-button {
   background: #824941;
   border: 0;
-  -webkit-border-radius: 15;
-  -moz-border-radius: 15;
   border-radius: 15px;
   color: #f2f2ef;
   display: block;
@@ -404,6 +410,8 @@ table {
 
 @media screen and (max-width: 850px) {
     body {
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
      }
 
