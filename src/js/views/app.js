@@ -59,7 +59,7 @@ app.AppView = Backbone.View.extend({
   },
 
   updateFoodList: function(){
-console.log("in updateFoodList")
+
     //Add date to firebase url to create a new collection for each date
     this.dateUrl = 'https://food-tracker-sam.firebaseio.com/' + this.appDate.replace(/\//g, '');
 
@@ -75,7 +75,7 @@ console.log("in updateFoodList")
   },
 
   render: function(){
-console.log("in render")
+
     var self = this;
 
     this.updateFoodList();
@@ -128,7 +128,7 @@ console.log("in render")
 
  //Change appDate and re-render foodlist view when date is changed
   updateView: function(dateText) {
-  console.log("in updateView")
+
     this.appDate =  dateText;
     this.render();
   },
@@ -137,7 +137,7 @@ console.log("in render")
 
   //Search Nutritionix database using AJAX query
   searchFood: function() {
-  console.log("in searchFood")
+
     var search =  this.$input.val();
 
     var self= this;
@@ -269,7 +269,7 @@ console.log("in render")
 
   //Update total calories for a food item based on servings and calories per serving
   updateCals: function(){
-console.log("in updateCals")
+
     //Calories per serving from database or manual input
     var servingCals = this.$serveCals.text() || this.$inputCals.val();
 
@@ -285,7 +285,6 @@ console.log("in updateCals")
   // Generate the attributes for a new food item.
   foodAttributes: function () {
 
- console.log("infoodAttribute")
     return {
 
       //Get name of chosen food item
@@ -309,7 +308,7 @@ console.log("in updateCals")
 
   //Add a new food item to the databaseeld
   addFood: function(e) {
- console.log("In addFood")
+
 
     //Create a few food item wtih the given attributes
     this.foodList.create(this.foodAttributes());
@@ -401,5 +400,3 @@ console.log("in showFood")
   }
 
 });
-
-//TDDO: Fix responsive

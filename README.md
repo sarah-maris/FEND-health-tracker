@@ -4,13 +4,15 @@
 
 See live here: http://sarah-maris.github.io/FEND-health-tracker/
 
-The purpose of this app to to  record daily calorie consumption.  The app defaults to the current date but the user can choose another date using the datepicker.
+The purpose of this app to to record daily calorie consumption.  The app defaults to the current date but the user can choose another date using the datepicker.
 
 To log a food item the user first searches for it the item in the Nutritionix database.  If no results are found or if the Nutritionix database is unavailable the user can input the food item manually.
 
 After choosing from a list of results or entering a food description and calorie count manually, the user can enter the number of servings eaten or and the total calories consumed is calculated.  The app keeps a running total of all calories consumed for each date.
 
 The app also provides Health News from The New York Times.
+
+Tha app is fully responsive and works on devices of all sizes.
 
 Resources used:
 * [Backbone.js](http://backbonejs.org/)

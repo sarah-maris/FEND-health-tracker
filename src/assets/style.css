@@ -9,111 +9,114 @@ html {
 
 html,
 body {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-	font: 14px/18px 'Open Sans', sans-serif;
-	background: #B09B76;
-	color: #4A342E;
-	min-width: 230px;
-	max-width: 1000px;
-	margin: 0 auto;
+    align-items: flex-start;
+    background: #B09B76;
+    color: #4A342E;
+    display: flex;
+    font: 14px/18px 'Open Sans', sans-serif;
+    flex-wrap: nowrap;
+    justify-content: center;
+    min-width: 230px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 table {
-	border-collapse:  collapse;s
-	border: none;
-	width: 100%;
+    border-collapse:  collapse;s
+    border: none;
+    width:100%;
 }
 
 .hidden {
-	display: none;
+    display: none;
 }
 
 /* Food Tracker box */
 .tracker-app {
-	background: #E0E0D9;
-	border-radius: 25px;
-	float: left;
-	margin: 50px 0 40px 0;
-	width: 600px;
+    background: #E0E0D9;
+    border-radius: 25px;
+    margin: 50px 0 40px 20px;
+    width: 600px;
 }
 
 .tracker-app input::-webkit-input-placeholder {
-	font-style: italic;
-	font-weight: 300;
-	color:#828266;
+    font-style: italic;
+    font-weight: 300;
+    color:#828266;
 }
 
 .tracker-app input::-moz-placeholder {
-	font-style: italic;
-	font-weight: 300;
-	color: #828266;
+    font-style: italic;
+    font-weight: 300;
+    color: #828266;
 }
 
 .tracker-app input::input-placeholder {
-	font-style: italic;
-	font-weight: 300;
-	color: #828266;
+    font-style: italic;
+    font-weight: 300;
+    color: #828266;
 }
 
 .app-header {
-	color: #824941;
-	font: 100 72px/125px 'Open Sans', sans-serif;
-	text-align: center;
-	margin: 0;
+    color: #824941;
+    font: 100 72px/125px 'Open Sans', sans-serif;
+    text-align: center;
+    margin: 0;
 }
 
 /* Box for date picker */
 .date-box {
-	margin: 0 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
 .date-header {
-	color: #824941;
-	display: inline-block;
+    color: #824941;
+    display: inline-block;
     font: normal 100 24px/36px 'Open Sans', sans-serif;
-	margin: 0 0 0 20px;
-	vertical-align: top;
+    margin: 0 0 0 20px;
+    vertical-align: top;
 }
 
 .date-picker{
-	background: #fff;
-	border-radius: 10px;
-	display: inline-block;
-	margin: 0 0 0 10px;
-	text-align: left;
+    background: #fff;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 0 0 0 10px;
+    text-align: left;
 }
 
 #datepicker {
-	border: 0;
+    border: 0;
     color: #4A342E;
     font: normal 100 18px/36px 'Open Sans', sans-serif;
-	margin: 0 0 0 10px;
-	padding: 0 ;
-	vertical-align: top;
-	width: 100px;
+    margin: 0 0 0 10px;
+    padding: 0 ;
+    vertical-align: top;
+    width: 100px;
 }
 
 #datepicker:focus {
-	outline: none;
+    outline: none;
 }
 
 .ui-datepicker-trigger {
-	padding: 5px 10px;
+    padding: 5px 10px;
 }
 
 /* Search box */
 .add-food-box {
-	width: 100%;
-	overflow: hidden;
+    width: 100%;
+    overflow: hidden;
 }
 
 .search-header {
-	color:#824941;
-	display: inline-block;
+    color:#824941;
+    display: inline-block;
     font: normal 100 24px/36px 'Open Sans', sans-serif;
     margin: 0;
     padding: 0 0 0 20px;
@@ -122,26 +125,26 @@ table {
 }
 
 .food-box {
-	border: 0;
-	border-radius: 10px;
-	color: #4A342E;
-	font: normal 100 18px/36px 'Open Sans', sans-serif;
-	margin: 10px;
-	outline: none;
-	padding: 0 10px;
-	width: 470px;
+    border: 0;
+    border-radius: 10px;
+    color: #4A342E;
+    font: normal 100 18px/36px 'Open Sans', sans-serif;
+    margin: 10px;
+    outline: none;
+    padding: 0 10px;
+    width: 450px;
 }
 
 /* Data for chosen item */
 .food-table {
-	margin: 20px;
-	width: 560px;
+    margin: 20px;
+    width: 560px;
 }
 
 .data-header {
-	color: #824941;
-	font: normal 100 18px/20px 'Open Sans', sans-serif;
-	vertical-align: bottom;
+    color: #824941;
+    font: normal 100 18px/20px 'Open Sans', sans-serif;
+    vertical-align: bottom;
 }
 
 .food-info {
@@ -152,7 +155,7 @@ table {
 }
 
 .food-input {
-	border: 0;
+    border: 0;
     border-radius: 5px;
     color: #4A342E;
     outline: none;
@@ -162,7 +165,7 @@ table {
 }
 
 .size-input {
-	width: 110px;
+    width: 110px;
 }
 
 /* Button to add new food */
@@ -188,187 +191,294 @@ table {
 
 /* Search results */
 .choose-manual {
-	color: #824941;
-	display: inline-block;
-	font: italic 18px/24px 'Open Sans', sans-serif;
-	margin: 0;
-	padding: 10px 0 10px 60px;
-	vertical-align: middle;
-	width: 350px;
+    color: #824941;
+    display: inline-block;
+    font: italic 18px/24px 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 10px 0 10px 60px;
+    vertical-align: middle;
+    width: 350px;
 }
 
 #enter-manual{
-	display: inline-block;
-	width: 170px;
+    display: inline-block;
+    width: 170px;
 }
 
 .results-list {
-	list-style-type: none;
-	margin: 10px 0 0 0;
-	padding: 0;
+    list-style-type: none;
+    margin: 10px 0 0 0;
+    padding: 0;
 }
 
 .results-list {
-	background-color: #c0c0b2;
+    background-color: #c0c0b2;
 }
 
 .results-name {
-	font: 14px/18px 'Open Sans', sans-serif;
-	margin: 0;
-	padding: 10px 0 0 40px;
+    font: 14px/18px 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 10px 0 0 40px;
 }
 
 .results-name:hover {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 .results-details {
-	border-bottom: 1px solid #f2f2ef;
-	font: italic 12px/14px 'Open Sans', sans-serif;
-	margin: 0;
-	padding: 0 40px 10px 40px;
+    border-bottom: 1px solid #f2f2ef;
+    font: italic 12px/14px 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0 40px 10px 40px;
 }
 
 .results-cals {
-	float: right;
-	font: italic 14px/14px 'Open Sans', sans-serif;
+    float: right;
+    font: italic 14px/14px 'Open Sans', sans-serif;
 }
 
 .no-results {
-	background-color: #c0c0b2;
-	color: #824941;
-	font: 800 16px/18px 'Open Sans', sans-serif;
-	padding: 10px 0;
-	margin: 0;
-	text-align: center;
+    background-color: #c0c0b2;
+    color: #824941;
+    font: 800 16px/18px 'Open Sans', sans-serif;
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
 }
 
 /* List of food eaten */
 .list-head {
-	background-color: #828266;
-	border-bottom: 1px solid #e6e6e6;
-	color: #f2f2ef;
-	font: 800 14px/24px 'Open Sans', sans-serif;
+    background-color: #828266;
+    border-bottom: 1px solid #e6e6e6;
+    color: #f2f2ef;
+    font: 800 14px/24px 'Open Sans', sans-serif;
 }
 
 .food-name {
-	margin: 0;
-	padding: 5px 0 0 20px;
-	text-align: left;
-	width: 350px;
+    margin: 0;
+    padding: 0 0 0 20px;
+    text-align: left;
+    width: 350px;
 }
 
 .food-details {
-	margin: 0;
-	font: italic 12px/14px 'Open Sans', sans-serif;
-	padding: 0 0 5px 20px;
-	text-align: left;
-	width: 350px;
+    margin: 0;
+    font: italic 12px/14px 'Open Sans', sans-serif;
+    padding: 0 0 5px 20px;
+    text-align: left;
+    width: 350px;
 }
 
 .calories,
 .servings,
 .remove {
-	text-align: center;
-	width: 80px;
+    padding: 0 5px;
+    text-align: center;
 }
 
 .food-list {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .food-list tr {
-	border-bottom: 1px solid #f2f2ef;
-	display: table-row;
+    border-bottom: 1px solid #f2f2ef;
+    display: table-row;
 }
 
 .food-list tr:last-child {
-	border-bottom: none;
+    border-bottom: none;
 }
 
 .destroy {
-	color: #b4918d;
-	display: block;
-	font:  800 30px 'Open Sans', sans-serif;
-	text-align: center;
+    color: #b4918d;
+    display: block;
+    font:  800 30px 'Open Sans', sans-serif;
+    text-align: center;
 }
 
 .destroy:hover {
-	color: #824941;
+    color: #824941;
 }
 
 /* Calorie count row */
 .table-end {
-	background-color: #828266;
-	color: #f2f2ef;
-	font: 800 20px/24px 'Open Sans', sans-serif;
-	height: 40px;
-	padding: 10px 15px;
-	text-align: center;
+    background-color: #828266;
+    color: #f2f2ef;
+    font: 800 20px/24px 'Open Sans', sans-serif;
+    height: 40px;
+    padding: 10px 15px;
+    text-align: center;
 }
 
 .total-calories {
-	text-align: center;
+    text-align: center;
 }
 
 .calorie-count {
-	padding: 0 0 0 20px;
-	text-align: left;
+    padding: 0 0 0 20px;
+    text-align: left;
 }
 
 /* Food list footer */
 .list-footer {
-	padding: 10px;
+    padding: 10px;
     text-align: center;
 }
 
 /* Health News */
 .health-news {
-	background-color: #c0c0b2;
-	border-radius: 25px;
-	float: right;
-	margin: 50px 0 40px 30px;
-	width: 370px;
+    background-color: #c0c0b2;
+    border-radius: 25px;
+    margin: 50px 20px 40px 20px;
+    width: 370px;
 }
 
 .news-header {
-	background-color: #828266;
-	border-top-left-radius: 25px;
-	border-top-right-radius: 25px;
+    background-color: #828266;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
     color: #f2f2ef;
     font: 800 20px/24px 'Open Sans', sans-serif;
-	margin: 0;
+    margin: 0;
     padding: 10px 15px;
     text-align: center;
 }
 
 .news-items {
-	margin: 20px 0 0 0;
-	padding: 0 20px;
+    margin: 20px 0 0 0;
+    padding: 0 20px;
 }
 .news-item {
-	list-style-type: none;
-	padding: 0 0 20px 0;
+    list-style-type: none;
+    padding: 0 0 20px 0;
 }
 
 .news-headline {
-	color: #824941;
+    color: #824941;
     font: 18px/24px 'Open Sans', sans-serif;
     text-decoration: none;
 }
 
 .news-headline:hover {
-	color: #E0E0D9;
+    color: #E0E0D9;
 }
 
 .news-date {
-	color: #824941;
+    color: #824941;
     font: italic 14px/18px 'Open Sans', sans-serif;
-	margin: 0 0 10px 0 ;
+    margin: 0 0 10px 0 ;
 }
 
 .snippet{
-	margin: 0;
+    margin: 0;
+}
+
+/* Small laptop and desktop screens */
+@media screen and (min-width: 850px)  and (max-width: 1050px){
+    .tracker-app {
+        width: 500px;
+     }
+
+    .food-box {
+        width: 370px;
+    }
+    .food-name,
+    .food-details {
+        width: 250px;
+    }
+
+    .table-end {
+        font-size: 16px;
+     }
+}
+
+@media screen and (min-width: 850px)  and (max-width: 950px){
+
+    .food-box {
+        width: 320px;
+    }
+}
+
+
+@media screen and (max-width: 850px) {
+    body {
+        flex-wrap: wrap;
+     }
+
+    .tracker-app {
+        margin: 40px 0 0 0;
+     }
+
+    .health-news {
+        margin: 20px 0 40px 0;
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 650px){
+    .tracker-app,
+    .health-news {
+        width: 90%;
+     }
+
+     .app-header {
+        font-size: 65px  ;
+     }
+
+    .date-header,
+    #datepicker,
+    .search-header,
+    .food-box {
+        font-size: 18px;
+    }
+
+    .food-box {
+        margin: 0;
+        width: 75%;
+    }
+    .food-name,
+    .food-details {
+        width: 100%;
+    }
+
+    .list-head {
+        font-size: 12px;
+    }
+
+
+    .table-end {
+        font-size: 16px;
+     }
+}
+
+@media screen and (max-width: 500px){
+
+    .app-header {
+        font-size: 50px;
+        line-height: 60px;
+        margin: 20px 0;
+     }
+
+
+    .food-box {
+        margin: 0;
+        width: 60%;
+    }
+    .food-name,
+    .food-details {
+        width: 100%;
+    }
+
+    .list-head {
+        font-size: 12px;
+    }
+
+
+    .table-end {
+        font-size: 14px;
+        line-height: 16px;
+
+     }
 }
