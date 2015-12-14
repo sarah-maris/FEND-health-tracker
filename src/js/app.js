@@ -6,6 +6,8 @@ var ENTER_KEY = 13;
 $(function() {
 
 //Start the app by initiating the appview*.
-new app.AppView();
+var appView =  new app.AppView();
+
+console.log(appView.showDailyCalories())
 
 });

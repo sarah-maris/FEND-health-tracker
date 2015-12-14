@@ -47,11 +47,6 @@ app.AppView = Backbone.View.extend({
     //Set intial date to today
     this.$("#datepicker").datepicker( "setDate", this.appDate );
 
-    //Initialize foodList -- prepares firebase for date changes
-    foodDatabase = new FoodList([], {
-            url: 'https://food-tracker-sam.firebaseio.com/'
-    });
-
     //Render view
     this.render();
 
@@ -72,6 +67,10 @@ console.log("in updateFoodList")
     this.foodList = new FoodList([], {
       url: this.dateUrl
     });
+
+    //At intitilization and when anything in the foodList changes run the filter and render the food list
+    this.listenTo(this.foodList, 'add', this.render);
+    this.listenTo(this.foodList, 'remove', this.render);
 
   },
 
