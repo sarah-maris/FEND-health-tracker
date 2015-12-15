@@ -231,6 +231,7 @@ app.AppView = Backbone.View.extend({
 
  },
 
+//TODO: Fix so enter manual message doesn't reappear
   //Enter a food item manually if Nutritionix is down or returns no results
   enterManually: function() {
 
@@ -309,7 +310,6 @@ app.AppView = Backbone.View.extend({
   //Add a new food item to the databaseeld
   addFood: function(e) {
 
-
     //Create a few food item wtih the given attributes
     this.foodList.create(this.foodAttributes());
 
@@ -331,7 +331,6 @@ app.AppView = Backbone.View.extend({
 
   //Show food item in list
   showFood: function (food) {
-console.log("in showFood")
 
     //Create new FoodView from data
     var view = new app.FoodView({ model: food });

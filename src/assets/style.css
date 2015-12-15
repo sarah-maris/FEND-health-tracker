@@ -40,10 +40,6 @@ table {
     width:100%;
 }
 
-.hidden {
-    display: none;
-}
-
 /* Food Tracker box */
 .tracker-app {
     background: #E0E0D9;
@@ -145,13 +141,33 @@ table {
 
 /* Data for chosen item */
 .food-table {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     margin: 20px;
     width: 560px;
+}
+
+.food-table-box {
+    padding: 0;
+    width: 110px;
 }
 
 .data-header {
     color: #824941;
     font: normal 100 18px/20px 'Open Sans', sans-serif;
+    height: 40px;
+    margin: 0;
+    text-align: center;
     vertical-align: bottom;
 }
 
@@ -184,7 +200,7 @@ table {
   color: #f2f2ef;
   display: block;
   font: normal 100 18px/18px 'Open Sans', sans-serif;
-  margin: auto;
+  margin: 30px 0 0 0;
   padding: 15px;
   text-align: center;
   text-decoration: none;
@@ -201,9 +217,9 @@ table {
     display: inline-block;
     font: italic 18px/24px 'Open Sans', sans-serif;
     margin: 0;
-    padding: 10px 0 10px 60px;
+    padding: 10px 0 10px 40px;
     vertical-align: middle;
-    width: 350px;
+    width: 300px;
 }
 
 #enter-manual{
@@ -250,6 +266,10 @@ table {
     padding: 10px 0;
     margin: 0;
     text-align: center;
+}
+
+.hidden {
+    display: none;
 }
 
 /* List of food eaten */
@@ -390,9 +410,18 @@ table {
     .food-box {
         width: 370px;
     }
+
+    .choose-manual {
+        padding: 10px 0 10px 20px;
+    }
+
     .food-name,
     .food-details {
         width: 250px;
+    }
+
+    .food-table {
+        width: 460px;
     }
 
     .table-end {
@@ -442,6 +471,18 @@ table {
         font-size: 18px;
     }
 
+    .food-table {
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        margin: 20px 10px;
+        width: 95%;
+    }
+
+.add-button {
+    margin: 10px 0 0 0;
+}
+
     .food-box {
         margin: 0;
         width: 75%;
@@ -461,7 +502,7 @@ table {
      }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 570px){
 
     .app-header {
         font-size: 50px;
@@ -469,6 +510,23 @@ table {
         margin: 20px 0;
      }
 
+     .search-results {
+        padding: 10px 0 0 0;
+     }
+
+    #enter-manual {
+        width: 150px;
+    }
+    .choose-manual {
+        font-size: 14px;
+        line-height: 18px;
+        width: 250px;
+    }
+
+    .add-button {
+        font-size: 16px;
+        padding: 10px;
+    }
 
     .food-box {
         margin: 0;
@@ -489,4 +547,21 @@ table {
         line-height: 16px;
 
      }
+}
+
+@media screen and (max-width: 475px){
+
+    .choose-manual {
+        font-size: 18px;
+        line-height: 24px;
+        padding: 10px 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    #enter-manual {
+       display: block;
+       margin: auto;
+    }
+
 }

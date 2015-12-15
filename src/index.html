@@ -30,28 +30,34 @@
           <input id="food-search" class="food-box" placeholder="What did you eat?" type="text">
         </div>
         <!-- Details about food item to be added -->
-        <table class="food-table hidden">
-          <tr>
-            <th class="data-header">Serving<br>Size</th>
-            <th class="data-header">Calories<br>per Serving</th>
-            <th class="data-header">Servings</th>
-            <th class="data-header">Total<br>Calories</th>
-          </tr>
-          <tr>
-            <td id="serving-size" class="food-info"></td>
-            <td id="serving-calories" class="food-info"></td>
-            <td id="serving-box" class="food-info">
+        <div class="food-table hidden">
+          <div class="food-table-box">
+            <h5 class="data-header">Serving<br>Size</h5>
+            <p id="serving-size" class="food-info"></p>
+          </div>
+          <div class="food-table-box">
+            <h5 class="data-header">Calories<br>per Serving</h5>
+            <p id="serving-calories" class="food-info"></p>
+          </div>
+          <div class="food-table-box">
+            <h5 class="data-header"><br>Servings</h5>
+            <p id="serving-box" class="food-info">
               <input name="servings" id="num-servings" class="food-input" type="text" value="1">
-            </td>
-            <td id="calories-eaten" class="food-info"></td>
-            <td><input class="add-button" type="submit" value="Add Food" id="add-food"></td>
-          </tr>
-        </table>
+            </p>
+          </div>
+          <div class="food-table-box">
+            <h5 class="data-header">Total<br>Calories</h5>
+            <p id="calories-eaten" class="food-info"></p>
+          </div>
+          <div class="food-table-box">
+            <input class="add-button" type="submit" value="Add Food" id="add-food">
+          </div>
+        </div>
         <!-- Search results -->
         <div class="search-results">
           <div class="manual-option hidden">
             <h4 class="choose-manual">Not what you were looking for?<br>Enter your food item manually</h4>
-            <div id="enter-manual" class="add-button">Enter Manually</div>'
+            <div id="enter-manual" class="add-button">Enter Manually</div>
           </div>
           <ul class="results-list"></ul>
         </div>
