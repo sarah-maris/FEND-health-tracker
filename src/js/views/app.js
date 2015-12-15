@@ -279,7 +279,7 @@ app.AppView = Backbone.View.extend({
   updateCals: function(){
 
     //Calories per serving from database or manual input
-    var servingCals =  this.$inputCals.val() || this.$serveCals.text() ;
+    var servingCals = this.$serveCals.text() || this.$inputCals.val();
 
     //Number of servings from input box
     var numServings = this.$numServings.val();
