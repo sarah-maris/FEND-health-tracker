@@ -15,20 +15,24 @@
     <!-- endbuild -->
   </head>
   <body>
+
     <!-- Food Tracker app -->
     <section class="tracker-app">
       <h1 class="app-header">Food Tracker</h1>
+
       <!-- Datepicker box -->
       <div class="date-box">
         <h3 class="date-header">Tracker Date</h3>
         <div class="date-picker"></div>
       </div>
+
       <!-- Food search and add -->
       <div class="add-food-box">
         <div>
          <h3 class="search-header">Search</h3>
           <input id="food-search" class="food-box" placeholder="What did you eat?" type="text">
         </div>
+
         <!-- Details about food item to be added -->
         <div class="food-table hidden">
           <div class="food-table-box">
@@ -53,6 +57,7 @@
             <input class="add-button" type="submit" value="Add Food" id="add-food">
           </div>
         </div>
+
         <!-- Search results -->
         <div class="search-results">
           <div class="manual-option hidden">
@@ -62,6 +67,7 @@
           <ul class="results-list"></ul>
         </div>
       </div>
+
       <!-- List of food eaten -->
       <table>
         <thead class="list-head">
@@ -78,6 +84,8 @@
         <a href="http://www.nutritionix.com/api"><img src="assets/images/nutritionix-logo.png"></a>
       </div>
     </section>
+
+    <!--Health-related news items -->
     <section class="health-news">
       <h3 class="news-header">Health News from<br>The New York Times</h3>
       <ul class="news-items"></ul>
@@ -85,7 +93,6 @@
         <a href="http://developer.nytimes.com/"><img src="assets/images/nytimes-logo.png"></a>
       </div>
     </section>
-
 
     <!-- Date template -->
     <script type="text/template" id="date-template">

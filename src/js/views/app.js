@@ -45,7 +45,10 @@ app.AppView = Backbone.View.extend({
     this.renderDate();
 
     //Set intial date to today
-    this.$("#datepicker").datepicker( "setDate", this.appDate );
+    this.$("#datepicker").datepicker("setDate", this.appDate);
+
+    //Set variable to keep track of whether manual entry message should show
+    this.showManual = true;
 
     //Render view
     this.render();
@@ -53,7 +56,7 @@ app.AppView = Backbone.View.extend({
     //Show NY Times Health News items
     this.getNews();
 
-    //At intitilization and when anything in the foodList changes run the filter and render the food list
+    //At intitilization and when anything in the foodList changes re-render the food list
     this.listenTo(this.foodList, 'all', this.render);
 
   },
@@ -187,8 +190,10 @@ app.AppView = Backbone.View.extend({
 
   var self = this;
 
-    //Show button to add item manually
-    this.$manualOption.removeClass('hidden');
+    //Show button to add item manually if it hasn't already been triggered
+    if (this.showManual) {
+      this.$manualOption.removeClass('hidden');
+    }
 
     //Go through each item in the food
     for (var i=0; i<searchResults.length; i++){
@@ -219,10 +224,11 @@ app.AppView = Backbone.View.extend({
         //Use variable to capture food object for this item
         var searchFood = food;
 
-        //On click send data to add function and hide manual option button
+        //On click send data to add function,  hide manual option button and set showManual to false
         $('#option' + i).click( function(){
           self.showDetails(searchFood);
           self.$manualOption.addClass('hidden');
+          self.showManual = false;
         });
 
       }());
@@ -238,9 +244,10 @@ app.AppView = Backbone.View.extend({
     //Open table with food information and hide the "Enter manually" button
     this.$foodTable.removeClass('hidden');
     this.$manualOption.addClass('hidden');
+    this.showManual = false;
 
     //Add input box for servine size and calories per serving
-    this.$serveSize.html('<input name="serving-size" id="serving-size" class="food-input size-input" type="text" value="">');
+    this.$serveSize.html('<input name="serving-size" id="serving-size-input" class="food-input size-input" type="text" >');
     this.$serveCals.html('<input name="serving-calories" id="serving-cals" class="food-input" type="text" value="">');
 
     //Set variable for calories input
@@ -272,7 +279,7 @@ app.AppView = Backbone.View.extend({
   updateCals: function(){
 
     //Calories per serving from database or manual input
-    var servingCals = this.$serveCals.text() || this.$inputCals.val();
+    var servingCals =  this.$inputCals.val() || this.$serveCals.text() ;
 
     //Number of servings from input box
     var numServings = this.$numServings.val();
@@ -286,6 +293,17 @@ app.AppView = Backbone.View.extend({
   // Generate the attributes for a new food item.
   foodAttributes: function () {
 
+    var serveSize;
+
+    //If there is a serving size input box, use that for serving size
+    if ( $('#serving-size-input') ) {
+      serveSize = $('#serving-size-input').val();
+
+    //Otherwise use the info from item chosen in search
+    } else {
+      serveSize = this.$serveSize.text();
+    }
+
     return {
 
       //Get name of chosen food item
@@ -298,7 +316,7 @@ app.AppView = Backbone.View.extend({
       dateEaten: this.appDate,
 
       //Get serving size and number of servings from DOM
-      serveSize: this.$serveSize.text(),
+      serveSize: serveSize,
       servings: this.$numServings.val(),
 
       //Calculate item order in collection
@@ -323,6 +341,9 @@ app.AppView = Backbone.View.extend({
     this.$input.attr('placeholder', 'What did you eat?').val('');
     this.$numServings.val(1);
     this.$eatenCals.html('');
+
+    //Show option for manual entry on next search
+    this.showManual = true;
 
     this.render();
   },
