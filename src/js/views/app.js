@@ -146,8 +146,7 @@ app.AppView = Backbone.View.extend({
     var self= this;
 
     var params = {
-//TODO: Increase results to 20 when done with dev ****** FIX BEFORE DEPLOYMENT ******
-      'results': '0:5', //Get up to 20 items
+      'results': '0:15', //Get up to 15 items
       'fields' : 'item_name,brand_name,nf_calories,nf_serving_size_qty,nf_serving_size_unit', //Get item, brand and calories
       'appId': '72e7d3f2',
       'appKey': 'be0b61430f161b795ac29ebebfada85a'
