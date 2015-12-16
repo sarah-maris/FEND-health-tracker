@@ -23,7 +23,7 @@ app.FoodView = Backbone.View.extend({
   render: function () {
 
     //Get data from Firebase and render using template
-    this.$el.html( this.itemTemplate( this.model.attributes ) );
+    this.$el.html(this.itemTemplate( this.model.attributes));
 
     return this;
 

@@ -2,7 +2,8 @@ var app = app || {};
 
 app.AppView = Backbone.View.extend({
 
-  /**  BASC BACKBONE.JS FUNCTIONS  **/
+  /**  BASIC BACKBONE.JS FUNCTIONS  **/
+
   el: '.tracker-app',
 
   // Templates for the calorie count at the bottom of the table and search results
@@ -41,10 +42,8 @@ app.AppView = Backbone.View.extend({
     //Set current date as default for app -- use moment.js to format
     this.appDate = moment(new Date()).format('MM/DD/YYYY');
 
-    //Initialize date picker
+    //Initialize date picker and set intial date to today
     this.renderDate();
-
-    //Set intial date to today
     this.$("#datepicker").datepicker("setDate", this.appDate);
 
     //Set variable to keep track of whether manual entry message should show
@@ -81,9 +80,10 @@ app.AppView = Backbone.View.extend({
 
     var self = this;
 
+    //Get the right foodList for this date
     this.updateFoodList();
 
-    //If no food eaten hide table header
+    //If no foodList is empty, hide the table header
     if (this.foodList.length < 1){
       this.$trackerHead.addClass('hidden');
     } else {
@@ -141,7 +141,7 @@ app.AppView = Backbone.View.extend({
   //Search Nutritionix database using AJAX query
   searchFood: function() {
 
-    var search =  this.$input.val();
+    var search = this.$input.val();
 
     var self= this;
 
@@ -159,7 +159,7 @@ app.AppView = Backbone.View.extend({
       dataType: 'json',
       data: params,
     })
-    .done(function( data ){
+    .done(function(data){
 
       //Empty searcg results list and remove 'hidden class'
       self.$results.html("");
@@ -171,7 +171,7 @@ app.AppView = Backbone.View.extend({
 
       //If no results enter food manually
       } else {
-        //Show "no results found" message and show manual entry form
+        //Show "no results found" message and open manual entry form
         self.$results.prepend('<h4 class="no-results">NO RESULTS FOUND.<br>PLEASE ENTER FOOD ITEM MANUALLY</h4>');
         self.enterManually();
       }
@@ -179,14 +179,14 @@ app.AppView = Backbone.View.extend({
     })
     .fail(function(err){
 
-      //On fail enter food manually and log error
+      //On fail open manual entry form and log error
       self.enterManually();
       console.log(err);
     });
   },
 
   //Display search results
-  showResults: function( searchResults) {
+  showResults: function(searchResults) {
 
   var self = this;
 
@@ -237,7 +237,6 @@ app.AppView = Backbone.View.extend({
 
  },
 
-//TODO: Fix so enter manual message doesn't reappear
   //Enter a food item manually if Nutritionix is down or returns no results
   enterManually: function() {
 
@@ -328,7 +327,6 @@ app.AppView = Backbone.View.extend({
   //Add a new food item to the databaseeld
   addFood: function(e) {
 
-    //Create a few food item wtih the given attributes
     this.foodList.create(this.foodAttributes());
 
     this.$input.val('');
@@ -387,8 +385,8 @@ app.AppView = Backbone.View.extend({
     //NY Times API query  -- created at http://developer.nytimes.com/io-docs
     var nytAPIquery ='http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk%3A%28%22Health%22%29+AND+source%3A%28%22The+New+York+Times%22%29&fl=web_url%2Csnippet%2Clead_paragraph%2Cheadline%2Cpub_date%2Cnews_desk&api-key=deff2d25c9042f8202e28185f1249edc:17:59910050';
 
-    $.getJSON( nytAPIquery)
-        .done (function( data ) {
+    $.getJSON(nytAPIquery)
+        .done (function(data) {
 
          //Iterate through articles and attach to #nytimes-articles
           var articles = data.response.docs;
@@ -406,15 +404,16 @@ app.AppView = Backbone.View.extend({
               newsURL: articles[i].web_url,
 
               //use moment.js function to format date
-              pubDate: moment(articles[i].pub_date).format("MMMM DD, YYYY")
+              pubDate: moment(articles[i].pub_date).format('MMMM DD, YYYY')
             }));
 
           }
           })
-        .fail(function(e){
+        .fail(function(err){
+
            //change news feed header to show error
-           this.$nytHeaderElem.text("New York Times Articles could not be loaded");
-           console.log("Bad AJAX request", e);
+           self.$newsItems.text('New York Times Articles could not be loaded');
+           console.log("Bad AJAX request", err);
         });
 
   }

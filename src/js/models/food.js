@@ -1,6 +1,6 @@
 var app = app || {};
 
-//Basic model for FoodTracker
+//Basic model for food items
 app.Food = Backbone.Model.extend({
 
   // Set default attributes

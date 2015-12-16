@@ -12,14 +12,14 @@ var FoodList = Backbone.Firebase.Collection.extend({
 
   // Add order attribute to keep track of order that items are added
   nextOrder: function() {
-    if ( !this.length ) {
+    if (!this.length) {
       return 1;
     }
     return this.last().get('order') + 1;
   },
 
   //Sort food items by the order they were added
-  comparator: function( food ) {
+  comparator: function(food) {
     return food.get('order');
   }
 
