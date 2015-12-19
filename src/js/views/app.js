@@ -146,8 +146,10 @@ app.AppView = Backbone.View.extend({
     var self= this;
 
     var params = {
-      'results': '0:15', //Get up to 15 items
-      'fields' : 'item_name,brand_name,nf_calories,nf_serving_size_qty,nf_serving_size_unit', //Get item, brand and calories
+      //Get up to 15 items
+      'results': '0:15',
+      //Get item, brand and calories
+      'fields' : 'item_name,brand_name,nf_calories,nf_serving_size_qty,nf_serving_size_unit',
       'appId': '72e7d3f2',
       'appKey': 'be0b61430f161b795ac29ebebfada85a'
     };
@@ -179,6 +181,7 @@ app.AppView = Backbone.View.extend({
     .fail(function(err){
 
       //On fail open manual entry form and log error
+       self.$results.html('<h4 class="no-results">FAILED TO RECEIVE DATA FROM NUTRITIONIX.<br>PLEASE ENTER FOOD ITEM MANUALLY</h4>');
       self.enterManually();
       console.log(err);
     });
