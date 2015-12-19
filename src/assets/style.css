@@ -128,6 +128,11 @@ table {
     width: 100px;
 }
 
+.loader {
+    display: block;
+    margin: auto;
+}
+
 .food-box {
     border: 0;
     border-radius: 10px;

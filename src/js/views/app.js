@@ -149,13 +149,17 @@ app.AppView = Backbone.View.extend({
     var self= this;
 
     var params = {
+
       //Get up to 15 items
       'results': '0:15',
+
       //Get item, brand and calories
       'fields': 'item_name,brand_name,nf_calories,nf_serving_size_qty,nf_serving_size_unit',
       'appId': '72e7d3f2',
       'appKey': 'be0b61430f161b795ac29ebebfada85a'
     };
+
+$(".loader").removeClass('hidden');
 
     $.ajax({
       type: 'GET',
@@ -164,7 +168,7 @@ app.AppView = Backbone.View.extend({
       data: params,
     })
     .done(function(data){
-
+$(".loader").addClass('hidden');
       //Empty searcg results list and remove 'hidden class'
       self.$results.html("");
       self.$results.removeClass('hidden');
@@ -187,7 +191,7 @@ app.AppView = Backbone.View.extend({
 
     })
     .fail(function(err){
-
+$(".loader").addClass('hidden');
       //On fail show fail message
       var message = '<h4 class="no-results">NUTRITIONIX REQUEST FAILED<br>';
           message += 'PLEASE ENTER FOOD ITEM MANUALLY</h4>';
@@ -264,7 +268,7 @@ app.AppView = Backbone.View.extend({
         serveHTML += 'class="food-input size-input" type="text" >';
     this.$serveSize.html(serveHTML);
 
-    var serveCals = 'input name="serving-calories" id="serving-cals"';
+    var serveCals = '<input name="serving-calories" id="serving-cals"';
         serveCals += '< class="food-input" type="text" value="">';
     this.$serveCals.html(serveCals);
 
@@ -447,3 +451,6 @@ app.AppView = Backbone.View.extend({
   }
 
 });
+
+//TODO: Add transform to laoding gif
+//TODO: move news out of file
