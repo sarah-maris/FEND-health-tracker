@@ -62,8 +62,11 @@ app.AppView = Backbone.View.extend({
 
   updateFoodList: function(){
 
+    //Take slashes out of date
+    this.cleanDate = this.appDate.replace(/\//g, '');
+
     //Add date to firebase url to create a new collection for each date
-    this.dateUrl = 'https://food-tracker-sam.firebaseio.com/' + this.appDate.replace(/\//g, '');
+    this.dateUrl = 'https://food-tracker-sam.firebaseio.com/' + this.cleanDate;
 
     //Fire a FoodList collection to get data from Firebase
     this.foodList = new FoodList([], {
@@ -149,7 +152,7 @@ app.AppView = Backbone.View.extend({
       //Get up to 15 items
       'results': '0:15',
       //Get item, brand and calories
-      'fields' : 'item_name,brand_name,nf_calories,nf_serving_size_qty,nf_serving_size_unit',
+      'fields': 'item_name,brand_name,nf_calories,nf_serving_size_qty,nf_serving_size_unit',
       'appId': '72e7d3f2',
       'appKey': 'be0b61430f161b795ac29ebebfada85a'
     };
@@ -172,18 +175,27 @@ app.AppView = Backbone.View.extend({
 
       //If no results enter food manually
       } else {
-        //Show "no results found" message and open manual entry form
-        self.$results.prepend('<h4 class="no-results">NO RESULTS FOUND.<br>PLEASE ENTER FOOD ITEM MANUALLY</h4>');
+
+        //Show "no results found" message
+        var message = '<h4 class="no-results">NO RESULTS FOUND.<br>';
+            message += 'PLEASE ENTER FOOD ITEM MANUALLY</h4>';
+        self.$results.prepend(message);
+
+        // Open manual entry form
         self.enterManually();
       }
 
     })
     .fail(function(err){
 
-      //On fail open manual entry form and log error
-       self.$results.html('<h4 class="no-results">FAILED TO RECEIVE DATA FROM NUTRITIONIX.<br>PLEASE ENTER FOOD ITEM MANUALLY</h4>');
+      //On fail show fail message
+      var message = '<h4 class="no-results">NUTRITIONIX REQUEST FAILED<br>';
+          message += 'PLEASE ENTER FOOD ITEM MANUALLY</h4>';
+      self.$results.html(message);
+
+      // Open manual entry form
       self.enterManually();
-      console.log(err);
+
     });
   },
 
@@ -248,8 +260,13 @@ app.AppView = Backbone.View.extend({
     this.showManual = false;
 
     //Add input box for servine size and calories per serving
-    this.$serveSize.html('<input name="serving-size" id="serving-size-input" class="food-input size-input" type="text" >');
-    this.$serveCals.html('<input name="serving-calories" id="serving-cals" class="food-input" type="text" value="">');
+    var serveHTML = '<input name="serving-size" id="serving-size-input" ';
+        serveHTML += 'class="food-input size-input" type="text" >';
+    this.$serveSize.html(serveHTML);
+
+    var serveCals = 'input name="serving-calories" id="serving-cals"';
+        serveCals += '< class="food-input" type="text" value="">';
+    this.$serveCals.html(serveCals);
 
     //Set variable for calories input
     this.$inputCals = $('#serving-cals');
@@ -385,7 +402,15 @@ app.AppView = Backbone.View.extend({
     var self = this;
 
     //NY Times API query  -- created at http://developer.nytimes.com/io-docs
-    var nytAPIquery ='http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk%3A%28%22Health%22%29+AND+source%3A%28%22The+New+York+Times%22%29&fl=web_url%2Csnippet%2Clead_paragraph%2Cheadline%2Cpub_date%2Cnews_desk&api-key=deff2d25c9042f8202e28185f1249edc:17:59910050';
+
+    var baseURL = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?';
+    var filters = 'fq=news_desk%3A%28%22Health%22%29';
+        filters += '+AND+source%3A%28%22The+New+York+Times%22%29&';
+    var fields = 'fl=web_url%2Csnippet%2Clead_paragraph%2Cheadline%2Cpub_date';
+        fields += '%2Cnews_desk&';
+    var key = 'api-key=deff2d25c9042f8202e28185f1249edc:17:59910050';
+
+    var nytAPIquery = baseURL + filters + fields + key;
 
     $.getJSON(nytAPIquery)
         .done (function(data) {
@@ -393,9 +418,10 @@ app.AppView = Backbone.View.extend({
          //Iterate through articles and attach to #nytimes-articles
           var articles = data.response.docs;
           var headline, newsURL, paragraph, pubDate;
+          var numArticles = 6;
 
-          //Show only 6 articles
-          for (var i = 0; i < 6; i ++) {
+          //Show number of articles set above
+          for (var i = 0; i < numArticles; i ++) {
 
             //Show results using template
             self.$newsItems.append(self.newsTemplate({
