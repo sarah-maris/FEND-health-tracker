@@ -159,7 +159,8 @@ app.AppView = Backbone.View.extend({
       'appKey': 'be0b61430f161b795ac29ebebfada85a'
     };
 
-$(".loader").removeClass('hidden');
+    //Show loader gif
+    $(".loader").fadeIn();
 
     $.ajax({
       type: 'GET',
@@ -167,8 +168,12 @@ $(".loader").removeClass('hidden');
       dataType: 'json',
       data: params,
     })
+
     .done(function(data){
-$(".loader").addClass('hidden');
+
+      //fade out loader gif
+      $(".loader").fadeOut(1000);
+
       //Empty searcg results list and remove 'hidden class'
       self.$results.html("");
       self.$results.removeClass('hidden');
@@ -190,8 +195,12 @@ $(".loader").addClass('hidden');
       }
 
     })
+
     .fail(function(err){
-$(".loader").addClass('hidden');
+
+      //fade out loader gif
+      $(".loader").fadeOut(1000);
+
       //On fail show fail message
       var message = '<h4 class="no-results">NUTRITIONIX REQUEST FAILED<br>';
           message += 'PLEASE ENTER FOOD ITEM MANUALLY</h4>';

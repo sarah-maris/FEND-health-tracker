@@ -129,7 +129,7 @@ table {
 }
 
 .loader {
-    display: block;
+    display:none;
     margin: auto;
 }
 
