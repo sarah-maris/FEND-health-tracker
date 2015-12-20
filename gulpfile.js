@@ -44,12 +44,10 @@ gulp.task('clean-build', function (cb) {
   del(['build/**'], cb);
 });
 
-//Compress png images
-gulp.task('png-images', function() {
-  return gulp.src(paths.images + '.png')
+//Compressimages
+gulp.task('images', function() {
+  return gulp.src(paths.images)
     .pipe(imagemin({
-    progressive: true,
-    svgoPlugins: [{removeViewBox: false}],
     use: [pngquant()]
     }))
   .pipe(gulp.dest('build/assets/images'));
@@ -140,7 +138,7 @@ gulp.task('usemin', function() {
 gulp.task('build', function(callback) {
   runSequence(
     //Run synchronous tasks
-    ['usemin', 'lint', 'png-images', 'fonts'],
+    ['usemin', 'lint', 'images', 'fonts'],
 	//Set updated file to github.io
 	'deploy',
     //Watch for changes
