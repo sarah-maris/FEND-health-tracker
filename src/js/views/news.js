@@ -10,17 +10,17 @@ app.getNews = function(){
   this.newsTemplate = _.template( $('#news-template').html() );
 
   //NY Times API query  -- created at http://developer.nytimes.com/io-docs
-  var baseURL = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?';
-  var filters = 'fq=news_desk%3A%28%22Health%22%29';
-      filters += '+AND+source%3A%28%22The+New+York+Times%22%29&';
-  var fields = 'fl=web_url%2Csnippet%2Clead_paragraph%2Cheadline%2Cpub_date';
-      fields += '%2Cnews_desk&';
-  var key = 'api-key=deff2d25c9042f8202e28185f1249edc:17:59910050';
+  var baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+  baseUrl += '?' + $.param({
+    'api-key': "f575d0bca4674b2ebaada99ac588d129",
+    'fq': "news_desk:(\"Health & Fitness\") AND source:(\"The New York Times\")",
+    'sort': "newest"
+  });
 
-  var nytAPIquery = baseURL + filters + fields + key;
-
-  $.getJSON(nytAPIquery)
-      .done (function(data) {
+  $.ajax({
+    url: baseUrl,
+    method: 'GET',
+  }).done (function(data) {
 
        //Iterate through articles and attach to #nytimes-articles
         var articles = data.response.docs;
