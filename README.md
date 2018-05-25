@@ -1,5 +1,5 @@
-##Front End Nanodegree Project 5-2: Health Tracker
-###Food Planner
+## Front End Nanodegree Project 5-2: Health Tracker
+### Food Planner
 *This project uses the Backbone.js framework, Firebase storage, the Nutritionix API to track calories consumed and The New York Times API to provide Health News*
 
 See live here: http://sarah-maris.github.io/FEND-health-tracker/
