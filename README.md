@@ -2,7 +2,7 @@
 ### Food Planner
 *This project uses the Backbone.js framework, Firebase storage, the Nutritionix API to track calories consumed and The New York Times API to provide Health News*
 
-See live here: http://sarah-maris.github.io/FEND-health-tracker/
+See live here: **[Health Tracker](https://sarah-maris.github.io/FEND-health-tracker/)**
 
 The purpose of this app to to record daily calorie consumption.  The app defaults to the current date but the user can choose another date using the datepicker.
 
